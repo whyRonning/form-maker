@@ -1,9 +1,9 @@
 import React from "react";
-import { DataFillingContainer } from "./DataFillingContainer";
+import { DataFillingContainer } from "./customization/DataFillingContainer";
 import { MiniHeader } from "./miniHeader";
-import { TemplatesContainer } from "./templatesContainer";
+import { TemplatesContainer } from "./templates/templatesContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { PersonalTemplatesContainer } from "./personalTemplatesContainer";
+import { PersonalTemplatesContainer } from "./user-templates/personalTemplatesContainer";
 export let MiniHeaderSwitch = React.memo((props) => {
   return (
     <>
@@ -25,15 +25,15 @@ export let MiniHeaderSwitch = React.memo((props) => {
         stateOfHeader={props.stateOfHeader}
         isAuth={props.isAuth}
         stateOfHeaderAC={props.stateOfHeaderAC}
-      ></MiniHeader>
+      />
       {props.stateOfHeader === 1 ? (
-        <TemplatesContainer></TemplatesContainer>
+        <TemplatesContainer />
       ) : props.stateOfHeader === 2 ? (
-        <DataFillingContainer></DataFillingContainer>
+        <DataFillingContainer />
       ) : props.stateOfHeader === 3 ? (
-        <PersonalTemplatesContainer></PersonalTemplatesContainer>
+        <PersonalTemplatesContainer />
       ) : (
-        <div></div>
+        <div />
       )}
     </>
   );

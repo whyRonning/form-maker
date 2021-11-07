@@ -1,4 +1,4 @@
-import { FormInput } from "./FormInput";
+import { FormInput } from "../../FormInput";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export let PersonalTemplatesCreator = React.memo((props) => {

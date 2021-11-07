@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { actions } from "../../store/mainReducer";
+import { actions } from "../../../../store/mainReducer";
 import { Filter } from "./filter";
 import React from "react";
 

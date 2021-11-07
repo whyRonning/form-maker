@@ -1,15 +1,15 @@
 import React from "react";
 import "./css/style.scss";
-import {HeaderContainer} from "./components/headerContainer";
+import {HeaderContainer} from "./components/header/headerContainer";
 import {Route, Switch, Redirect} from "react-router-dom";
 import {HelpContainer} from "./components/contact/helpContainer";
 import {MainContainer} from "./components/MainContainer";
-import {RegistrationContainer} from "./components/acc/registrationContainer";
+import {RegistrationContainer} from "./components/registration/registrationContainer";
 import {AcceptAccount} from "./components/acc/acceptAccount";
 import {useEffect} from "react";
 
 import {AccountContainer} from "./components/acc/accountContainer";
-import {PreloaderContainer} from "./components/preloaderContainer";
+import {PreloaderContainer} from "./components/preloader/preloaderContainer";
 import {dataType as authDataType} from "./store/authReducer";
 
 type props = {

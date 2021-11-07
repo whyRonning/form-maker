@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import {GlobalState} from "../../store/store";
+import {GlobalState} from "../store/store";
 let getTemplates = (state:GlobalState) => {
   return state.mainReducer.templates;
 };

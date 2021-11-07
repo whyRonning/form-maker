@@ -3,7 +3,7 @@ import { PersonalTemplates } from "./personalTemplates";
 import {
   actions,
   DeleteTemplateThunk
-} from "../../store/mainReducer";
+} from "../../../../store/mainReducer";
 import React from "react";
 let MapStateToProps = (state) => {
   return {

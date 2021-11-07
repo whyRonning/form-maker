@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
-import { actions} from "../../store/mainReducer";
+import { actions} from "../../../../store/mainReducer";
 import { Templates } from "./templates";
 import { FilterContainer } from "./filterContainer";
-import { TemplateSelector } from "../selectors/templateSelector";
+import { TemplateSelector } from "../../../../selectors/templateSelector";
 import React from "react";
 let MapStateToProps = (state) => ({
   templates: TemplateSelector(state),

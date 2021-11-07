@@ -109,6 +109,7 @@ router.post("/checkToken", async (req, res) => {
   }
 });
 router.post("/auth", async (req, res) => {
+ 
   try {
     let { email, password } = req.body;
     if (!email || !password) {

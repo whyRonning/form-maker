@@ -158,14 +158,14 @@ export let Field = React.memo((props) => {
         <Radio.Button
           name="descriptionPosition"
           onChange={handler}
-          checked={descriptionPosition === "bottom" ? true : false}
+          checked={descriptionPosition === "bottom" }
           value="bottom"
         >
           Снизу
         </Radio.Button>
         <Radio.Button
           name="descriptionPosition"
-          checked={descriptionPosition === "inline" ? true : false}
+          checked={descriptionPosition === "inline"}
           onChange={handler}
           value="inline"
         >
@@ -180,7 +180,7 @@ export let Field = React.memo((props) => {
               name={"type" + props.index}
               value="textarea"
               onChange={handler}
-              checked={typeOfInput === "textarea" ? true : false}
+              checked={typeOfInput === "textarea" }
             >
               Textarea
             </Radio.Button>
@@ -189,7 +189,7 @@ export let Field = React.memo((props) => {
               name={"type" + props.index}
               value="text"
               onChange={handler}
-              checked={typeOfInput === "text" ? true : false}
+              checked={typeOfInput === "text" }
             >
               Input
             </Radio.Button>
@@ -198,7 +198,7 @@ export let Field = React.memo((props) => {
               name={"type" + props.index}
               value="checkbox"
               onChange={handler}
-              checked={typeOfInput === "checkbox" ? true : false}
+              checked={typeOfInput === "checkbox" }
             >
               Checkbox
             </Radio.Button>
@@ -207,7 +207,7 @@ export let Field = React.memo((props) => {
               name={"type" + props.index}
               value="file"
               onChange={handler}
-              checked={typeOfInput === "file" ? true : false}
+              checked={typeOfInput === "file" }
             >
               File
             </Radio.Button>
@@ -216,7 +216,7 @@ export let Field = React.memo((props) => {
               name={"type" + props.index}
               value="password"
               onChange={handler}
-              checked={typeOfInput === "password" ? true : false}
+              checked={typeOfInput === "password" }
             >
               Password
             </Radio.Button>
@@ -225,7 +225,7 @@ export let Field = React.memo((props) => {
               name={"type" + props.index}
               value="email"
               onChange={handler}
-              checked={typeOfInput === "email" ? true : false}
+              checked={typeOfInput === "email" }
             >
               Email
             </Radio.Button>

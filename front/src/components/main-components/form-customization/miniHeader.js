@@ -13,18 +13,18 @@ export let MiniHeader = React.memo((props) => {
             ? "slider-2 slider"
             : "slider-3 slider"
         }
-      ></div>
+      />
       <div>
         <p name="1" onClick={handler}>
           Шаблоны
         </p>
-        <div></div>
+        <div/>
       </div>
       <div>
         <p name="2" onClick={handler}>
           Настройки
         </p>
-        <div></div>
+        <div />
       </div>
       <div style={{ backgroundColor: props.isAuth ? "" : "#c2c1c0" }}>
         <button

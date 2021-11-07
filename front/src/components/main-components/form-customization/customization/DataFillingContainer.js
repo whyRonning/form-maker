@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import {
     actions, SaveThunk
-} from "../../store/mainReducer";
-import { actions as authActions} from "../../store/authReducer";
+} from "../../../../store/mainReducer";
+import { actions as authActions} from "../../../../store/authReducer";
 import { SeeingFields } from "./SeeingFields";
 import { DataFilling } from "./DataFilling";
 import React from "react";

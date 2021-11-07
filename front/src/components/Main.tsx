@@ -1,7 +1,7 @@
 import React from "react";
-import { FormContainer } from "./main-components/FormContainer";
+import { FormContainer } from "./main-components/form-display/FormContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MiniHeaderSwitchContainer } from "./main-components/MiniHeaderSwitchContainer";
+import { MiniHeaderSwitchContainer } from "./main-components/form-customization/MiniHeaderSwitchContainer";
 type props={
     isFillingVision:boolean,
     generalBackgroundColor:string,
@@ -32,7 +32,7 @@ export const Main:React.FC<props> = React.memo((props) => {
                     className={
                         props.isFillingVision ? "output-closed-s" : "output-opened-ss"
                     }
-                >
+                    >
                     <FormContainer/>
                 </div>
             </div>

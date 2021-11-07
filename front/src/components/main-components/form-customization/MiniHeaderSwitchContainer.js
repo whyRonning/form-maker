@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import { stateOfHeaderAC } from "../../store/menuReducer";
+import { stateOfHeaderAC } from "../../../store/menuReducer";
 import { MiniHeaderSwitch } from "./MiniHeaderSwitch";
-import { actions } from "../../store/mainReducer";
+import { actions } from "../../../store/mainReducer";
 let MapStateToProps = (state) => ({
   stateOfHeader: state.menuReducer.stateOfHeader,
   isFillingVision: state.mainReducer.isFillingVision,

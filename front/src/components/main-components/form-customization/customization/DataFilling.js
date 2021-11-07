@@ -1,5 +1,5 @@
 import React from "react";
-import { Field } from "./Field";
+import { Field } from "../../Field";
 import { Radio } from "antd";
 export const DataFilling = React.memo((props) => {
   return (
@@ -103,14 +103,14 @@ export const DataFilling = React.memo((props) => {
         <Radio.Button
           name="labelsPosition"
           onChange={props.check}
-          checked={props.labelsPosition === "top" ? true : false}
+          checked={props.labelsPosition === "top" }
           value="top"
         >
           Сверху
         </Radio.Button>
         <Radio.Button
           name="labelsPosition"
-          checked={props.labelsPosition === "left" ? true : false}
+          checked={props.labelsPosition === "left" }
           onChange={props.check}
           value="left"
         >
@@ -143,7 +143,7 @@ export const DataFilling = React.memo((props) => {
               inputs={props.inputs[props.selectedInput]}
               process={props.process}
               index={props.selectedInput}
-            ></Field>
+            />
           ) : (
             <></>
           )}

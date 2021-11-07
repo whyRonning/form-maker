@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {Header} from "./header";
-import {LogoutThunk} from "../store/authReducer";
-import {GlobalState} from "../store/store";
+import {LogoutThunk} from "../../store/authReducer";
+import {GlobalState} from "../../store/store";
 
 type MapStateToPropsType = {
     isAuth: boolean

@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import React from "react";
-import { AuthContainer } from "./authContainer";
-import { RegistrationContainer } from "./registrationContainer";
+import { AuthContainer } from "../auth/authContainer";
+import { RegistrationContainer } from "../registration/registrationContainer";
 import { actions } from "../../store/authReducer";
 let MapStateToProps = (state) => {
   return {
@@ -16,7 +16,7 @@ let AccBlock = (props) => {
     props.loginStateAC(e.target.getAttribute("name"));
   };
   return props.isAuth ? (
-    <Redirect to="/"></Redirect>
+    <Redirect to="/" />
   ) : (
     <div className="LogRegBlock">
       <div className="LogRegWrapper">
@@ -43,11 +43,11 @@ let AccBlock = (props) => {
         <div className="LogReg">
           {props.loginState === "login" ? (
             <>
-              <AuthContainer></AuthContainer>
+              <AuthContainer />
             </>
           ) : (
             <>
-              <RegistrationContainer></RegistrationContainer>
+              <RegistrationContainer />
             </>
           )}
         </div>
