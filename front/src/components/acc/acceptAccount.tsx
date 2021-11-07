@@ -4,14 +4,10 @@ import {connect} from "react-redux";
 import {AcceptThunk, AcceptThunkAxiosType} from "../../store/mainReducer";
 import {useState} from "react";
 import {RouteComponentProps} from "react-router";
-
-type paramForWithRouter = {
-    Id: string
+type PathParamsType={
+    Id:string
 }
-type props = {
-    AcceptThunk: (url: string, method: string, body: { id: string }) => Promise<AcceptThunkAxiosType | undefined>
-}
-let AcceptAccountBlock: React.FC<RouteComponentProps<paramForWithRouter> & props> = React.memo((props) => {
+let AcceptAccountBlock = React.memo((props:propsType) => {
     let url = props.match.params.Id;
     let AcceptThunk = props.AcceptThunk;
     let [text, setText] = useState<string>("");
@@ -28,5 +24,7 @@ let AcceptAccountBlock: React.FC<RouteComponentProps<paramForWithRouter> & props
     }, [url, AcceptThunk]);
     return <div>{text}</div>;
 });
-let da = withRouter(AcceptAccountBlock);
-export let AcceptAccount = connect(null, {AcceptThunk})(da);
+let acceptWithRouter = withRouter(AcceptAccountBlock);
+type propsType=RouteComponentProps<PathParamsType>&{AcceptThunk:any}
+let AcceptAccountConnector = connect(null, {AcceptThunk});
+export let AcceptAccount=AcceptAccountConnector(acceptWithRouter);

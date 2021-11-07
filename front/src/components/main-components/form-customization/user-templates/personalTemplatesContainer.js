@@ -1,14 +1,11 @@
 import { connect } from "react-redux";
 import { PersonalTemplates } from "./personalTemplates";
-import {
-  actions,
-  DeleteTemplateThunk
-} from "../../../../store/mainReducer";
+import { actions, DeleteTemplateThunk } from "../../../../store/mainReducer";
 import React from "react";
 let MapStateToProps = (state) => {
   return {
     state: state.mainReducer,
-    userTemplates: state.authReducer.userTemplates
+    userTemplates: state.authReducer.userTemplates,
   };
 };
 let PersonalTemplatess = (props) => {
@@ -19,6 +16,6 @@ let PersonalTemplatess = (props) => {
   );
 };
 export let PersonalTemplatesContainer = connect(MapStateToProps, {
-  ApplyTemplateAC:actions.ApplyTemplateAC,
-  DeleteTemplateThunk
+  ApplyTemplateAC: actions.ApplyTemplateAC,
+  DeleteTemplateThunk,
 })(PersonalTemplatess);

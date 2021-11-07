@@ -13,4 +13,4 @@ let MapStateToProps = (state: GlobalState): MapStateToPropsType => {
         preloader: preloader
     };
 };
-export let PreloaderContainer = connect<MapStateToPropsType, {}, {}, GlobalState>(MapStateToProps)(Preloader);
+export let PreloaderContainer = connect(MapStateToProps)(Preloader);

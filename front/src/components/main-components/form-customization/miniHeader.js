@@ -18,7 +18,7 @@ export let MiniHeader = React.memo((props) => {
         <p name="1" onClick={handler}>
           Шаблоны
         </p>
-        <div/>
+        <div />
       </div>
       <div>
         <p name="2" onClick={handler}>

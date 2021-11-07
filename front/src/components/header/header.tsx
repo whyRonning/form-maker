@@ -1,11 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-type props= {
-    isAuth:boolean,
-    LogoutThunk: () => void
-}
-export let Header:React.FC<props> = React.memo((props) => {
-  let handler= () => {
+
+type props = {
+  isAuth: boolean;
+  LogoutThunk: () => void;
+};
+export let Header = (props: props) => {
+  let handler = () => {
     props.LogoutThunk();
   };
   return (
@@ -24,4 +25,4 @@ export let Header:React.FC<props> = React.memo((props) => {
       </div>
     </header>
   );
-});
+};

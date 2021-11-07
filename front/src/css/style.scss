@@ -2,36 +2,45 @@ $FontSizeText: 8vw;
 $InputWidth: 9vw;
 $InputHeight: 2.5vh; // Поля ввода
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900&display=swap");
 
-@mixin icon-angles($left,$transition-duration){ // Кнопка сворачивания
-  background-color:grey;
-  color:white;
-  width: 2vw; 
+@mixin icon-angles($left, $transition-duration) {
+  // Кнопка сворачивания
+  background-color: grey;
+  color: white;
+  width: 2vw;
   height: 2.5vh;
-  cursor:pointer;
+  cursor: pointer;
   position: fixed;
-  top:50vh;
+  top: 50vh;
   transition-property: left;
-  left:$left;
+  left: $left;
   transition-duration: $transition-duration;
-  &>svg{
-    margin-top:.4vh
-  } 
+  & > svg {
+    margin-top: 0.4vh;
+  }
 }
-input:disabled,textarea:disabled  {
+input:disabled,
+textarea:disabled {
   background-color: white;
 }
-@mixin wrapper-Form-Intputs ($colums,$gridColumn1,$gridColumn2,$justify-self:"",$width:100%) {
-  display:grid;
+@mixin wrapper-Form-Intputs(
+  $colums,
+  $gridColumn1,
+  $gridColumn2,
+  $justify-self: "",
+  $width: 100%
+) {
+  display: grid;
   text-align: left;
   grid-template-columns: $colums;
   justify-self: $justify-self;
-  width:$width;
+  width: $width;
   grid-column-start: $gridColumn1;
-  grid-column-end :$gridColumn2;
+  grid-column-end: $gridColumn2;
 }
-@mixin btn($marginLeft) { // Шаблон кнопки
+@mixin btn($marginLeft) {
+  // Шаблон кнопки
   grid-column: 1/3;
   width: 40%;
   height: 6vh;
@@ -39,72 +48,70 @@ input:disabled,textarea:disabled  {
   outline: none;
   color: white;
 
-  font-family: 'Nunito', sans-serif !important;
+  font-family: "Nunito", sans-serif !important;
   font-size: 0.9vw;
   //font-weight: Bold 200;
 
   user-select: none;
   border: none;
   justify-self: center;
-  margin-top:2vw;
-// margin-left: $marginLeft;
+  margin-top: 2vw;
+  // margin-left: $marginLeft;
   transition: all ease 0.3s;
   &:hover {
-    color:#53c6b4;
+    color: #53c6b4;
     background: none;
     border: 1px solid;
   }
 }
 
-html { 
-  font-family: 'Nunito', sans-serif !important;
+html {
+  font-family: "Nunito", sans-serif !important;
   //font-weight: Bol d 200;
   user-select: none;
 }
 body {
   margin: 0;
-  /*font-family: Inter,Roobert,Helvetica Neue,Helvetica,Arial,sans-serif !important;*/ 
+  /*font-family: Inter,Roobert,Helvetica Neue,Helvetica,Arial,sans-serif !important;*/
   overflow: hidden;
-  font-family: 'Nunito', sans-serif !important;
+  font-family: "Nunito", sans-serif !important;
   //font-weight: Bold;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
 }
 
 .App {
   text-align: center;
-
 }
 .output-closed-body {
   height: 95vh;
 }
 .output-opened-ss {
-  width:100vw;
+  width: 100vw;
   text-align: center;
   transition-property: width;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }
 .output-closed-s {
   text-align: center;
   width: 100vw;
-  transition: ease .6s;
+  transition: ease 0.6s;
 }
-.input-closed-sss{
-  transition: ease .6s;
-  top:7vh;
-  opacity: .1;
+.input-closed-sss {
+  transition: ease 0.6s;
+  top: 7vh;
+  opacity: 0.1;
   width: 33vw;
-  left: 67vw  ;
+  left: 67vw;
   height: 93vh;
-  background-color:	white;
+  background-color: white;
   position: absolute;
   z-index: 4;
   .ant-radio-button-wrapper {
-    height: 3vh; 
-    line-height:3vh;
+    height: 3vh;
+    line-height: 3vh;
     font-size: 1.7vmin;
-    width:fit-content;
+    width: fit-content;
   }
   border-left: 1px solid black;
   &:hover {
@@ -112,50 +119,50 @@ body {
     opacity: 1;
   }
 }
-.input-opened-ssss{
-  transition: ease .6s;
+.input-opened-ssss {
+  transition: ease 0.6s;
   height: 93vh;
-  background-color:white;
-  top:7vh;
+  background-color: white;
+  top: 7vh;
   width: 33vw;
   left: 100vw;
-  position:  absolute;
-
+  position: absolute;
 }
 * {
   margin: 0;
   padding: 0;
 }
 button {
-  cursor:pointer; 
+  cursor: pointer;
 }
-input:not([type="color"]) { 
-  padding-left: .2vw;
+input:not([type="color"]) {
+  padding-left: 0.2vw;
 }
-input { 
+input {
   border-radius: 5px;
-  border-width: 1px; 
+  border-width: 1px;
   outline: none;
-  
-  &[type="text"], &[type="number"] {
-    padding-left: .2vw;
+
+  &[type="text"],
+  &[type="number"] {
+    padding-left: 0.2vw;
     width: $InputWidth;
     height: $InputHeight;
   }
-  &[type="color"]{
+  &[type="color"] {
     width: 2vw;
-    height:2vh;
+    height: 2vh;
   }
 }
 .icon-angles-shown {
-  @include icon-angles(65vw,.6s);
+  @include icon-angles(65vw, 0.6s);
 }
 .icon-angles-hidden {
-  @include icon-angles(98vw,.6s);
+  @include icon-angles(98vw, 0.6s);
 }
 .preloader {
-  left:0;
-  top:0;
+  left: 0;
+  top: 0;
   z-index: 999;
   width: 100vw;
   position: absolute;
@@ -163,20 +170,18 @@ input {
   text-align: left;
   height: 100vh;
   img {
-    padding:0;
-    margin:50vh 0 0 50vw;
-   
+    padding: 0;
+    margin: 50vh 0 0 50vw;
   }
 }
 .dataFilling {
-  font-size: .95vw;
+  font-size: 0.95vw;
   justify-items: center;
   display: grid;
   overflow-y: auto;
-    
-  
-  button{
-    @include btn(0)
+
+  button {
+    @include btn(0);
   }
 
   label {
@@ -191,9 +196,9 @@ input {
     }
   }
   .alert {
-    width:100vw;
-    background-color:black;
-    height: auto
+    width: 100vw;
+    background-color: black;
+    height: auto;
   }
   .dataFillingBlock {
     padding: 2vw 0 5vw 0;
@@ -202,100 +207,96 @@ input {
     width: 100%; /*Было 100%*/
     overflow-y: auto;
     overflow-x: hidden;
-    .FieldsBlock{
-      z-index:2;
-      top:0;
-      left:0;
+    .FieldsBlock {
+      z-index: 2;
+      top: 0;
+      left: 0;
       position: fixed;
-      .fields{
-        z-index:7;
+      .fields {
+        z-index: 7;
         position: absolute;
-        top:20vh;
-        left:20vw;
-        width:50vw;
-        label{
+        top: 20vh;
+        left: 20vw;
+        width: 50vw;
+        label {
           input {
-            margin-left:1vw;
+            margin-left: 1vw;
           }
         }
         .ant-radio-button-wrapper {
-          width:8.5vw;
+          width: 8.5vw;
           height: 3.1vh;
         }
-        height:50vh;
+        height: 50vh;
         background-color: white;
-        .typeOFieldBlock{
+        .typeOFieldBlock {
           display: grid;
           grid-template-columns: 1fr 1fr;
           padding-right: 5.7vw;
           label {
-            justify-self:end;
+            justify-self: end;
           }
-        .typeOField{
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
-
+          .typeOField {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+          }
         }
-      }
         h2 {
-          margin:1vw 0 3vw 0;
+          margin: 1vw 0 3vw 0;
         }
-        button{
-          margin-right:2vw;
+        button {
+          margin-right: 2vw;
         }
-
       }
     }
     .blockItemsOfInputs {
       display: grid;
-      
+
       justify-content: center;
-      .ItemsOfInputs{  
-        border-radius: .5vw;
-        margin-top:1vw;
-        height:3vh;
-        border:2px solid black;
+      .ItemsOfInputs {
+        border-radius: 0.5vw;
+        margin-top: 1vw;
+        height: 3vh;
+        border: 2px solid black;
         min-width: 10vw;
         max-width: 33vw;
-        &>div {
+        & > div {
           text-align: center;
-          padding: 0 .5vw 0 .5vw;
+          padding: 0 0.5vw 0 0.5vw;
           display: inline-block;
-        }  
-
+        }
       }
       .shown {
-        animation: fadeIn ease .5s;
+        animation: fadeIn ease 0.5s;
         animation-fill-mode: forwards;
       }
     }
   }
 }
 .formBlock {
-  width: 100%; 
+  width: 100%;
   height: 93vh;
   display: grid;
   justify-items: center;
   grid-gap: 2vw;
-  overflow:auto;
+  overflow: auto;
   max-height: 93vh;
   input {
     width: 20vw;
     height: 3vh;
   }
   input[type="file"] {
-    margin-top:.6vh;
-    width:22vw;
-    grid-column:1/3;
-    height:3.5vh;
-
+    margin-top: 0.6vh;
+    width: 22vw;
+    grid-column: 1/3;
+    height: 3.5vh;
   }
   h1 {
-    grid-column:1/3;
+    grid-column: 1/3;
   }
   textarea {
     max-height: 18vh;
-    width:100%;
+    width: 100%;
     min-height: 15vh;
     grid-column: 1/3;
   }
@@ -303,76 +304,74 @@ input {
   .form {
     margin-bottom: 2vw;
     z-index: 5;
-    font-size:1.7vmin;
+    font-size: 1.7vmin;
     height: fit-content;
-    padding:2vw 3vw 2vw 3vw;
-      margin-top: 2vw;
-      grid-auto-rows: minmax(auto, 2vw);
-   
+    padding: 2vw 3vw 2vw 3vw;
+    margin-top: 2vw;
+    grid-auto-rows: minmax(auto, 2vw);
+
     .FormTitle {
       text-align: center;
-     }
-     .form>label {
-      grid-template: labels;
-     }
-     .wrapper-Form-Intputs-top {
-     @include wrapper-Form-Intputs(1fr,"","",center,fit-content)
     }
-    .wrapper-Form-Intputs-left{
-      @include wrapper-Form-Intputs(1fr 1fr,"","");
-      &>label {
-        text-align:center;
+    .form > label {
+      grid-template: labels;
+    }
+    .wrapper-Form-Intputs-top {
+      @include wrapper-Form-Intputs(1fr, "", "", center, fit-content);
+    }
+    .wrapper-Form-Intputs-left {
+      @include wrapper-Form-Intputs(1fr 1fr, "", "");
+      & > label {
+        text-align: center;
       }
-
     }
 
     button {
-      width:35vw;
+      width: 35vw;
     }
     .textOfInputs {
-      p{
-        color:grey;
-  
+      p {
+        color: grey;
       }
-      input[type="checkbox"]{
+      input[type="checkbox"] {
         display: inline;
       }
       grid-gap: 1vw 1vw;
       align-self: center;
     }
     .wrapper-Form-CheckBoxes-two {
-      @include wrapper-Form-Intputs(1fr,1,3,left,fit-content); 
+      @include wrapper-Form-Intputs(1fr, 1, 3, left, fit-content);
       .textOfInputs {
-        display:grid;
+        display: grid;
         width: fit-content;
-        align-items:center;
+        align-items: center;
         grid-template-columns: 1fr 1fr;
-        label{
-          width:fit-content;
-                  }
+        label {
+          width: fit-content;
+        }
       }
     }
     .wrapper-Form-CheckBoxes-one {
-      @include wrapper-Form-Intputs(1fr,1,2,left,fit-content);
+      @include wrapper-Form-Intputs(1fr, 1, 2, left, fit-content);
       .textOfInputs {
-        display:grid;
+        display: grid;
         width: fit-content;
-        
-        align-items:center;
+
+        align-items: center;
         grid-template-columns: 1fr 1fr;
-        label{
-width:fit-content;
+        label {
+          width: fit-content;
         }
       }
     }
     .wrapper-Form-Intputs-one-textarea {
-      @include wrapper-Form-Intputs(1fr,1,2,"",80%);
+      @include wrapper-Form-Intputs(1fr, 1, 2, "", 80%);
     }
     .wrapper-Form-Intputs-two-textarea {
-      @include wrapper-Form-Intputs(1fr,1,3,center,100%);
+      @include wrapper-Form-Intputs(1fr, 1, 3, center, 100%);
       margin-left: 8vw;
     }
-    .wrapperOfInputsCreator{
+    .wrapperOfInputsCreator {
       display: grid;
       grid-gap: 3vw 5vw;
       grid-auto-rows: minmax(auto, auto);
@@ -382,19 +381,16 @@ width:fit-content;
       padding-bottom: 2vw;
       margin-bottom: 2vw;
       margin-top: 2vw;
-      border-radius: .8vw;
+      border-radius: 0.8vw;
     }
-     
   }
- 
 
   button {
     @include btn(auto);
-    
   }
 
   .inputRadio {
-    width:fit-content;
+    width: fit-content;
     display: grid;
     grid-template-columns: 1fr 1fr;
 
@@ -403,20 +399,18 @@ width:fit-content;
       height: 1.2vw;
     }
   }
-
 }
-
 
 .hidden {
   opacity: 0;
   visibility: hidden;
-  transition: opacity .5s, visibility .5s;
+  transition: opacity 0.5s, visibility 0.5s;
 }
 
 .shown {
   opacity: 1;
   visibility: visible;
-  transition: opacity .5s, visibility .5s;
+  transition: opacity 0.5s, visibility 0.5s;
 }
 
 .modal {
@@ -426,7 +420,7 @@ width:fit-content;
   position: absolute;
   z-index: 1;
   background-color: #282c34;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .CodeBlock {
@@ -435,7 +429,7 @@ width:fit-content;
   top: 0;
   position: fixed;
   user-select: text;
-  z-index:6;
+  z-index: 6;
 
   .Code {
     background-color: white;
@@ -451,7 +445,6 @@ width:fit-content;
     padding-bottom: 5vw;
   }
 
-
   .cancel {
     position: absolute;
     top: 1vw;
@@ -460,10 +453,10 @@ width:fit-content;
   }
 }
 
-.HelpForm{
-padding: 15vh;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
+.HelpForm {
+  padding: 15vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 
   form {
     padding: 1vw;
@@ -472,54 +465,54 @@ grid-template-columns: repeat(3, 1fr);
     display: grid;
     grid-gap: 2vw;
     grid-template-columns: 1fr 1fr;
-    grid-column:2/3;
+    grid-column: 2/3;
     width: 60vw;
     h1 {
-      grid-column:1/3;
+      grid-column: 1/3;
     }
     textarea {
-      grid-column:1/3;
+      grid-column: 1/3;
       width: 90%;
       min-height: 15vh;
-      height:18vh;
+      height: 18vh;
       max-height: 22vh;
     }
     button {
-      @include btn(0)
+      @include btn(0);
     }
-    input[type="checkbox"]{
+    input[type="checkbox"] {
       margin-left: 2vw;
-      }
-    input[type="text"],textarea{
-    margin-left: 2vw;
     }
-    input[type="text"],input[type="email"] {
+    input[type="text"],
+    textarea {
+      margin-left: 2vw;
+    }
+    input[type="text"],
+    input[type="email"] {
       width: 24vw;
       height: 3vh;
     }
-    .CheckMessegeAccept {
+    .CheckMessageAccept {
       grid-column: 1/3;
     }
   }
 }
-@keyframes fadeIn{
-from {
-  opacity: 0;
-}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
   to {
     opacity: 1;
+  }
 }
-}
-@keyframes fadeOut{
+@keyframes fadeOut {
   from {
     opacity: 1;
   }
-    to {
-      opacity: 0;
+  to {
+    opacity: 0;
   }
 }
-
-
 
 .header {
   display: grid;
@@ -528,170 +521,165 @@ from {
   grid-template-columns: 67% 11% 11% 11%;
   width: 100%;
   background: #6e959c; //#ea8d77; rgb(126, 213, 196)
-  font-family: 'Josefin Sans', sans-serif; 
+  font-family: "Josefin Sans", sans-serif;
   //font-weight: Bold 200;
   user-select: none;
-  height:7vh;
+  height: 7vh;
   overflow: hidden;
   align-items: center;
-  
-p{
-  font-size: 1.6vmin;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color:white;
-  margin-bottom: 0;
-  font-style: normal;
-  font-weight: bold;
-  cursor: pointer;
-}
+
+  p {
+    font-size: 1.6vmin;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: white;
+    margin-bottom: 0;
+    font-style: normal;
+    font-weight: bold;
+    cursor: pointer;
+  }
   a {
     text-decoration: none;
-    font-size:1.6vmin;
+    font-size: 1.6vmin;
     /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;*/
-      overflow: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-        color: white;
-        font-style: normal; 
-        font-weight: bold;
-        cursor: pointer;
-        &:hover {
-          color:white
-        }
-        &:active {
-          color:white
-        }
-  }
-  
-    .logo-txt {
-      padding: 0;
-      margin: 0;
-      border-right: solid 1px white;
-      overflow: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-        Color: white;
-        font-style: normal; 
-        font-weight: bold;
-        a {
-          font-size: 2vw;
-        }
-      }
-
-  }
-
-  .mini-header {
-    display: grid;
-    color:white;
-
-    grid-template-columns: 1fr 1fr 1fr;
-    width: 33vw;
-    cursor: pointer;
-    background-color:#53c6b4;
-    height: 7vh;
     overflow: hidden;
-    align-items: center;
-    font-family: 'Josefin Sans', sans-serif; 
-    .slider{
-      position: absolute;
-      width:11vw;
-      height: 7vh;
-      z-index: 1;
-      background-color: #05cdf1;
-      transition: .5s margin-left;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: white;
+    font-style: normal;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover {
+      color: white;
     }
-    .slider-1{
-      margin-left:0;
+    &:active {
+      color: white;
     }
-    .slider-2{
-      margin-left:11vw;
-    }
-    .slider-3{
-      margin-left:22vw;
-    }
-    &>div {
-      z-index: 2;
-      height: 7vh;
-    }
-    p{
-      height: 100%;
-      justify-content:center;
-      align-items: center;
-      margin-bottom: 0;
-      font-size: 1.5vmin;
-      padding-top: 2.3vh;
-      justify-content: center;
-      justify-items: center;
-      &[name="3"]{
-        padding-top: 1.4vh;
-      }
-    }
-    button{
-      padding-top: 1.4vh;
-      background:none;
-      font-size: 1.5vmin;
-      outline:none;
-      border:none;
-     
-      
-    }
-    
+  }
+
+  .logo-txt {
+    padding: 0;
+    margin: 0;
+    border-right: solid 1px white;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: white;
+    font-style: normal;
+    font-weight: bold;
     a {
-      text-decoration: none;
-      /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      font-size: 2vw;
+    }
+  }
+}
+
+.mini-header {
+  display: grid;
+  color: white;
+
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 33vw;
+  cursor: pointer;
+  background-color: #53c6b4;
+  height: 7vh;
+  overflow: hidden;
+  align-items: center;
+  font-family: "Josefin Sans", sans-serif;
+  .slider {
+    position: absolute;
+    width: 11vw;
+    height: 7vh;
+    z-index: 1;
+    background-color: #05cdf1;
+    transition: 0.5s margin-left;
+  }
+  .slider-1 {
+    margin-left: 0;
+  }
+  .slider-2 {
+    margin-left: 11vw;
+  }
+  .slider-3 {
+    margin-left: 22vw;
+  }
+  & > div {
+    z-index: 2;
+    height: 7vh;
+  }
+  p {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+    font-size: 1.5vmin;
+    padding-top: 2.3vh;
+    justify-content: center;
+    justify-items: center;
+    &[name="3"] {
+      padding-top: 1.4vh;
+    }
+  }
+  button {
+    padding-top: 1.4vh;
+    background: none;
+    font-size: 1.5vmin;
+    outline: none;
+    border: none;
+  }
+
+  a {
+    text-decoration: none;
+    /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;*/
-        overflow: hidden;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-          Color: white;
-          font-style: normal; 
-          font-weight: bold;
-          cursor: pointer;
-          &:hover {
-            color:white
-          }
-          &:active {
-            color:white
-          }
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: white;
+    font-style: normal;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover {
+      color: white;
     }
-  
+    &:active {
+      color: white;
+    }
   }
-.filter{
+}
+.filter {
   padding-top: 1vh;
-  padding-bottom: 1vh;display:grid;
-  font-size: .95vw;
+  padding-bottom: 1vh;
+  display: grid;
+  font-size: 0.95vw;
   .shown {
-    height:7vh;
-    transition: opacity .5s .1111s, visibility .5s,height .5s;
+    height: 7vh;
+    transition: opacity 0.5s 0.1111s, visibility 0.5s, height 0.5s;
   }
   .hidden {
-    height:0;
-    transition: opacity .2s, visibility .5s,height .5s;
+    height: 0;
+    transition: opacity 0.2s, visibility 0.5s, height 0.5s;
   }
 
   .filterBoxes {
-    display:grid;
+    display: grid;
     justify-self: center;
     justify-items: left;
-    width:80%;
+    width: 80%;
     grid-template-columns: 1fr 1fr;
     label {
-      margin-left:.5vw;
+      margin-left: 0.5vw;
     }
-    input{
+    input {
       width: 1vw;
-      height:1vw;
+      height: 1vw;
     }
   }
-
-
 }
 .Templates-box {
-  max-height:85%;
+  max-height: 85%;
   overflow: hidden;
   padding-bottom: 5vw;
   padding-left: 1vw;
@@ -699,36 +687,32 @@ p{
   overflow-y: auto;
   overflow-x: hidden;
   button {
-    @include btn(0)
+    @include btn(0);
   }
   display: grid;
   //grid-template-rows: repeat(4, 1fr);
-  grid-gap: .5vw;
-  grid-template-columns:  1fr 1fr;
-
+  grid-gap: 0.5vw;
+  grid-template-columns: 1fr 1fr;
 
   .Template {
-    
     border: #53c6b4 solid 2px;
     &:hover {
       transition: 0.3s;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5); /* Параметры тени */
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Параметры тени */
     }
-    &>img {
+    & > img {
       width: 100%;
     }
 
     button {
-      width:100%;
+      width: 100%;
     }
     width: 100%;
     background-color: white;
-
-    
   }
 }
-.openedFilter{
-  max-height:80%;
+.openedFilter {
+  max-height: 80%;
 }
 /****************************Логин и регистрация**********************************************/
 .LogRegBlock {
@@ -737,11 +721,11 @@ p{
   text-align: center;
   height: 95vh;
   width: 100%;
-  padding-top:15vh;
-  
-  .LogRegWrapper{
+  padding-top: 15vh;
+
+  .LogRegWrapper {
     width: 40vw;
-    height:55vh;
+    height: 55vh;
     border-radius: 1vw;
     padding-top: 10vh;
     background-color: #6e959c;
@@ -751,16 +735,15 @@ p{
       }
     }
   }
- 
+
   .LogReg {
     display: grid;
     justify-content: center;
     input {
       font-size: 1vw;
     }
-    .passBlock{
-      display:grid;
-
+    .passBlock {
+      display: grid;
     }
   }
   form {
@@ -768,65 +751,62 @@ p{
     grid-template-columns: 1fr;
     width: 40vw;
     justify-items: center;
-    &>div>svg {
-      color:#c2c1c0;
+    & > div > svg {
+      color: #c2c1c0;
       left: 61vw;
       position: absolute;
       cursor: pointer;
-      height:2vh;
-      margin:1.5vh 0 0 .3vw;
-      transition: .5s color;
-      &:hover{
-        color:#ffffef;
+      height: 2vh;
+      margin: 1.5vh 0 0 0.3vw;
+      transition: 0.5s color;
+      &:hover {
+        color: #ffffef;
       }
     }
   }
   button {
     @include btn(0);
-    grid-column:1/2;
-    background-color:
-    #05cdf1;
+    grid-column: 1/2;
+    background-color: #05cdf1;
     &:hover {
-      color:white;
+      color: white;
       background: none;
       border: 1px solid;
     }
   }
   h1 {
-    color:white
+    color: white;
   }
 
   h3 {
     margin: 15vh 2vw 0 0;
     display: inline;
-    transition: .5s color;
+    transition: 0.5s color;
     cursor: pointer;
   }
   input {
-    margin-top:.6vh;
-    width:22vw;
-    height:3.5vh;
-
+    margin-top: 0.6vh;
+    width: 22vw;
+    height: 3.5vh;
   }
-
 }
 /*************************************Пользовательские шаблоны***********************/
-.personalTemplatesBlock{
-  margin-top:.5vw;
+.personalTemplatesBlock {
+  margin-top: 0.5vw;
   max-height: 91%;
-  display:grid;
-  grid-gap:.5vw;
-  margin-bottom:2vw;
-  padding-bottom:2vw;
+  display: grid;
+  grid-gap: 0.5vw;
+  margin-bottom: 2vw;
+  padding-bottom: 2vw;
   overflow-y: auto;
   overflow-x: auto;
-  .deleteTemplate{
-    font-size: .95vw;
+  .deleteTemplate {
+    font-size: 0.95vw;
     cursor: pointer;
     justify-self: end;
   }
   h1 {
-    font-size:1.2vw;
+    font-size: 1.2vw;
   }
 
   .personalFormBlock {
@@ -837,9 +817,7 @@ p{
     grid-gap: 2vw;
     height: fit-content;
 
-    
-    
-    .wrapperOfInputsCreator{
+    .wrapperOfInputsCreator {
       display: grid;
       grid-gap: 1vw 5vw;
       grid-template-columns: [labels] auto [inputs] 1fr;
@@ -848,271 +826,270 @@ p{
       align-self: center;
       margin-bottom: 1vw;
       margin-top: 1vw;
-      border-radius: .8vw;
+      border-radius: 0.8vw;
       .wrapper-Form-Intputs-top {
-        @include wrapper-Form-Intputs(1fr,"","",center,fit-content)
-       }
-       .wrapper-Form-Intputs-left{
-        @include wrapper-Form-Intputs(1fr 1fr,"","");
-        padding-left:1vw;
-        &>label {
-          text-align:center;
-          font-size:.9vw;
+        @include wrapper-Form-Intputs(1fr, "", "", center, fit-content);
+      }
+      .wrapper-Form-Intputs-left {
+        @include wrapper-Form-Intputs(1fr 1fr, "", "");
+        padding-left: 1vw;
+        & > label {
+          text-align: center;
+          font-size: 0.9vw;
         }
-
       }
       button {
-        width:35vw;
+        width: 35vw;
       }
       input[type="file"] {
         background: none;
-        font-size: .8vw;
+        font-size: 0.8vw;
       }
       .textOfInputs {
         grid-gap: 1vw 1vw;
         align-self: center;
-        p{
-        color:grey;
-        font-size:.9vw;
+        p {
+          color: grey;
+          font-size: 0.9vw;
         }
       }
       .wrapper-Form-Intputs-one-textarea {
-        @include wrapper-Form-Intputs(1fr,1,2,"",80%);
+        @include wrapper-Form-Intputs(1fr, 1, 2, "", 80%);
       }
       .wrapper-Form-Intputs-two-textarea {
-        @include wrapper-Form-Intputs(1fr,1,3,center,80%);
+        @include wrapper-Form-Intputs(1fr, 1, 3, center, 80%);
       }
     }
-
-
-}
+  }
 }
 /************************************Мобилка**********************/
-@media screen and (max-width:375px){
-  @mixin icon-angles($left){ // Кнопка сворачивания
-    background-color:grey;
-    color:white;
-    width: 8vw; 
+@media screen and (max-width: 375px) {
+  @mixin icon-angles($left) {
+    // Кнопка сворачивания
+    background-color: grey;
+    color: white;
+    width: 8vw;
     transition-property: none;
     height: 6vh;
-    cursor:pointer;
+    cursor: pointer;
     position: fixed;
-    top:50vh;
-    left:$left;
-    &>svg{
-      margin-top:.4vh
-    } 
+    top: 50vh;
+    left: $left;
+    & > svg {
+      margin-top: 0.4vh;
+    }
   }
-  
+
   label {
     font-size: 4vw;
   }
   input {
-    width:20vw;
+    width: 20vw;
     height: 4vh;
   }
-   body {
-   font-size:8vw;
- }
- .header{
-  grid-template-columns:40% 20% 20% 20%;
-   .logo-txt{
-    a{
-      font-size: 5vw;
-    }
-   }
-   a,p {
-     font-size:4vw;
-   }
- }
- .output-closed-s {
-  text-align: center;
-  width: 100vw;
-   button{
-     font-size: 4vw;
-   }
-}
- .output-opened-ss {
-  width:100vw;
-  text-align: center;
-   button{
-     font-size: 4vw;
-   }
-}
-.form{
-  h1 {
-    font-size: 7vw;
+  body {
+    font-size: 8vw;
   }
-}
-.input-opened-ssss{
-  height: 93vh;
-  background-color:white;
-  top:7vh; z-index: 6;
-  opacity: 1;
-  width: 100vw;
-  display: none;
-  position:  absolute;
-
-}
- .input-closed-sss{
-  width: 100vw;
-  height: 93vh;
-  opacity: 1;
-  z-index: 6;
-  left: 0;
-  background-color:	white;
-  position: absolute;
-  display: block;
-
-  border-left: 1px solid black;
-  .filter {
-    font-size: 4vw;
-    .filterBoxes{
-      width: 99vw;
-      margin-left: 1vw;
-      input {
-        width:3vw;
-        height:3vw;
-      }
-      label {
-        font-size: 3.4vw;
+  .header {
+    grid-template-columns: 40% 20% 20% 20%;
+    .logo-txt {
+      a {
+        font-size: 5vw;
       }
     }
+    a,
+    p {
+      font-size: 4vw;
+    }
+  }
+  .output-closed-s {
+    text-align: center;
+    width: 100vw;
+    button {
+      font-size: 4vw;
+    }
+  }
+  .output-opened-ss {
+    width: 100vw;
+    text-align: center;
+    button {
+      font-size: 4vw;
+    }
+  }
+  .form {
+    h1 {
+      font-size: 7vw;
+    }
+  }
+  .input-opened-ssss {
+    height: 93vh;
+    background-color: white;
+    top: 7vh;
+    z-index: 6;
+    opacity: 1;
+    width: 100vw;
+    display: none;
+    position: absolute;
+  }
+  .input-closed-sss {
+    width: 100vw;
+    height: 93vh;
+    opacity: 1;
+    z-index: 6;
+    left: 0;
+    background-color: white;
+    position: absolute;
+    display: block;
+
+    border-left: 1px solid black;
+    .filter {
+      font-size: 4vw;
+      .filterBoxes {
+        width: 99vw;
+        margin-left: 1vw;
+        input {
+          width: 3vw;
+          height: 3vw;
+        }
+        label {
+          font-size: 3.4vw;
+        }
+      }
     }
     .openedFilter {
-    max-height: 77%;
-
+      max-height: 77%;
     }
-    .Templates-box{
-      button{
+    .Templates-box {
+      button {
         font-size: 4vw;
       }
-      
-  }
-  .mini-header {
-    height: 9vh;
-    p {
-      font-size: 3.8vw;
+    }
+    .mini-header {
       height: 9vh;
-      padding-top: 3.2vh;
-    }
-    button {
-      font-size: 3.8vw;
-      height: 9vh;
-      padding-top: 1.2vh;
-    }
-    &>div{
-      height: 9vh;
-    }
-    width:100%;
-    .slider {
-      width:33vw;
-      height: 9vh;
-    }
-    .slider-1 {
-      margin-left:0;
-    }
-    .slider-2 {
-      margin-left:33vw;
-    }
-    .slider-3 {
-      margin-left:67vw;
-    }
-  }
-  .dataFilling {
-    font-size: 4vw;
-    button {
-      font-size: 4vw;
-    }
-    .ant-radio-button-wrapper {
-      height: 4vh; 
-      line-height:4vh;
-      font-size: 4vw;
-      width:fit-content;
-    }
-    .blockItemsOfInputs {
-      .ItemsOfInputs {
-      height: 4vh;
-        .IconsOfInputs{
-          padding: 0 1.3vw 0 1.3vw;
-        }
+      p {
+        font-size: 3.8vw;
+        height: 9vh;
+        padding-top: 3.2vh;
+      }
+      button {
+        font-size: 3.8vw;
+        height: 9vh;
+        padding-top: 1.2vh;
+      }
+      & > div {
+        height: 9vh;
+      }
+      width: 100%;
+      .slider {
+        width: 33vw;
+        height: 9vh;
+      }
+      .slider-1 {
+        margin-left: 0;
+      }
+      .slider-2 {
+        margin-left: 33vw;
+      }
+      .slider-3 {
+        margin-left: 67vw;
       }
     }
-    .dataFillingBlock{
-      max-height: 84vh;
-      min-height: 84vh;
-      .FieldsBlock{
-        .fields {
-          top:0;
-          padding-top: 4vh;
-          left:0;
-          height: 100vh;
-          width:100vw;
-          h2 {
-            padding-bottom: 3vh;
+    .dataFilling {
+      font-size: 4vw;
+      button {
+        font-size: 4vw;
+      }
+      .ant-radio-button-wrapper {
+        height: 4vh;
+        line-height: 4vh;
+        font-size: 4vw;
+        width: fit-content;
+      }
+      .blockItemsOfInputs {
+        .ItemsOfInputs {
+          height: 4vh;
+          .IconsOfInputs {
+            padding: 0 1.3vw 0 1.3vw;
           }
-          label {
-            display: inline-block;
-            margin: 0 0 1vw 1vw;
+        }
+      }
+      .dataFillingBlock {
+        max-height: 84vh;
+        min-height: 84vh;
+        .FieldsBlock {
+          .fields {
+            top: 0;
+            padding-top: 4vh;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            h2 {
+              padding-bottom: 3vh;
+            }
+            label {
+              display: inline-block;
+              margin: 0 0 1vw 1vw;
+              input {
+                margin-left: 2vw;
+              }
+            }
             input {
-              margin-left: 2vw;
+              margin-left: 0;
+            }
+            .ant-radio-button-wrapper {
+              width: 23vw;
+              height: 4vh;
             }
           }
-          input {
-            margin-left: 0;
-          }
-          .ant-radio-button-wrapper{
-            width: 23vw;
-            height: 4vh;
-          }
         }
       }
-    }
-    
-    label {
-      display: inline-block;
-      margin-bottom: 1.5vh;
-    }
-    input[type="color"]{
-      width:8vw;
-      height:3vh;
-      margin-left:3vw;
-    }
-    input[type="number"],input[type="text"] {
-      width: 20vw;
-      height: 3.5vh;
-      margin-left:2vw;
-    }
-  }  
-  
- }
- .HelpForm {
-  padding: 0;
-  width: 100vw;
-  height: 93vh;
-  h1 {
-    font-size: 7vw;
-  }
-  form{
-    width:100vw;
 
-    input[type="text"],input[type="email"] {
-      width:45vw;
-      padding-left:2vw;
-      height: 5vh;
+      label {
+        display: inline-block;
+        margin-bottom: 1.5vh;
+      }
+      input[type="color"] {
+        width: 8vw;
+        height: 3vh;
+        margin-left: 3vw;
+      }
+      input[type="number"],
+      input[type="text"] {
+        width: 20vw;
+        height: 3.5vh;
+        margin-left: 2vw;
+      }
     }
-    input[type="checkbox"] {
-      width:5vw;
-      height:5vw;
+  }
+  .HelpForm {
+    padding: 0;
+    width: 100vw;
+    height: 93vh;
+    h1 {
+      font-size: 7vw;
     }
-    textarea{
-      width:95%;
-      padding-left:2vw;
+    form {
+      width: 100vw;
+
+      input[type="text"],
+      input[type="email"] {
+        width: 45vw;
+        padding-left: 2vw;
+        height: 5vh;
+      }
+      input[type="checkbox"] {
+        width: 5vw;
+        height: 5vw;
+      }
+      textarea {
+        width: 95%;
+        padding-left: 2vw;
+      }
+      button {
+        font-size: 5vw;
+      }
     }
-    button {
-      font-size:5vw;
-    }
-  } }
+  }
   .LogRegBlock {
     padding-top: 15vh;
     form {
@@ -1120,48 +1097,48 @@ p{
       input {
         width: 50vw;
       }
-      button{
+      button {
         font-size: 4vw;
         margin-top: 2vh;
-        width:35vw;
+        width: 35vw;
       }
     }
-    .LogRegWrapper{
+    .LogRegWrapper {
       width: 90vw;
-      .LogRegTitles{
-        margin-bottom:2vh;
+      .LogRegTitles {
+        margin-bottom: 2vh;
       }
     }
   }
-.icon-angles-shown {
-  @include icon-angles(0);
-  svg {
-    font-size: 8vw;
-  }
-}
-.icon-angles-hidden {
-  @include icon-angles(92vw);
-  svg {
-    font-size: 8vw;
-  }
-}
-.LogRegBlock {
-  .LogRegWrapper{
-    .LogRegTitles{
-      h3 {
-        font-size: 4.2vw;
-      }
+  .icon-angles-shown {
+    @include icon-angles(0);
+    svg {
+      font-size: 8vw;
     }
-    .LogReg {
-      input{
-        font-size:4vw;
+  }
+  .icon-angles-hidden {
+    @include icon-angles(92vw);
+    svg {
+      font-size: 8vw;
+    }
+  }
+  .LogRegBlock {
+    .LogRegWrapper {
+      .LogRegTitles {
+        h3 {
+          font-size: 4.2vw;
+        }
       }
-      .passBlock {
-        svg {
-          left: 76vw;
+      .LogReg {
+        input {
+          font-size: 4vw;
+        }
+        .passBlock {
+          svg {
+            left: 76vw;
+          }
         }
       }
     }
   }
-}
 }

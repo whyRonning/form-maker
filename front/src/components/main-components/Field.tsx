@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Radio } from "antd";
+type props={
+
+}
 export let Field = React.memo((props) => {
   useEffect(() => {
     setPlaceholder(props.inputs.placeholder || "");
@@ -28,32 +31,6 @@ export let Field = React.memo((props) => {
   let [width, setWidth] = useState("");
   let [height, setHeight] = useState("");
   let [size, setSize] = useState("");
-  let handler = (e) => {
-    e.target.name === "type" + props.index
-      ? setTypeOfInput(e.target.value)
-      : e.target.name === "placeholder"
-      ? setPlaceholder(e.target.value)
-      : e.target.name === "fieldDescription"
-      ? setFieldDescription(e.target.value)
-      : e.target.name === "size"
-      ? setSize(e.target.value)
-      : e.target.name === "descriptionPosition"
-      ? setDescriptionPosition(e.target.value)
-      : e.target.name === "width"
-      ? e.target.value > 100
-        ? setWidth(100)
-        : e.target.value <= 0
-        ? setWidth(1)
-        : setWidth(e.target.value)
-      : e.target.name === "height"
-      ? e.target.value > 100
-        ? setHeight(100)
-        : e.target.value <= 0
-        ? setHeight(1)
-        : setHeight(e.target.value)
-      : setName(e.target.value);
-  };
-
   let butHandler = () => {
     let data = {
       name,
@@ -78,7 +55,7 @@ export let Field = React.memo((props) => {
           Название поля
           <input
             name="name"
-            onChange={handler}
+            onChange={(e)=>{setName(e.target.value)}}
             value={name}
             placeholder="Название поля"
             type="text"
@@ -88,7 +65,7 @@ export let Field = React.memo((props) => {
           Placeholder поля
           <input
             name="placeholder"
-            onChange={handler}
+            onChange={(e)=>{setPlaceholder(e.target.value)}}
             value={placeholder}
             placeholder="placeholder поля"
             type="text"
@@ -101,7 +78,7 @@ export let Field = React.memo((props) => {
               Размер поля
               <input
                 name="size"
-                onChange={handler}
+                onChange={(e)=>{setSize(e.target.value)}}
                 value={size}
                 placeholder="Размер поля"
                 type="number"
@@ -119,7 +96,7 @@ export let Field = React.memo((props) => {
               Ширина поля
               <input
                 name="width"
-                onChange={handler}
+                onChange={(e)=>{setWidth(e.target.value>100?100:e.target.value<0?0:e.target.value)}}
                 value={width}
                 placeholder="Ширина поля"
                 type="number"
@@ -133,7 +110,7 @@ export let Field = React.memo((props) => {
               Высота поля
               <input
                 name="height"
-                onChange={handler}
+                onChange={(e)=>{setHeight(e.target.value>100?100:e.target.value<0?0:e.target.value)}}
                 step="0.1"
                 min="0.1"
                 max="99.9"
@@ -150,14 +127,14 @@ export let Field = React.memo((props) => {
         <label>Описание поля</label>
         <input
           name="fieldDescription"
-          onChange={handler}
+          onChange={(e)=>{setFieldDescription(e.target.value)}}
           value={fieldDescription}
           placeholder="Описание поля"
           type="text"
         />
         <Radio.Button
           name="descriptionPosition"
-          onChange={handler}
+          onChange={(e)=>{setDescriptionPosition(e.target.value)}}
           checked={descriptionPosition === "bottom" }
           value="bottom"
         >
@@ -166,7 +143,7 @@ export let Field = React.memo((props) => {
         <Radio.Button
           name="descriptionPosition"
           checked={descriptionPosition === "inline"}
-          onChange={handler}
+          onChange={(e)=>{setDescriptionPosition(e.target.value)}}
           value="inline"
         >
           Справа
@@ -179,7 +156,7 @@ export let Field = React.memo((props) => {
               id={"textarea" + props.index}
               name={"type" + props.index}
               value="textarea"
-              onChange={handler}
+              onChange={(e)=>{setTypeOfInput(e.target.value)}}
               checked={typeOfInput === "textarea" }
             >
               Textarea
@@ -188,7 +165,7 @@ export let Field = React.memo((props) => {
               id={"input" + props.index}
               name={"type" + props.index}
               value="text"
-              onChange={handler}
+              onChange={(e)=>{setTypeOfInput(e.target.value)}}
               checked={typeOfInput === "text" }
             >
               Input
@@ -197,7 +174,7 @@ export let Field = React.memo((props) => {
               id={"flag" + props.index}
               name={"type" + props.index}
               value="checkbox"
-              onChange={handler}
+              onChange={(e)=>{setTypeOfInput(e.target.value)}}
               checked={typeOfInput === "checkbox" }
             >
               Checkbox
@@ -206,7 +183,7 @@ export let Field = React.memo((props) => {
               id={"file" + props.index}
               name={"type" + props.index}
               value="file"
-              onChange={handler}
+              onChange={(e)=>{setTypeOfInput(e.target.value)}}
               checked={typeOfInput === "file" }
             >
               File
@@ -215,7 +192,7 @@ export let Field = React.memo((props) => {
               id={"password" + props.index}
               name={"type" + props.index}
               value="password"
-              onChange={handler}
+              onChange={(e)=>{setTypeOfInput(e.target.value)}}
               checked={typeOfInput === "password" }
             >
               Password
@@ -224,7 +201,7 @@ export let Field = React.memo((props) => {
               id={"email" + props.index}
               name={"type" + props.index}
               value="email"
-              onChange={handler}
+              onChange={(e)=>{setTypeOfInput(e.target.value)}}
               checked={typeOfInput === "email" }
             >
               Email

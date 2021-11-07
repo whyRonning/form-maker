@@ -1,8 +1,8 @@
-import {connect} from "react-redux";
+import {connect, ConnectedProps} from "react-redux";
 import {Registration} from "./registration";
 import React, {FC} from "react";
 import {message} from "antd";
-import {RequestThunk, RequestThunkResType} from "../../store/mainReducer";
+import {RequestThunk} from "../../store/mainReducer";
 
 export type valuesRegistrationType = {
     login: string,
@@ -10,14 +10,11 @@ export type valuesRegistrationType = {
     password: string,
     passwordAccess: string
 }
-export type propsRegistration = {
-    RequestThunk: (url: string, method: string, body: valuesRegistrationType) => Promise<RequestThunkResType | undefined>
-}
-let registrationBlock: FC<propsRegistration> = (props) => {
+let registrationBlock= (props:propsType) => {
     let FormReq = async (values: valuesRegistrationType) => {
         let data = await props.RequestThunk("/api/registration", "POST", values);
         if (data) {
-            let {status, res} = data
+            let {status, res} = data;
             if (status === 201) {
                 message.success(res.message);
             } else {
@@ -29,6 +26,7 @@ let registrationBlock: FC<propsRegistration> = (props) => {
     };
     return <Registration onSubmit={FormReq}/>;
 };
-export let RegistrationContainer = connect(null, {RequestThunk})(
-    registrationBlock
-);
+let RegistrationConnector = connect(null, {RequestThunk});
+type propsType=ConnectedProps<typeof RegistrationConnector>
+export let RegistrationContainer =RegistrationConnector(registrationBlock);
+

@@ -1,20 +1,22 @@
-import { connect } from "react-redux";
+import {connect, ConnectedProps} from "react-redux";
 import { Redirect } from "react-router-dom";
 import React from "react";
 import { AuthContainer } from "../auth/authContainer";
 import { RegistrationContainer } from "../registration/registrationContainer";
 import { actions } from "../../store/authReducer";
-let MapStateToProps = (state) => {
+import {GlobalState} from "../../store/store";
+type MSTPTYPE={
+  isAuth:boolean,
+  loginState:string
+}
+let MapStateToProps = (state:GlobalState):MSTPTYPE => {
   return {
     isAuth: state.authReducer.isAuth,
-    loginState: state.authReducer.loginState
+    loginState: state.authReducer.loginState,
   };
 };
 
-let AccBlock = (props) => {
-  let handler = (e) => {
-    props.loginStateAC(e.target.getAttribute("name"));
-  };
+let AccBlock = (props:propsType) => {
   return props.isAuth ? (
     <Redirect to="/" />
   ) : (
@@ -23,19 +25,17 @@ let AccBlock = (props) => {
         <div className="LogRegTitles">
           <h3
             style={{
-              color: props.loginState === "login" ? "white" : "#c2c2c2"
+              color: props.loginState === "login" ? "white" : "#c2c2c2",
             }}
-            name="login"
-            onClick={handler}
+            onClick={()=>{props.loginStateAC("login")}}
           >
             Вход
           </h3>
           <h3
             style={{
-              color: props.loginState === "registration" ? "white" : "#c2c2c2"
+              color: props.loginState === "registration" ? "white" : "#c2c2c2",
             }}
-            name="registration"
-            onClick={handler}
+            onClick={()=>{props.loginStateAC("registration")}}
           >
             Регистрация
           </h3>
@@ -55,6 +55,8 @@ let AccBlock = (props) => {
     </div>
   );
 };
-export let AccountContainer = connect(MapStateToProps, { loginStateAC:actions.loginStateAC })(
-  AccBlock
-);
+let AccountConnector = connect(MapStateToProps, {
+  loginStateAC: actions.loginStateAC,
+});
+type propsType=ConnectedProps<typeof AccountConnector>
+export let AccountContainer = AccountConnector(AccBlock);
