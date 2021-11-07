@@ -3,7 +3,7 @@ import "./css/style.scss";
 import { HeaderContainer } from "./components/header/headerContainer";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { HelpContainer } from "./components/contact/helpContainer";
-import { MainContainer } from "./components/MainContainer";
+import { MainContainer } from "./components/main-components/MainContainer";
 import { RegistrationContainer } from "./components/registration/registrationContainer";
 import { AcceptAccount } from "./components/acc/acceptAccount";
 import { useEffect } from "react";

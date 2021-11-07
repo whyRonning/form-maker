@@ -4,7 +4,15 @@ import { MiniHeader } from "./miniHeader";
 import { TemplatesContainer } from "./templates/templatesContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PersonalTemplatesContainer } from "./user-templates/personalTemplatesContainer";
-export let MiniHeaderSwitch = React.memo((props) => {
+type props={
+    ChangeFillingVisionAC:()=>void,
+    isFillingVision:boolean,
+    stateOfHeader:number,
+    isAuth:boolean,
+    stateOfHeaderAC:(num:number)=>void
+
+}
+export let MiniHeaderSwitch = (props:props) => {
   return (
     <>
       <div
@@ -37,4 +45,4 @@ export let MiniHeaderSwitch = React.memo((props) => {
       )}
     </>
   );
-});
+};

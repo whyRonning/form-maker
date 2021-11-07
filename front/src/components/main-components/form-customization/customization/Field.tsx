@@ -1,18 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { Radio } from "antd";
-type props={
+import {dataInputNumParamType} from "../../../../store/mainReducer";
 
-}
-export let Field = React.memo((props) => {
+type props={
+  inputs:{
+    name: string,
+    placeholder: string,
+    type: string,
+    width: number,
+    height: number,
+    fieldDescription: string,
+    descriptionPosition: "inline" | "bottom"
+  },
+  index:number,
+  changeInput:(val:string)=>void,
+  process:(data:any,index:number)=>void
+
+
+};
+export let Field = React.memo((props:props) => {
   useEffect(() => {
     setPlaceholder(props.inputs.placeholder || "");
     setTypeOfInput(props.inputs.type || "text");
     setName(props.inputs.name || "");
     setFieldDescription(props.inputs.fieldDescription || "");
     setDescriptionPosition(props.inputs.descriptionPosition || "bottom");
-    setHeight(props.inputs.height || 5);
-    setWidth(props.inputs.width || 20);
-    setSize(props.inputs.height || 5);
+    setHeight(String(props.inputs.height) || "5");
+    setWidth(String(props.inputs.width) || "20");
+    setSize(String(props.inputs.height) || "5");
   }, [
     props.inputs.placeholder,
     props.inputs.type,
@@ -96,7 +111,7 @@ export let Field = React.memo((props) => {
               Ширина поля
               <input
                 name="width"
-                onChange={(e)=>{setWidth(e.target.value>100?100:e.target.value<0?0:e.target.value)}}
+                onChange={(e)=>{setWidth(Number(e.target.value)>100?"100":Number(e.target.value)<0?"0":e.target.value)}}
                 value={width}
                 placeholder="Ширина поля"
                 type="number"
@@ -110,7 +125,7 @@ export let Field = React.memo((props) => {
               Высота поля
               <input
                 name="height"
-                onChange={(e)=>{setHeight(e.target.value>100?100:e.target.value<0?0:e.target.value)}}
+                onChange={(e)=>{setHeight(Number(e.target.value)>100?"100":Number(e.target.value)<0?"0":e.target.value)}}
                 step="0.1"
                 min="0.1"
                 max="99.9"

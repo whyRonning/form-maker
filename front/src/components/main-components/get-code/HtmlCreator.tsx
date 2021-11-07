@@ -1,72 +1,88 @@
-export const HtmlCreator = (props) => {
-    let keys = Object.keys(props.inputs);
-    let re = /,/gi;
-    let inputs = keys.map((e, i) => {
-        if (props.inputs[keys[i]].type === "textarea") {
+import {dataInputNumParamType} from "../../../store/mainReducer";
+
+type props={
+    generalBackgroundColor:string,
+    formBackgroundColor:string,
+    descriptionColor:string,
+    textColor:string,
+    buttTextColor:string,
+    formWidth:number,
+    buttWidth:number,
+    labelsPosition:string,
+    titleColor:string,
+    buttColor:string,
+    formMarginTop:number,
+    numOfFields:number,
+    buttHeight:number,
+    title:string,
+    inputs:Array<dataInputNumParamType>
+}
+export const HtmlCreator = (props:props) => {
+    let inputs = props.inputs.map((e) => {
+        if (e.type === "textarea") {
             return `<div class="wrapper-form-inputs-textarea"><div class="textOfInputs">${
-                props.inputs[keys[i]].name
-                    ? `<label>${props.inputs[keys[i]].name}</label>`
+                e.name
+                    ? `<label>${e.name}</label>`
                     : ``
             }${
-                props.inputs[keys[i]].fieldDescription
+                e.fieldDescription
                     ? `<p style="${
-                        props.inputs[keys[i]].descriptionPosition === "inline"
+                        e.descriptionPosition === "inline"
                             ? "display:inline"
                             : ""
                     }">${
-                        props.inputs[keys[i]].descriptionPosition === "inline"
-                            ? "(" + props.inputs[keys[i]].fieldDescription + ")"
-                            : props.inputs[keys[i]].fieldDescription
+                        e.descriptionPosition === "inline"
+                            ? "(" + e.fieldDescription + ")"
+                            : e.fieldDescription
                     }</p>`
                     : ""
             }
-      </div><textarea style="height:${props.inputs[keys[i]].height}vh;width:${
-                props.inputs[keys[i]].width
+      </div><textarea style="height:${e.height}vh;width:${
+                e.width
             }vw;" placeholder="${
-                props.inputs[keys[i]].placeholder
+                e.placeholder
             }"/></div>`;
-        } else if (props.inputs[keys[i]].type === "checkbox") {
+        } else if (e.type === "checkbox") {
             return `<div class="wrapper-form-inputs"><div style="display:grid;
       grid-template-columns: 1fr 1fr;align-items: center;" class="textOfInputs">${
-                props.inputs[keys[i]].name
-                    ? `<label>${props.inputs[keys[i]].name}</label>`
+                e.name
+                    ? `<label>${e.name}</label>`
                     : ``
             }
-      <input style="color:black;width:${props.inputs[keys[i]].width}vw;height:${
-                props.inputs[keys[i]].height
-            }vh" placeholder="${props.inputs[keys[i]].placeholder}" type="${
-                props.inputs[keys[i]].type
+      <input style="color:black;width:${e.width}vw;height:${
+                e.height
+            }vh" placeholder="${e.placeholder}" type="${
+                e.type
             }"/></div></div>`;
         } else {
             /************Остальное ****************/
             return `<div class="wrapper-form-inputs"><div class="textOfInputs" >${
-                props.inputs[keys[i]].name
-                    ? `<label>${props.inputs[keys[i]].name}</label>`
+                e.name
+                    ? `<label>${e.name}</label>`
                     : ``
             }${
-                props.inputs[keys[i]].fieldDescription
+                e.fieldDescription
                     ? `<p style="${
-                        props.inputs[keys[i]].descriptionPosition === "inline"
+                        e.descriptionPosition === "inline"
                             ? "display:inline"
                             : ""
                     }">${
-                        props.inputs[keys[i]].descriptionPosition === "inline"
-                            ? "(" + props.inputs[keys[i]].fieldDescription + ")"
-                            : props.inputs[keys[i]].fieldDescription
+                        e.descriptionPosition === "inline"
+                            ? "(" + e.fieldDescription + ")"
+                            : e.fieldDescription
                     }</p>`
                     : ""
             }
       </div><input style="color:black;width:${
-                props.inputs[keys[i]].width
-            }vw;height:${props.inputs[keys[i]].height}vh" placeholder="${
-                props.inputs[keys[i]].placeholder
-            }" type="${props.inputs[keys[i]].type}"/></div>`;
+                e.width
+            }vw;height:${e.height}vh" placeholder="${
+                e.placeholder
+            }" type="${e.type}"/></div>`;
         }
     });
-    inputs = String(inputs).replace(re, "\n");
-    return `Html: \n <div class="formBlock">\n<form class="form" action="/" method="Post"/> \n <h1 class="FormTitle">${
+    return (`Html: \n <div class="formBlock">\n<form class="form" action="/" method="Post"/> \n <h1 class="FormTitle">${
         props.title || "Заголовок"
-    }</h1> \n <div class="wrapperOfInputsCreator">${inputs}</div> \n <button onclick="return false">Отправить</button>\n</form>\n</div>
+    }</h1> \n <div class="wrapperOfInputsCreator">${inputs.join("\n")}</div> \n <button onclick="return false">Отправить</button>\n</form>\n</div>
    \n CSS:\n @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900&display=swap');
     * {margin: 0;padding: 0;font-family: 'Nunito', sans-serif;} 
    input:not([type="color"]) { padding-left: .2vw;}
@@ -115,5 +131,5 @@ export const HtmlCreator = (props) => {
             ? "grid-template-columns: 1fr;justify-self: center;width: -moz-fit-content;width: fit-content;"
             : "grid-template-columns: 1fr 1fr;width: 100%;"
     }}
-  `;
+  `);
 };

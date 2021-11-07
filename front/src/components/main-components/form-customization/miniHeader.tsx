@@ -1,8 +1,10 @@
 import React from "react";
-export let MiniHeader = React.memo((props) => {
-  let handler = (e) => {
-    props.stateOfHeaderAC(e.target.getAttribute("name"));
-  };
+type props={
+    stateOfHeader:number,
+    stateOfHeaderAC:(num:number)=>void,
+    isAuth:boolean
+}
+export let MiniHeader = (props:props) => {
   return (
     <div className="mini-header">
       <div
@@ -15,22 +17,21 @@ export let MiniHeader = React.memo((props) => {
         }
       />
       <div>
-        <p name="1" onClick={handler}>
+        <p onClick={ ()=>props.stateOfHeaderAC(1)}>
           Шаблоны
         </p>
         <div />
       </div>
       <div>
-        <p name="2" onClick={handler}>
+        <p onClick={()=>props.stateOfHeaderAC(2)}>
           Настройки
         </p>
         <div />
       </div>
       <div style={{ backgroundColor: props.isAuth ? "" : "#c2c1c0" }}>
         <button
-          name="3"
-          disabled={props.isAuth ? false : true}
-          onClick={handler}
+          disabled={!props.isAuth}
+          onClick={()=>props.stateOfHeaderAC(3)}
           style={{ cursor: props.isAuth ? "pointer" : "not-allowed" }}
         >
           Пользовательские <br /> шаблоны
@@ -38,4 +39,4 @@ export let MiniHeader = React.memo((props) => {
       </div>
     </div>
   );
-});
+};

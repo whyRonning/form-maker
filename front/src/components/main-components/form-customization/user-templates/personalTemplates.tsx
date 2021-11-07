@@ -1,17 +1,21 @@
 import React from "react";
 import { PersonalTemplatesCreator } from "./personalTemplatesCreator";
-export const PersonalTemplates = React.memo((props) => {
-  let templateKeys = Object.keys(props.userTemplates);
-
-  let userTemplatesMaker = templateKeys.map((e, i) => {
+import {dataType} from "../../../../store/authReducer";
+type props={
+  userTemplates:Array<dataType>,
+  DeleteTemplateThunk:(num:number)=>void,
+  ApplyTemplateAC:(data:dataType)=>void
+}
+export const PersonalTemplates = (props:props) => {
+  let userTemplatesMaker = props.userTemplates.map((e, i) => {
     return (
       <PersonalTemplatesCreator
-        key={e}
+        key={i}
         index={i}
-        template={props.userTemplates[e]}
+        template={props.userTemplates[i]}
         DeleteTemplateThunk={props.DeleteTemplateThunk}
         ApplyTemplateAC={props.ApplyTemplateAC}
-      ></PersonalTemplatesCreator>
+      />
     );
   });
   if (props.userTemplates[0]) {
@@ -23,4 +27,4 @@ export const PersonalTemplates = React.memo((props) => {
       </>
     );
   }
-});
+};

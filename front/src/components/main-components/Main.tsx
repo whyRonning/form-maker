@@ -1,7 +1,7 @@
 import React from "react";
-import {FormContainer} from "./main-components/form-display/FormContainer";
+import {FormContainer} from "./form-display/FormContainer";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {MiniHeaderSwitchContainer} from "./main-components/form-customization/MiniHeaderSwitchContainer";
+import {MiniHeaderSwitchContainer} from "./form-customization/MiniHeaderSwitchContainer";
 
 type props = {
     isFillingVision: boolean,

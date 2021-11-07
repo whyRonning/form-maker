@@ -1,51 +1,39 @@
-import { FormInput } from "../../FormInput";
+import { FormInput } from "../../form-display/FormInput";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-export let PersonalTemplatesCreator = React.memo((props) => {
+import {dataType} from "../../../../store/authReducer";
+type props={
+    DeleteTemplateThunk:(number:number)=>void,
+    index:number,
+    template:dataType,
+    ApplyTemplateAC:(data:dataType)=>void,
+
+}
+export let PersonalTemplatesCreator = React.memo((props:props) => {
   let Cancel = () => {
     props.DeleteTemplateThunk(props.index);
   };
   let handler = () => {
-    let template = {
-      fields: props.template.inputs,
-      settings: {
-        buttColor: props.template.buttColor,
-        buttHeight: props.template.buttHeight,
-        buttTextColor: props.template.buttTextColor,
-        buttWidth: props.template.buttWidth,
-        descriptionColor: props.template.descriptionColor,
-        formBackgroundColor: props.template.formBackgroundColor,
-        labelsPosition: props.template.labelsPosition,
-        numOfFields: props.template.numOfFields,
-        textColor: props.template.textColor,
-        title: props.template.title,
-        titleColor: props.template.titleColor,
-        generalBackgroundColor: props.template.generalBackgroundColor,
-        formMarginTop: props.template.formMarginTop,
-        formWidth: props.template.formWidth
-      }
-    };
-    props.ApplyTemplateAC(template);
+    props.ApplyTemplateAC(props.template);
   };
-  let inputsKeys = Object.keys(props.template.inputs);
-  let InputsCreator = inputsKeys.map((e, i) => {
+  let InputsCreator = props.template.inputs.map((e, i) => {
     return (
       <FormInput
         key={i}
         labelsPosition={props.template.labelsPosition}
         i={i}
         numOfFields={props.template.numOfFields}
-        type={props.template.inputs[inputsKeys[i]].type || "text"}
-        name={props.template.inputs[inputsKeys[i]].name || ""}
-        placeholder={props.template.inputs[inputsKeys[i]].placeholder || ""}
+        type={props.template.inputs[i].type || "text"}
+        name={props.template.inputs[i].name || ""}
+        placeholder={props.template.inputs[i].placeholder || ""}
         fieldDescription={
-          props.template.inputs[inputsKeys[i]].fieldDescription || ""
+          props.template.inputs[i].fieldDescription || ""
         }
         disabled={true}
-        width={props.template.inputs[inputsKeys[i]].width / 3 || 3}
-        height={props.template.inputs[inputsKeys[i]].height / 3 || 3}
+        width={Number(props.template.inputs[i].width )/ 3 || 3}
+        height={Number(props.template.inputs[i].height) / 3 || 3}
         descriptionPosition={
-          props.template.inputs[inputsKeys[i]].descriptionPosition || ""
+          props.template.inputs[i].descriptionPosition || ""
         }
         descriptionColor={props.template.descriptionColor}
       />
@@ -60,7 +48,7 @@ export let PersonalTemplatesCreator = React.memo((props) => {
       }}
     >
       <div className="deleteTemplate">
-        <FontAwesomeIcon icon="times" onClick={Cancel}></FontAwesomeIcon>
+        <FontAwesomeIcon icon="times" onClick={Cancel}/>
       </div>
       <div
         className="personalFormBlock"
@@ -99,8 +87,6 @@ export let PersonalTemplatesCreator = React.memo((props) => {
           </div>
           <button
             disabled
-            onMouseOver={props.template.changeStyles}
-            onMouseLeave={props.template.revertStyles}
             style={{
               height: 4 + "vh",
               width: 9 + "vw",

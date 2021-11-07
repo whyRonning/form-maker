@@ -4,9 +4,6 @@ import { ThunkAction } from "redux-thunk";
 import { actionsTypes, GlobalState } from "./store";
 import { Action } from "redux";
 
-type dataInputNumType = {
-  [key: number]: dataInputNumParamType;
-};
 type dataInputNumParamType = {
   name: string | null;
   placeholder: string | null;
@@ -34,10 +31,7 @@ export type dataType = {
   buttWidth: number;
   buttHeight: number;
   numOfFields: number;
-  stateOfForm: boolean;
-  isFillingVision: boolean;
-  isFilterVision: boolean;
-  inputs: dataInputNumType;
+  inputs: Array<dataInputNumParamType>;
 };
 let data = {
   isAuth: false,
@@ -60,12 +54,12 @@ export let authReducer = (state: dataAuthType = data, action: actionTypes) => {
       return { ...copyState };
     }
     case "userTemplates": {
-      let copyState = { ...state };
+      let copyState = JSON.parse(JSON.stringify(state));
       copyState.userTemplates.push(action.userTemplates);
       return { ...copyState };
     }
     case "deleteUserTemplatesAC": {
-      let copyState = { ...state };
+      let copyState = JSON.parse(JSON.stringify(state));
       copyState.userTemplates.splice(action.template, 1);
       return { ...copyState };
     }

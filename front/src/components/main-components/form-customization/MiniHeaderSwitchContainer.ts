@@ -2,7 +2,8 @@ import { connect } from "react-redux";
 import { stateOfHeaderAC } from "../../../store/menuReducer";
 import { MiniHeaderSwitch } from "./MiniHeaderSwitch";
 import { actions } from "../../../store/mainReducer";
-let MapStateToProps = (state) => ({
+import {GlobalState} from "../../../store/store";
+let MapStateToProps = (state:GlobalState) => ({
   stateOfHeader: state.menuReducer.stateOfHeader,
   isFillingVision: state.mainReducer.isFillingVision,
   isAuth: state.authReducer.isAuth

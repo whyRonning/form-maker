@@ -1,13 +1,8 @@
-import {connect} from "react-redux";
+import {connect, ConnectedProps} from "react-redux";
 import {Form} from "./Form";
 import React from "react";
 import {actions} from "../../../store/mainReducer";
 import {GlobalState} from "../../../store/store";
-
-type MapStateToPropsType = ReturnType<typeof MapStateToProps>;
-type MapDispatchToPropsType = {
-    ChangeStateOFFormAC: () => void
-}
 let MapStateToProps = (state: GlobalState) => {
     return {
         generalBackgroundColor: state.mainReducer.generalBackgroundColor,
@@ -28,26 +23,15 @@ let MapStateToProps = (state: GlobalState) => {
         labelsPosition: state.mainReducer.labelsPosition
     };
 };
-let FormHOC: React.FC<any> = (props) => {
-    let changeStyles = (e: any) => {
-        e.currentTarget.style.color = props.buttColor;
-        e.target.style.background = "none";
-    };
-    let revertStyles = (e: any) => {
-        e.target.style.color = props.buttTextColor;
-        e.target.style.background = props.buttColor;
-    };
+let FormHOC = (props:propsType) => {
     return (
         <Form
             changeState={props.ChangeStateOFFormAC}
-            stateOfForm={props.stateOfForm}
-            revertStyles={revertStyles}
-            changeStyles={changeStyles}
             {...props}
         />
     );
 };
 
-export let FormContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, GlobalState>(MapStateToProps, {ChangeStateOFFormAC: actions.ChangeStateOFFormAC})(
-    FormHOC
-);
+let FormConnector = connect(MapStateToProps, {ChangeStateOFFormAC: actions.ChangeStateOFFormAC});
+type propsType=ConnectedProps<typeof FormConnector>
+export let FormContainer=FormConnector(FormHOC);

@@ -1,28 +1,44 @@
 import React from "react";
-import {FormInput} from "../FormInput";
+import {FormInput} from "./FormInput";
 import {HtmlCreatorBlock} from "../get-code/HtmlCreatorBlock";
+import {dataInputNumParamType} from "../../../store/mainReducer";
 
-export let Form = React.memo((props) => {
-    let sub = (e) => {
-        e.preventDefault();
-    };
+type props = {
+    inputs: Array<dataInputNumParamType>,
+    generalBackgroundColor: string,
+    numOfFields: number,
+    buttHeight: number,
+    buttWidth: number,
+    formBackgroundColor: string,
+    textColor: string,
+    buttTextColor: string,
+    buttColor: string,
+    stateOfForm: boolean,
+    title: string,
+    titleColor: string,
+    descriptionColor: string,
+    formWidth: number,
+    formMarginTop: number,
+    labelsPosition: string,
+    changeState: () => void
+}
+export let Form = (props: props) => {
     if (props.inputs) {
-        let inputsKeys = Object.keys(props.inputs);
-        let InputsCreator = inputsKeys.map((e, i) => {
+        let InputsCreator = props.inputs.map((e, i) => {
             return (<FormInput key={i} labelsPosition={props.labelsPosition} i={i} numOfFields={props.numOfFields}
-                               type={props.inputs[inputsKeys[i]].type || "text"}
-                               name={props.inputs[inputsKeys[i]].name || ""}
-                               placeholder={props.inputs[inputsKeys[i]].placeholder || ""}
-                               fieldDescription={props.inputs[inputsKeys[i]].fieldDescription || ""}
-                               descriptionPosition={props.inputs[inputsKeys[i]].descriptionPosition || ""}
-                               width={props.inputs[inputsKeys[i]].width || 20}
-                               height={props.inputs[inputsKeys[i]].height || 5}
+                               type={props.inputs[i].type || "text"}
+                               name={props.inputs[i].name || ""}
+                               placeholder={props.inputs[i].placeholder || ""}
+                               fieldDescription={props.inputs[i].fieldDescription || ""}
+                               descriptionPosition={props.inputs[i].descriptionPosition || ""}
+                               width={props.inputs[i].width || 20}
+                               height={props.inputs[i].height || 5}
                                descriptionColor={props.descriptionColor}/>);
         });
         return (
             <>
                 <div className="formBlock" style={{backgroundColor: props.generalBackgroundColor}}>
-                    <form onSubmit={sub} className="form" style={{
+                    <form onSubmit={(e) => e.preventDefault()} className="form" style={{
                         color: props.textColor,
                         backgroundColor: props.formBackgroundColor,
                         width: props.formWidth + "%",
@@ -31,7 +47,13 @@ export let Form = React.memo((props) => {
                         <h1 className="FormTitle" style={{color: props.titleColor}}>{props.title || "Заголовок"}</h1>
                         <div className="wrapperOfInputsCreator"
                              style={{gridTemplateColumns: props.labelsPosition === "left" || props.numOfFields === 1 ? "1fr" : "1fr 1fr"}}>{InputsCreator}</div>
-                        <button type="submit" onMouseOver={props.changeStyles} onMouseLeave={props.revertStyles}
+                        <button type="submit" onMouseOver={(e) => {
+                            e.currentTarget.style.color = props.buttColor;
+                            e.currentTarget.style.background = "none";
+                        }} onMouseLeave={(e) => {
+                            e.currentTarget.style.color = props.buttTextColor;
+                            e.currentTarget.style.background = props.buttColor;
+                        }}
                                 style={{
                                     height: props.buttHeight + "vh",
                                     width: props.buttWidth + "vw",
@@ -60,4 +82,4 @@ export let Form = React.memo((props) => {
             </>
         );
     }
-});
+};

@@ -1,6 +1,19 @@
 import React from "react";
-
-export const FormInput = React.memo((props) => {
+type props={
+    type:string,
+    numOfFields:number,
+    labelsPosition:string,
+    name:string,
+    descriptionPosition:string,
+    descriptionColor:string,
+    width:number,
+    height:number,
+    disabled?:boolean,
+    placeholder:string,
+    fieldDescription:string,
+    i:number
+}
+export const FormInput = (props:props) => {
   let Field = () => {
     if (props.type === "textarea") {
       return (
@@ -187,4 +200,4 @@ export const FormInput = React.memo((props) => {
       <Field />
     </>
   );
-});
+};

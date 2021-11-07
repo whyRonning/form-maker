@@ -1,10 +1,6 @@
-import Template2 from "./../accets/img/Template-2.png";
-import Template3 from "./../accets/img/Template-3.png";
-import Template4 from "./../accets/img/Template-4.png";
 import axios, {AxiosError, AxiosResponse} from "axios";
 import {dataType as authDataType} from "./authReducer"
 import {actions as authActions} from "./authReducer";
-import Template1 from "./../accets/img/Template-1.png";
 import {message} from "antd";
 import {valuesType} from "../components/contact/helpContainer";
 import {valuesRegistrationType} from "../components/registration/registrationContainer";
@@ -12,12 +8,10 @@ import {valuesAuthType} from "../components/auth/authContainer";
 import {ThunkAction} from "redux-thunk";
 import {actionsTypes, GlobalState} from "./store";
 import {Action} from "redux";
+import {templates} from "./initialTemplates";
 
 /***********************types of inputs*******************************/
-export type dataInputNumType = {
-    [key: number]: dataInputNumParamType
-}
-type dataInputNumParamType = {
+export type dataInputNumParamType = {
     name: string,
     placeholder: string,
     type: string,
@@ -26,13 +20,10 @@ type dataInputNumParamType = {
     fieldDescription: string,
     descriptionPosition: "inline" | "bottom",
 }
-/***********************types of templates*******************************/
-type dataTemplatesNumbersFieldsType = {
-    fields: dataTemplatesFieldsType,
+/***********************type of default templates*******************************/
+export type dataTemplatesNumbersFieldsType = {
+    fields: Array<dataInputNumParamType>,
     settings: dataTemplatesSettingsType
-}
-type dataTemplatesFieldsType = {
-    [key: number]: dataInputNumParamType
 }
 type dataTemplatesSettingsType = {
     nameOfTemplate: string | null,
@@ -75,8 +66,8 @@ let data = {
     titleColor: "#ffffff",
     labelsPosition: "top",
     numOfFields: 2,
-    inputs: {
-        1: {
+    inputs: [
+         {
             name: "Поле1",
             placeholder: "",
             type: "text",
@@ -85,7 +76,7 @@ let data = {
             fieldDescription: "",
             descriptionPosition: "inline"
         },
-        2: {
+        {
             name: "Поле2",
             placeholder: "",
             type: "text",
@@ -94,202 +85,10 @@ let data = {
             fieldDescription: "",
             descriptionPosition: "inline"
         }
-    } as dataInputNumType,
+    ] as Array<dataInputNumParamType>,
     isFilterVision: false,
     filters: [] as Array<string>,
-    templates: [
-        {
-            fields: {
-                1: {
-                    name: "Имя",
-                    placeholder: "Имя",
-                    type: "text",
-                    width: 20,
-                    height: 5,
-                    fieldDescription: "",
-                    descriptionPosition: "inline"
-                },
-                2: {
-                    name: "Фамилия",
-                    placeholder: "Фамилия",
-                    type: "text",
-                    width: 20,
-                    height: 5,
-                    fieldDescription: "",
-                    descriptionPosition: "inline"
-
-                },
-                3: {
-                    name: "Телефон",
-                    placeholder: "Введите номер телефона",
-                    type: "text",
-                    width: 20,
-                    height: 5,
-                    fieldDescription: "",
-                    descriptionPosition: "inline"
-                },
-                4: {
-                    name: "Почта",
-                    placeholder: "Введите почту",
-                    type: "email",
-                    width: 20,
-                    height: 5,
-                    fieldDescription: "",
-                    descriptionPosition: "inline"
-                },
-                5: {
-                    name: "Сообщение",
-                    placeholder: "Сообщение",
-                    type: "textarea",
-                    width: 60,
-                    height: 15,
-                    fieldDescription: "",
-                    descriptionPosition: "inline"
-                }
-            },
-            settings: {
-                nameOfTemplate: "Шаблон 1",
-                image: Template1,
-                group: "Форма обратной связи",
-                labelsPosition: "top",
-                title: "Мы ответим на любые ваши вопросы",
-                numOfFields: 2,
-                buttWidth: 35,
-                formWidth: 68,
-                buttHeight: 6,
-                descriptionColor: "#ffffff",
-                formMarginTop: 2,
-                generalBackgroundColor: "#ffffff",
-                formBackgroundColor: "#a3a19f",
-                textColor: "#ffffff",
-                buttTextColor: "#fdfcff",
-                titleColor: "#ffffff",
-                buttColor: "#53c6b4"
-            }
-        },
-        {
-            fields: {
-                1: {
-                    name: "Почта",
-                    placeholder: "Введите почту",
-                    type: "email",
-                    width: 15,
-                    height: 4,
-                    fieldDescription: "",
-                    descriptionPosition: "inline"
-                }
-            },
-            settings: {
-                nameOfTemplate: "Шаблон 2",
-                image: Template2,
-                group: "Подписка на рассылку",
-                labelsPosition: "left",
-                title: "Подписка на рассылку",
-                numOfFields: 1,
-                formWidth: 28,
-                buttWidth: 21,
-                generalBackgroundColor: "#ffffff",
-                formBackgroundColor: "#a3a19f",
-                buttHeight: 6,
-                formMarginTop: 25,
-                descriptionColor: "#ffffff",
-                textColor: "#ffffff",
-                buttTextColor: "#fdfcff",
-                titleColor: "#ffffff",
-                buttColor: "#53c6b4"
-            }
-        },
-        {
-            fields: {
-                1: {
-                    name: "Имя",
-                    placeholder: "Имя",
-                    type: "text",
-                    width: 20,
-                    height: 5,
-                    fieldDescription: "",
-                    descriptionPosition: "inline"
-                },
-                2: {
-                    name: "Телефон",
-                    placeholder: "Введите телефон",
-                    type: "text",
-                    width: 20,
-                    height: 5,
-                    fieldDescription: "",
-                    descriptionPosition: "inline"
-                }
-            },
-            settings: {
-                nameOfTemplate: "Шаблон 3",
-                image: Template3,
-                group: "Заказ звонка",
-                labelsPosition: "top",
-                title: "Заказ звонка",
-                numOfFields: 2,
-                formWidth: 68,
-                generalBackgroundColor: "#ffffff",
-                formBackgroundColor: "#a3a19f",
-                buttWidth: 35,
-                buttHeight: 6,
-                formMarginTop: 23,
-                textColor: "#ffffff",
-                buttTextColor: "#fdfcff",
-                titleColor: "#ffffff",
-                descriptionColor: "#ffffff",
-                buttColor: "#53c6b4"
-            }
-        },
-        {
-            fields: {
-                1: {
-                    name: "Имя",
-                    placeholder: "Имя",
-                    type: "text",
-                    width: 20,
-                    height: 5,
-                    fieldDescription: "",
-                    descriptionPosition: "inline"
-                },
-                2: {
-                    name: "Фамилия",
-                    placeholder: "Фамилия",
-                    type: "text",
-                    width: 20,
-                    height: 5,
-                    fieldDescription: "",
-                    descriptionPosition: "inline"
-                },
-                3: {
-                    name: "Телефон",
-                    placeholder: "Введите телефон",
-                    type: "text",
-                    width: 20,
-                    height: 5,
-                    fieldDescription: "",
-                    descriptionPosition: "inline"
-                }
-            },
-            settings: {
-                nameOfTemplate: "Шаблон 4",
-                image: Template4,
-                group: "Оформление заказа",
-                labelsPosition: "top",
-                title: "Оформление заказа",
-                numOfFields: 1,
-                generalBackgroundColor: "#ffffff",
-                formBackgroundColor: "#a3a19f",
-                formWidth: 36,
-                buttWidth: 23,
-                buttHeight: 6,
-                formMarginTop: 7,
-                textColor: "#ffffff",
-                descriptionColor: "#ffffff",
-                buttTextColor: "#fdfcff",
-                titleColor: "#ffffff",
-                buttColor: "#53c6b4"
-            }
-        }] as Array<dataTemplatesNumbersFieldsType>
+    templates: templates as Array<dataTemplatesNumbersFieldsType>
 };
 type localActionsTypes = actionsTypes<typeof actions>;
 export const mainReducer = (state = data, action: localActionsTypes): dataType => {
@@ -390,7 +189,6 @@ export const mainReducer = (state = data, action: localActionsTypes): dataType =
         }
         case "inputs": {
             let newObj = JSON.parse(JSON.stringify(state));
-            console.log(action.data["type"])
             newObj.inputs[action.index] = {
                 name:
                     action.data["name"].length >= 50
@@ -433,24 +231,24 @@ export const mainReducer = (state = data, action: localActionsTypes): dataType =
         }
         case "ApplyTemplate": {
             let newObj = JSON.parse(JSON.stringify(state));
-            newObj.inputs = action.data.fields;
-            newObj.labelsPosition = action.data.settings.labelsPosition || "top";
-            newObj.title = action.data.settings.title || "Заголовок";
-            newObj.numOfFields = action.data.settings.numOfFields || 1;
-            newObj.titleColor = action.data.settings.titleColor || "#ffffff";
+            newObj.inputs = action.data.inputs;
+            newObj.labelsPosition = action.data.labelsPosition || "top";
+            newObj.title = action.data.title || "Заголовок";
+            newObj.numOfFields = action.data.numOfFields || 1;
+            newObj.titleColor = action.data.titleColor || "#ffffff";
             newObj.generalBackgroundColor =
-                action.data.settings.generalBackgroundColor || "#ffffff";
+                action.data.generalBackgroundColor || "#ffffff";
             newObj.descriptionColor =
-                action.data.settings.descriptionColor || "#a175ff";
+                action.data.descriptionColor|| "#a175ff";
             newObj.formBackgroundColor =
-                action.data.settings.formBackgroundColor || "#a3a19f";
-            newObj.formWidth = action.data.settings.formWidth || 80;
-            newObj.textColor = action.data.settings.textColor || "#ffffff";
-            newObj.formMarginTop = action.data.settings.formMarginTop || 23;
-            newObj.buttColor = action.data.settings.buttColor || "#a175ff";
-            newObj.buttTextColor = action.data.settings.buttTextColor || "#fdfcff";
-            newObj.buttHeight = action.data.settings.buttHeight || "6";
-            newObj.buttWidth = action.data.settings.buttWidth || "35";
+                action.data.formBackgroundColor || "#a3a19f";
+            newObj.formWidth = action.data.formWidth || 80;
+            newObj.textColor = action.data.textColor || "#ffffff";
+            newObj.formMarginTop = action.data.formMarginTop || 23;
+            newObj.buttColor = action.data.buttColor || "#a175ff";
+            newObj.buttTextColor = action.data.buttTextColor || "#fdfcff";
+            newObj.buttHeight = action.data.buttHeight || "6";
+            newObj.buttWidth = action.data.buttWidth || "35";
             message.success("Шаблон применен");
             return {...newObj};
         }
@@ -473,7 +271,7 @@ export const mainReducer = (state = data, action: localActionsTypes): dataType =
     }
 };
 export let actions = {
-    ApplyTemplateAC: (data:dataTemplatesNumbersFieldsType) => ({
+    ApplyTemplateAC: (data:authDataType) => ({
         type: "ApplyTemplate",
         data: data
     }as const),

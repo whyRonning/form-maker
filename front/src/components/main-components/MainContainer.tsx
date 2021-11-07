@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Main } from "./Main";
-import { actions } from "../store/mainReducer";
-import { GlobalState } from "../store/store";
+import { actions } from "../../store/mainReducer";
+import { GlobalState } from "../../store/store";
 type MapStateToPropsType = {
   isFillingVision: boolean;
   generalBackgroundColor: string;
