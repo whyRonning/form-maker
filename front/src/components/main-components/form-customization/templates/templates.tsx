@@ -1,5 +1,10 @@
 import React from "react";
-export let Templates = React.memo((props) => {
+import { dataTemplatesNumbersFieldsType } from "../../../../store/mainReducer";
+type propsType = {
+  ApplyTemplateAC: (template: dataTemplatesNumbersFieldsType) => void;
+  template: dataTemplatesNumbersFieldsType;
+};
+export let Templates = React.memo((props: propsType) => {
   let handler = () => {
     props.ApplyTemplateAC(props.template);
   };

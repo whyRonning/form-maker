@@ -1,39 +1,41 @@
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import { Form } from "./help";
 import { message } from "antd";
-import { connect } from "react-redux";
-import { RequestThunk, RequestThunkResType } from "../../store/mainReducer";
+import { gql, useMutation } from "@apollo/client";
 
-export type propsHelp = {
-  RequestThunk: (
-    url: string,
-    method: string,
-    body: valuesType
-  ) => Promise<RequestThunkResType | undefined>;
-};
-export type valuesType = {
-  name: string;
-  message: string;
-  email: string;
-};
-export let HelpBlock: FC<propsHelp> = (props) => {
-  let [disable, setDisable] = useState(false);
-  let reqFromForm = async (values: valuesType) => {
-    setDisable(!disable);
-    let data = await props.RequestThunk("/api/message", "POST", values);
-    setDisable(disable);
-    if (data) {
-      let { status, res } = data;
-      status === 201
-        ? message.success(res.message)
-        : message.warning(res.message);
+export let HelpContainer = () => {
+  let [name, setName] = useState("");
+  let [email, setEmail] = useState("");
+  let [messages, setMessages] = useState("");
+  let [sendMessage, { loading }] = useMutation(
+    gql`
+      mutation sendMessage($name: String!, $email: String!, $message: String!) {
+        sendMessage(name: $name, email: $email, message: $message)
+      }
+    `,
+    {
+      onCompleted: () => {
+        message.success("Сообщение отправлено");
+      },
+      onError: (error) => {
+        message.warn(
+          error.message === "data"
+            ? "Не все данные были введены"
+            : "Что-то пошло не так"
+        );
+      },
     }
-  };
+  );
   return (
-    <>
-      <Form disable={disable} onSubmit={reqFromForm} />
-    </>
+    <Form
+      setEmail={setEmail}
+      email={email}
+      loading={loading}
+      name={name}
+      messages={messages}
+      sendMessage={sendMessage}
+      setMessages={setMessages}
+      setName={setName}
+    />
   );
 };
-
-export let HelpContainer = connect(null, { RequestThunk })(HelpBlock);

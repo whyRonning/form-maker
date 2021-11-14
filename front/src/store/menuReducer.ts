@@ -1,10 +1,13 @@
-type dataType={
-  stateOfHeader:number
-}
-let data:dataType = {
-  stateOfHeader: 1
+type dataType = {
+  stateOfHeader: number;
 };
-export let menuReducer = (state = data, action:any) => {
+let data: dataType = {
+  stateOfHeader: 1,
+};
+export let menuReducer = (
+  state = data,
+  action: ReturnType<typeof stateOfHeaderAC>
+) => {
   switch (action.type) {
     case "stateOfHeader": {
       return { ...state, stateOfHeader: Number(action.stateOfHeader) };
@@ -14,11 +17,11 @@ export let menuReducer = (state = data, action:any) => {
     }
   }
 };
-type stateOfHeaderACType={
-  type:string,
-  stateOfHeader:number
-}
-export let stateOfHeaderAC = (stateOfHeader:number):stateOfHeaderACType => ({
+type stateOfHeaderACType = {
+  type: string;
+  stateOfHeader: number;
+};
+export let stateOfHeaderAC = (stateOfHeader: number): stateOfHeaderACType => ({
   type: "stateOfHeader",
-  stateOfHeader
+  stateOfHeader,
 });

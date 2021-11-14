@@ -1,23 +1,15 @@
-import {connect, ConnectedProps} from "react-redux";
+import { connect } from "react-redux";
 import { PersonalTemplates } from "./personalTemplates";
-import { actions, DeleteTemplateThunk } from "../../../../store/mainReducer";
-import React from "react";
-import {GlobalState} from "../../../../store/store";
-let MapStateToProps = (state:GlobalState) => {
+import { actions } from "../../../../store/mainReducer";
+import { GlobalState } from "../../../../store/store";
+let MapStateToProps = (state: GlobalState) => {
   return {
     userTemplates: state.authReducer.userTemplates,
+    token: state.authReducer.token,
   };
 };
-let PersonalTemplatess = (props:propsType) => {
-  return (
-    <>
-      <PersonalTemplates {...props} />
-    </>
-  );
-};
 let PersonalTemplatesConnector = connect(MapStateToProps, {
-  ApplyTemplateAC: actions.ApplyTemplateAC,
-  DeleteTemplateThunk,
+  ApplyUserTemplateAC: actions.ApplyUserTemplateAC,
 });
-type propsType=ConnectedProps<typeof PersonalTemplatesConnector>
-export let PersonalTemplatesContainer =PersonalTemplatesConnector(PersonalTemplatess);
+export let PersonalTemplatesContainer =
+  PersonalTemplatesConnector(PersonalTemplates);

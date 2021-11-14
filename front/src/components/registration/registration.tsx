@@ -1,29 +1,69 @@
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import React, {useState} from "react";
-import {Input} from "../contact/input";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {valuesRegistrationType} from "./registrationContainer";
-
-let Registrations: React.FC<InjectedFormProps<valuesRegistrationType, {}> & {}> = (props) => {
-    let [passVision, SetPassVision] = useState(false);
-    let handler = () => {
-        SetPassVision(!passVision);
-    };
-    const {handleSubmit} = props;
-    return (
-        <form onSubmit={handleSubmit}>
-            <Field name="login" type="text" component={Input} placeholder="Логин"/>
-            <Field name="email" type="email" component={Input} placeholder="Почта"/>
-            <div className="passBlock">
-                <Field name="password" type={!passVision ? "text" : "password"} placeholder="Пароль" component={Input}/>
-                <FontAwesomeIcon onClick={handler} icon={passVision ? "eye" : "eye-slash"}/>
-            </div>
-            <Field name="passwordAccess" type={!passVision ? "text" : "password"} placeholder="Введите пароль повторно"
-                   component={Input}/>
-            <button type="submit">Регистрация</button>
-        </form>
-    );
-}
-export let Registration = reduxForm<valuesRegistrationType, {}>({
-    form: "Registration"
-})(Registrations);
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+type propsType = {
+  setPassVision: (passVision: boolean) => void;
+  setEmail: (email: string) => void;
+  setPassword: (password: string) => void;
+  setPasswordAccess: (passwordAccess: string) => void;
+  passwordAccess: string;
+  passVision: boolean;
+  password: string;
+  email: string;
+  regFun: (obj: { variables: { [key: string]: any } }) => void;
+};
+export let Registration = (props: propsType) => {
+  let handler = () => {
+    props.setPassVision(!props.passVision);
+  };
+  return (
+    <>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          props.regFun({
+            variables: {
+              email: props.email,
+              password: props.password,
+              passwordAccess: props.passwordAccess,
+            },
+          });
+        }}
+      >
+        <input
+          type="email"
+          placeholder="Почта"
+          value={props.email}
+          onChange={(e) => {
+            props.setEmail(e.currentTarget.value);
+          }}
+          required
+        />
+        <div className="passBlock">
+          <input
+            type={props.passVision ? "text" : "password"}
+            value={props.password}
+            placeholder="Пароль"
+            onChange={(e) => {
+              props.setPassword(e.currentTarget.value);
+            }}
+            required
+          />
+          <FontAwesomeIcon
+            onClick={handler}
+            icon={props.passVision ? "eye" : "eye-slash"}
+          />
+        </div>
+        <input
+          type={props.passVision ? "text" : "password"}
+          value={props.passwordAccess}
+          placeholder="Введите пароль повторно"
+          onChange={(e) => {
+            props.setPasswordAccess(e.currentTarget.value);
+          }}
+          required
+        />
+        <button type={"submit"}>Регистрация</button>
+      </form>
+    </>
+  );
+};

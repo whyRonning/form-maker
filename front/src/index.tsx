@@ -7,12 +7,25 @@ import { Provider } from "react-redux";
 import "antd/dist/antd.css";
 import { BrowserRouter } from "react-router-dom";
 import "./accets/FAIcons";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
+let client = new ApolloClient({
+  cache: new InMemoryCache({
+    typePolicies: {
+      UserData: {
+        keyFields: ["templates"],
+      },
+    },
+  }),
+  uri: "/GqlApi",
+});
 ReactDOM.render(
   <BrowserRouter>
-    <Provider store={store}>
-      <AppContainer />
-    </Provider>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    </ApolloProvider>
   </BrowserRouter>,
   document.getElementById("root")
 );

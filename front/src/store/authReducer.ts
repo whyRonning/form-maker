@@ -1,8 +1,4 @@
-import { stateOfHeaderAC } from "./menuReducer";
-import { message } from "antd";
-import { ThunkAction } from "redux-thunk";
-import { actionsTypes, GlobalState } from "./store";
-import { Action } from "redux";
+import { actionsTypes} from "./store";
 
 type dataInputNumParamType = {
   name: string | null;
@@ -18,7 +14,6 @@ type dataAuthType = typeof data;
 export type dataType = {
   generalBackgroundColor: string;
   formBackgroundColor: string;
-  selectedInput: string;
   textColor: string;
   buttColor: string;
   buttTextColor: string;
@@ -35,11 +30,8 @@ export type dataType = {
 };
 let data = {
   isAuth: false,
-  token: "",
   userTemplates: [] as Array<dataType>,
-  login: "",
-  loginState: "login",
-  isPreloaderVision: false,
+  token: "",
 };
 type actionTypes = actionsTypes<typeof actions>;
 
@@ -48,9 +40,8 @@ export let authReducer = (state: dataAuthType = data, action: actionTypes) => {
     case "Auth": {
       let copyState = { ...state };
       copyState.isAuth = action.isAuth;
-      copyState.token = action.token;
       copyState.userTemplates = action.templates;
-      copyState.login = action.login;
+      copyState.token = action.token;
       return { ...copyState };
     }
     case "userTemplates": {
@@ -63,16 +54,9 @@ export let authReducer = (state: dataAuthType = data, action: actionTypes) => {
       copyState.userTemplates.splice(action.template, 1);
       return { ...copyState };
     }
-    case "preloaderVision": {
-      return { ...state, isPreloaderVision: !state.isPreloaderVision };
-    }
-    case "loginState": {
-      return { ...state, loginState: action.state };
-    }
     case "logout": {
       let copyState = { ...state };
       copyState.isAuth = false;
-      copyState.token = "";
       return { ...copyState };
     }
     default: {
@@ -81,28 +65,12 @@ export let authReducer = (state: dataAuthType = data, action: actionTypes) => {
   }
 };
 export let actions = {
-  isAuthAC: (
-    isAuth: boolean,
-    token: string,
-    templates: Array<dataType>,
-    login: string
-  ) =>
+  isAuthAC: (isAuth: boolean, templates: Array<dataType>, token: string) =>
     ({
       type: "Auth",
       isAuth,
-      token,
       templates,
-      login,
-    } as const),
-  loginStateAC: (state: "login" | "registration") =>
-    ({
-      type: "loginState",
-      state,
-    } as const),
-  preloaderVisionAC: (preloaderVision: boolean) =>
-    ({
-      type: "preloaderVision",
-      preloaderVision,
+      token,
     } as const),
   userTemplatesAC: (userTemplates: dataType) =>
     ({
@@ -118,19 +86,4 @@ export let actions = {
     ({
       type: "logout",
     } as const),
-};
-
-export let LogoutThunk = (): ThunkAction<
-  void,
-  GlobalState,
-  unknown,
-  Action
-> => {
-  return (dispatch, getState) => {
-    localStorage.removeItem("token");
-    dispatch(actions.logoutAC());
-    let state = getState();
-    if (state.menuReducer.stateOfHeader === 3) dispatch(stateOfHeaderAC(2));
-    message.success("Вы вышли из аккаунта");
-  };
 };

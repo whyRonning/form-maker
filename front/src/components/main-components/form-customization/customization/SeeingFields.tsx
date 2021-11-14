@@ -1,18 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect } from "react";
-import { useDa } from "./hooks";
-
-export let SeeingFields = React.memo((props) => {
+import React, { useState } from "react";
+import { dataInputNumParamType } from "../../../../store/mainReducer";
+type propsType = {
+  changeInput: (index: number | null) => void;
+  index: number;
+  ChangeDeleteFieldAC: (index: number) => void;
+  inputs: dataInputNumParamType;
+};
+export let SeeingFields = (props: propsType) => {
   let changeInputIndex = () => {
     props.changeInput(props.index);
   };
-
-  let { st, setSt } = useDa(props.index);
-  useEffect(() => {
-    setSt({ [props.index]: true });
-  }, [props.index, setSt]);
+  let [isObjVision, setIsObjVision] = useState(true);
   let DeleteField = async () => {
-    setSt({ [props.index]: !st[props.index] });
+    setIsObjVision(!isObjVision);
     await setTimeout(() => {
       props.ChangeDeleteFieldAC(props.index);
     }, 100);
@@ -20,9 +21,7 @@ export let SeeingFields = React.memo((props) => {
 
   return (
     <div
-      className={
-        st[props.index] ? "ItemsOfInputs shown" : "ItemsOfInputs hidden"
-      }
+      className={isObjVision ? "ItemsOfInputs shown" : "ItemsOfInputs hidden"}
     >
       <div>
         <p>{props.inputs.name}</p>
@@ -37,4 +36,4 @@ export let SeeingFields = React.memo((props) => {
       </div>
     </div>
   );
-});
+};

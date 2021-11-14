@@ -1,25 +1,54 @@
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import React, { useState } from "react";
-import { Input } from "../contact/input";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {valuesAuthType} from "./authContainer";
-let Auths:React.FC<InjectedFormProps<valuesAuthType,{}>&{}> = React.memo((props) => {
-  let [passVision, SetPassVision] = useState(false);
+type propsType = {
+  formRes: (obj: { variables: { [key: string]: any } }) => void;
+  setPassVision: (passVision: boolean) => void;
+  setEmail: (email: string) => void;
+  setPassword: (password: string) => void;
+  passVision: boolean;
+  password: string;
+  email: string;
+};
+export let Auth = (props: propsType) => {
   let handler = () => {
-    SetPassVision(!passVision);
+    props.setPassVision(!props.passVision);
   };
-  const { handleSubmit } = props;
   return (
-    <form onSubmit={handleSubmit}>
-      <Field placeholder="Почта" name="email" type="email" component={Input} />
-      <div className="passBlock">
-        <Field placeholder="Пароль" name="password" type={!passVision ? "text" : "password"} component={Input}/>
-        <FontAwesomeIcon onClick={handler} icon={passVision ? "eye" : "eye-slash"}/>
-      </div>
-      <button type="submit">Войти</button>
-    </form>
+    <>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          props.formRes({
+            variables: { email: props.email, password: props.password },
+          });
+        }}
+      >
+        <input
+          type="text"
+          value={props.email}
+          onChange={(e) => {
+            props.setEmail(e.currentTarget.value);
+          }}
+          placeholder="Почта"
+          required
+        />
+        <div className="passBlock">
+          <input
+            type={props.passVision ? "text" : "password"}
+            value={props.password}
+            onChange={(e) => {
+              props.setPassword(e.currentTarget.value);
+            }}
+            placeholder="Пароль"
+            required
+          />
+          <FontAwesomeIcon
+            onClick={handler}
+            icon={props.passVision ? "eye" : "eye-slash"}
+          />
+        </div>
+        <button type="submit">Войти</button>
+      </form>
+    </>
   );
-});
-export let Auth = reduxForm<valuesAuthType,{}>({
-  form: "Auth"
-})(Auths);
+};

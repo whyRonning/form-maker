@@ -1,30 +1,35 @@
-import {withRouter} from "react-router-dom";
-import React, {useEffect} from "react";
-import {connect} from "react-redux";
-import {AcceptThunk, AcceptThunkAxiosType} from "../../store/mainReducer";
-import {useState} from "react";
-import {RouteComponentProps} from "react-router";
-type PathParamsType={
-    Id:string
-}
-let AcceptAccountBlock = React.memo((props:propsType) => {
-    let url = props.match.params.Id;
-    let AcceptThunk = props.AcceptThunk;
-    let [text, setText] = useState<string>("");
-    useEffect(() => {
-        let acceptAccount: () => void = () => {
-            AcceptThunk("/api/access", "POST", {id: url}).then((res: AcceptThunkAxiosType | undefined) => {
-                res ?
-                    setText(res.message) : setText("Произошла ошибка, обновите страницу")
-            }).catch(() => {
-                setText("Произошла ошибка, обновите страницу")
-            });
-        };
-        acceptAccount();
-    }, [url, AcceptThunk]);
-    return <div>{text}</div>;
-});
-let acceptWithRouter = withRouter(AcceptAccountBlock);
-type propsType=RouteComponentProps<PathParamsType>&{AcceptThunk:any}
-let AcceptAccountConnector = connect(null, {AcceptThunk});
-export let AcceptAccount=AcceptAccountConnector(acceptWithRouter);
+import React from "react";
+import { RouteComponentProps, withRouter } from "react-router";
+import { gql, useQuery } from "@apollo/client";
+import { Preloader } from "../preloader/preloader";
+type PathParamsType = { Id: string };
+let AcceptAccountBlock = (props: propsType) => {
+  let { loading, error, data } = useQuery(
+    gql`
+      query acceptAcc($id: String!) {
+        access(id: $id)
+      }
+    `,
+    { variables: { id: props.match.params.Id } }
+  );
+  if (loading) {
+    return <Preloader />;
+  }
+  if (error) {
+    return (
+      <p>
+        {error.message === "err in req"
+          ? "Ошибка в запросе"
+          : error.message === "acc already accessed"
+          ? "Аккаунт уже подтвержден"
+          : "Что-то пошло не так"}
+      </p>
+    );
+  }
+  if (data) {
+    return <p>Аккаунт подвержден</p>;
+  }
+  return <p />;
+};
+export let AcceptAccount = withRouter(AcceptAccountBlock);
+type propsType = RouteComponentProps<PathParamsType>;

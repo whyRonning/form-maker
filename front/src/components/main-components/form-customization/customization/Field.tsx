@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Radio } from "antd";
-import {dataInputNumParamType} from "../../../../store/mainReducer";
+import { dataInputNumParamType } from "../../../../store/mainReducer";
 
-type props={
-  inputs:{
-    name: string,
-    placeholder: string,
-    type: string,
-    width: number,
-    height: number,
-    fieldDescription: string,
-    descriptionPosition: "inline" | "bottom"
-  },
-  index:number,
-  changeInput:(val:string)=>void,
-  process:(data:any,index:number)=>void
-
-
+type propsType = {
+  inputs: {
+    name: string;
+    placeholder: string;
+    type: string;
+    width: number;
+    height: number;
+    fieldDescription: string;
+    descriptionPosition: "inline" | "bottom";
+  };
+  index: number;
+  changeInput: (val: number | null) => void;
+  process: (data: dataInputNumParamType, index: number) => void;
 };
-export let Field = React.memo((props:props) => {
+export let Field = React.memo((props: propsType) => {
   useEffect(() => {
     setPlaceholder(props.inputs.placeholder || "");
     setTypeOfInput(props.inputs.type || "text");
@@ -36,13 +34,15 @@ export let Field = React.memo((props:props) => {
     props.inputs.descriptionPosition,
     props.inputs.height,
     props.inputs,
-    props.inputs.width
+    props.inputs.width,
   ]);
   let [typeOfInput, setTypeOfInput] = useState("");
   let [placeholder, setPlaceholder] = useState("");
   let [name, setName] = useState("");
   let [fieldDescription, setFieldDescription] = useState("");
-  let [descriptionPosition, setDescriptionPosition] = useState("");
+  let [descriptionPosition, setDescriptionPosition] = useState<
+    "bottom" | "inline"
+  >("bottom");
   let [width, setWidth] = useState("");
   let [height, setHeight] = useState("");
   let [size, setSize] = useState("");
@@ -50,17 +50,17 @@ export let Field = React.memo((props:props) => {
     let data = {
       name,
       placeholder,
-      type:typeOfInput,
+      type: typeOfInput,
       fieldDescription,
       descriptionPosition,
-      width: typeOfInput === "checkbox" ? size : width,
-      height: typeOfInput === "checkbox" ? size : height
+      width: typeOfInput === "checkbox" ? Number(size) : Number(width),
+      height: typeOfInput === "checkbox" ? Number(size) : Number(height),
     };
     props.process(data, props.index);
-    props.changeInput("");
+    props.changeInput(null);
   };
   let changeInputHandler = () => {
-    props.changeInput("");
+    props.changeInput(null);
   };
   return (
     <>
@@ -70,7 +70,9 @@ export let Field = React.memo((props:props) => {
           Название поля
           <input
             name="name"
-            onChange={(e)=>{setName(e.target.value)}}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
             value={name}
             placeholder="Название поля"
             type="text"
@@ -80,7 +82,9 @@ export let Field = React.memo((props:props) => {
           Placeholder поля
           <input
             name="placeholder"
-            onChange={(e)=>{setPlaceholder(e.target.value)}}
+            onChange={(e) => {
+              setPlaceholder(e.target.value);
+            }}
             value={placeholder}
             placeholder="placeholder поля"
             type="text"
@@ -93,7 +97,9 @@ export let Field = React.memo((props:props) => {
               Размер поля
               <input
                 name="size"
-                onChange={(e)=>{setSize(e.target.value)}}
+                onChange={(e) => {
+                  setSize(e.target.value);
+                }}
                 value={size}
                 placeholder="Размер поля"
                 type="number"
@@ -111,7 +117,15 @@ export let Field = React.memo((props:props) => {
               Ширина поля
               <input
                 name="width"
-                onChange={(e)=>{setWidth(Number(e.target.value)>100?"100":Number(e.target.value)<0?"0":e.target.value)}}
+                onChange={(e) => {
+                  setWidth(
+                    Number(e.target.value) > 100
+                      ? "100"
+                      : Number(e.target.value) < 0
+                      ? "0"
+                      : e.target.value
+                  );
+                }}
                 value={width}
                 placeholder="Ширина поля"
                 type="number"
@@ -125,7 +139,15 @@ export let Field = React.memo((props:props) => {
               Высота поля
               <input
                 name="height"
-                onChange={(e)=>{setHeight(Number(e.target.value)>100?"100":Number(e.target.value)<0?"0":e.target.value)}}
+                onChange={(e) => {
+                  setHeight(
+                    Number(e.target.value) > 100
+                      ? "100"
+                      : Number(e.target.value) < 0
+                      ? "0"
+                      : e.target.value
+                  );
+                }}
                 step="0.1"
                 min="0.1"
                 max="99.9"
@@ -142,15 +164,19 @@ export let Field = React.memo((props:props) => {
         <label>Описание поля</label>
         <input
           name="fieldDescription"
-          onChange={(e)=>{setFieldDescription(e.target.value)}}
+          onChange={(e) => {
+            setFieldDescription(e.target.value);
+          }}
           value={fieldDescription}
           placeholder="Описание поля"
           type="text"
         />
         <Radio.Button
           name="descriptionPosition"
-          onChange={(e)=>{setDescriptionPosition(e.target.value)}}
-          checked={descriptionPosition === "bottom" }
+          onChange={(e) => {
+            setDescriptionPosition(e.target.value);
+          }}
+          checked={descriptionPosition === "bottom"}
           value="bottom"
         >
           Снизу
@@ -158,7 +184,9 @@ export let Field = React.memo((props:props) => {
         <Radio.Button
           name="descriptionPosition"
           checked={descriptionPosition === "inline"}
-          onChange={(e)=>{setDescriptionPosition(e.target.value)}}
+          onChange={(e) => {
+            setDescriptionPosition(e.target.value);
+          }}
           value="inline"
         >
           Справа
@@ -171,8 +199,10 @@ export let Field = React.memo((props:props) => {
               id={"textarea" + props.index}
               name={"type" + props.index}
               value="textarea"
-              onChange={(e)=>{setTypeOfInput(e.target.value)}}
-              checked={typeOfInput === "textarea" }
+              onChange={(e) => {
+                setTypeOfInput(e.target.value);
+              }}
+              checked={typeOfInput === "textarea"}
             >
               Textarea
             </Radio.Button>
@@ -180,8 +210,10 @@ export let Field = React.memo((props:props) => {
               id={"input" + props.index}
               name={"type" + props.index}
               value="text"
-              onChange={(e)=>{setTypeOfInput(e.target.value)}}
-              checked={typeOfInput === "text" }
+              onChange={(e) => {
+                setTypeOfInput(e.target.value);
+              }}
+              checked={typeOfInput === "text"}
             >
               Input
             </Radio.Button>
@@ -189,8 +221,10 @@ export let Field = React.memo((props:props) => {
               id={"flag" + props.index}
               name={"type" + props.index}
               value="checkbox"
-              onChange={(e)=>{setTypeOfInput(e.target.value)}}
-              checked={typeOfInput === "checkbox" }
+              onChange={(e) => {
+                setTypeOfInput(e.target.value);
+              }}
+              checked={typeOfInput === "checkbox"}
             >
               Checkbox
             </Radio.Button>
@@ -198,8 +232,10 @@ export let Field = React.memo((props:props) => {
               id={"file" + props.index}
               name={"type" + props.index}
               value="file"
-              onChange={(e)=>{setTypeOfInput(e.target.value)}}
-              checked={typeOfInput === "file" }
+              onChange={(e) => {
+                setTypeOfInput(e.target.value);
+              }}
+              checked={typeOfInput === "file"}
             >
               File
             </Radio.Button>
@@ -207,8 +243,10 @@ export let Field = React.memo((props:props) => {
               id={"password" + props.index}
               name={"type" + props.index}
               value="password"
-              onChange={(e)=>{setTypeOfInput(e.target.value)}}
-              checked={typeOfInput === "password" }
+              onChange={(e) => {
+                setTypeOfInput(e.target.value);
+              }}
+              checked={typeOfInput === "password"}
             >
               Password
             </Radio.Button>
@@ -216,8 +254,10 @@ export let Field = React.memo((props:props) => {
               id={"email" + props.index}
               name={"type" + props.index}
               value="email"
-              onChange={(e)=>{setTypeOfInput(e.target.value)}}
-              checked={typeOfInput === "email" }
+              onChange={(e) => {
+                setTypeOfInput(e.target.value);
+              }}
+              checked={typeOfInput === "email"}
             >
               Email
             </Radio.Button>

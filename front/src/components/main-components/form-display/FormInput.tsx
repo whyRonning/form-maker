@@ -1,19 +1,19 @@
 import React from "react";
-type props={
-    type:string,
-    numOfFields:number,
-    labelsPosition:string,
-    name:string,
-    descriptionPosition:string,
-    descriptionColor:string,
-    width:number,
-    height:number,
-    disabled?:boolean,
-    placeholder:string,
-    fieldDescription:string,
-    i:number
-}
-export const FormInput = (props:props) => {
+type propsType = {
+  type: string;
+  numOfFields: number;
+  labelsPosition: string;
+  name: string;
+  descriptionPosition: string;
+  descriptionColor: string;
+  width: number;
+  height: number;
+  disabled?: boolean;
+  placeholder: string;
+  fieldDescription: string;
+  i: number;
+};
+export const FormInput = (props: propsType) => {
   let Field = () => {
     if (props.type === "textarea") {
       return (
@@ -36,7 +36,7 @@ export const FormInput = (props:props) => {
                 style={{
                   display:
                     props.descriptionPosition === "inline" ? "inline" : "",
-                  color: props.descriptionColor
+                  color: props.descriptionColor,
                 }}
               >
                 {!props.fieldDescription
@@ -55,7 +55,7 @@ export const FormInput = (props:props) => {
             style={{
               width: props.width + "vw",
               height: props.height + "vh",
-              color: "black"
+              color: "black",
             }}
             placeholder={props.placeholder}
             required
@@ -79,7 +79,7 @@ export const FormInput = (props:props) => {
             marginLeft:
               props.numOfFields === 2 && props.labelsPosition === "top"
                 ? "10%"
-                : ""
+                : "",
           }}
         >
           {props.name ? (
@@ -89,7 +89,7 @@ export const FormInput = (props:props) => {
                 style={{
                   display:
                     props.descriptionPosition === "inline" ? "inline" : "",
-                  color: props.descriptionColor
+                  color: props.descriptionColor,
                 }}
               >
                 {!props.fieldDescription
@@ -108,7 +108,7 @@ export const FormInput = (props:props) => {
             required
             disabled={props.disabled}
             style={{
-              color: "black"
+              color: "black",
             }}
           />
         </div>
@@ -141,7 +141,7 @@ export const FormInput = (props:props) => {
               style={{
                 width: props.width + "vw",
                 height: props.height + "vh",
-                color: "black"
+                color: "black",
               }}
               id={"inputRadio" + props.i}
               type={props.type || "radio"}
@@ -167,7 +167,7 @@ export const FormInput = (props:props) => {
                 style={{
                   display:
                     props.descriptionPosition === "inline" ? "inline" : "",
-                  color: props.descriptionColor
+                  color: props.descriptionColor,
                 }}
               >
                 {!props.fieldDescription
@@ -188,7 +188,7 @@ export const FormInput = (props:props) => {
             style={{
               width: props.width + "vw",
               height: props.height + "vh",
-              color: "black"
+              color: "black",
             }}
           />
         </div>

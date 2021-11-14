@@ -4,15 +4,14 @@ import { MiniHeader } from "./miniHeader";
 import { TemplatesContainer } from "./templates/templatesContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PersonalTemplatesContainer } from "./user-templates/personalTemplatesContainer";
-type props={
-    ChangeFillingVisionAC:()=>void,
-    isFillingVision:boolean,
-    stateOfHeader:number,
-    isAuth:boolean,
-    stateOfHeaderAC:(num:number)=>void
-
-}
-export let MiniHeaderSwitch = (props:props) => {
+type propsType = {
+  ChangeFillingVisionAC: () => void;
+  isFillingVision: boolean;
+  stateOfHeader: number;
+  isAuth: boolean;
+  stateOfHeaderAC: (num: number) => void;
+};
+export let MiniHeaderSwitch = (props: propsType) => {
   return (
     <>
       <div

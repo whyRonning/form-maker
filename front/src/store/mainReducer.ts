@@ -1,13 +1,6 @@
-import axios, {AxiosError, AxiosResponse} from "axios";
 import {dataType as authDataType} from "./authReducer"
-import {actions as authActions} from "./authReducer";
 import {message} from "antd";
-import {valuesType} from "../components/contact/helpContainer";
-import {valuesRegistrationType} from "../components/registration/registrationContainer";
-import {valuesAuthType} from "../components/auth/authContainer";
-import {ThunkAction} from "redux-thunk";
-import {actionsTypes, GlobalState} from "./store";
-import {Action} from "redux";
+import {actionsTypes} from "./store";
 import {templates} from "./initialTemplates";
 
 /***********************types of inputs*******************************/
@@ -51,7 +44,7 @@ type dataType = typeof data;
 let data = {
     generalBackgroundColor: "#ffffff",
     formBackgroundColor: "#a3a19f",
-    selectedInput: null as null | string,
+    selectedInput: null as null|number,
     formWidth: 80,
     formMarginTop: 23,
     textColor: "#000000",
@@ -229,7 +222,7 @@ export const mainReducer = (state = data, action: localActionsTypes): dataType =
             }
             return newObj;
         }
-        case "ApplyTemplate": {
+        case "ApplyUserTemplate": {
             let newObj = JSON.parse(JSON.stringify(state));
             newObj.inputs = action.data.inputs;
             newObj.labelsPosition = action.data.labelsPosition || "top";
@@ -252,6 +245,29 @@ export const mainReducer = (state = data, action: localActionsTypes): dataType =
             message.success("Шаблон применен");
             return {...newObj};
         }
+        case "ApplyTemplate": {
+            let newObj = JSON.parse(JSON.stringify(state));
+            newObj.inputs = action.data.fields;
+            newObj.labelsPosition = action.data.settings.labelsPosition || "top";
+            newObj.title = action.data.settings.title || "Заголовок";
+            newObj.numOfFields = action.data.settings.numOfFields || 1;
+            newObj.titleColor = action.data.settings.titleColor || "#ffffff";
+            newObj.generalBackgroundColor =
+                action.data.settings.generalBackgroundColor || "#ffffff";
+            newObj.descriptionColor =
+                action.data.settings.descriptionColor|| "#a175ff";
+            newObj.formBackgroundColor =
+                action.data.settings.formBackgroundColor || "#a3a19f";
+            newObj.formWidth = action.data.settings.formWidth || 80;
+            newObj.textColor = action.data.settings.textColor || "#ffffff";
+            newObj.formMarginTop = action.data.settings.formMarginTop || 23;
+            newObj.buttColor = action.data.settings.buttColor || "#a175ff";
+            newObj.buttTextColor = action.data.settings.buttTextColor || "#fdfcff";
+            newObj.buttHeight = action.data.settings.buttHeight || "6";
+            newObj.buttWidth = action.data.settings.buttWidth || "35";
+            message.success("Шаблон применен");
+            return {...newObj};
+        }
         case "filters": {
             let newObj = JSON.parse(JSON.stringify(state));
             let posEl: Array<string | number> = [];
@@ -271,7 +287,11 @@ export const mainReducer = (state = data, action: localActionsTypes): dataType =
     }
 };
 export let actions = {
-    ApplyTemplateAC: (data:authDataType) => ({
+    ApplyUserTemplateAC: (data:authDataType) => ({
+        type: "ApplyUserTemplate",
+        data: data
+    }as const),
+    ApplyTemplateAC: (data:dataTemplatesNumbersFieldsType) => ({
         type: "ApplyTemplate",
         data: data
     }as const),
@@ -312,7 +332,7 @@ export let actions = {
         type: "title",
         title: title
     }as const),
-    ChangeSelectedInputAC: (selectedInput: string) => ({
+    ChangeSelectedInputAC: (selectedInput: number|null) => ({
         type: "selectedInput",
         selectedInput: selectedInput
     }as const),
@@ -360,114 +380,4 @@ export let actions = {
         type: "titleColor",
         titleColor
     }as const)
-}
-
-export type AcceptThunkAxiosType = {
-    message: string
-}
-export let AcceptThunk = (url: string, method = "POST", body: { id: string }, headers = {}): ThunkAction<Promise<AcceptThunkAxiosType | undefined>, GlobalState, unknown, Action> => {
-    return () => {
-        let resp = axios
-            .post(url, body)
-            .then((response: AxiosResponse<AcceptThunkAxiosType>) => {
-                return response.data;
-            })
-            .catch((er: AxiosError<AcceptThunkAxiosType>) => {
-                if (er.response) {
-                    return er.response.data;
-                }
-            });
-
-        return resp;
-    };
-};
-type AuthThunkAxiosType = {
-    login: string,
-    message: boolean,
-    templates: Array<authDataType>
-}
-export let AuthThunk = (token?: string, templates?: Array<authDataType>, login?: string): ThunkAction<void, GlobalState, unknown, Action> => {
-    return (dispatch, getState) => {
-        dispatch(authActions.preloaderVisionAC(getState().authReducer.isPreloaderVision));
-        if (token && login && templates) {
-            localStorage.setItem("token", JSON.stringify(token));
-            dispatch(authActions.isAuthAC(true, token, templates, login));
-            dispatch(authActions.preloaderVisionAC(getState().authReducer.isPreloaderVision));
-        } else {
-            let data: any = localStorage.getItem("token");
-            if (data) {
-                data = data.replace(/"/g, ``);
-                axios
-                    .post("/api/checkToken", {token: JSON.parse(`"${data}"`)})
-                    .then((res: AxiosResponse<AuthThunkAxiosType>) => {
-                        dispatch(authActions.isAuthAC(res.data.message, data, res.data.templates, res.data.login));
-                        dispatch(authActions.preloaderVisionAC(getState().authReducer.isPreloaderVision));
-                    })
-                    .catch(() => {
-                        dispatch(authActions.preloaderVisionAC(getState().authReducer.isPreloaderVision));
-                    });
-            } else {
-                dispatch(authActions.preloaderVisionAC(getState().authReducer.isPreloaderVision));
-            }
-        }
-    };
-};
-export type RequestThunkResType = {
-    status: number, res: { message?: string, token?: string, login?: string, templates: Array<authDataType> }
-}
-export let RequestThunk = (url: string, method: string = "POST", body: valuesAuthType | valuesType | valuesRegistrationType): ThunkAction<Promise<RequestThunkResType | undefined>, GlobalState, unknown, Action> => {
-    return () => {
-        let res =
-            axios
-                .post(url, body)
-                .then((response: AxiosResponse<{ message?: string, token?: string, login?: string, templates: Array<authDataType> }>) => {
-                    return {status: response.status, res: response.data};
-                })
-                .catch((er: AxiosError<any | undefined>) => {
-                    if (er.response !== undefined) {
-                        return {status: er.response.status, res: er.response.data};
-                    } else {
-                        console.log("err")
-                    }
-                })
-
-        return res;
-    };
-};
-export let SaveThunk = (data: any, token: string): ThunkAction<void, GlobalState, unknown, Action> => {
-    return (dispatch: any, getState: any) => {
-        if (getState().authReducer.isAuth) {
-            axios
-                .post("/api/saveForm", {data, token})
-                .then((res) => {
-                    message.success(res.data.message);
-                    dispatch(authActions.userTemplatesAC(data));
-                })
-                .catch((err) => {
-                    message.warning(err.response.data.message);
-                });
-        } else {
-            message.warning("Для этого действия необходимо войти в аккаунт");
-        }
-    };
-};
-export let DeleteTemplateThunk = (index: number): ThunkAction<void, GlobalState, unknown, Action> => {
-    return (dispatch: any, getState: any) => {
-        if (getState().authReducer.isAuth) {
-            axios
-                .post("/api/deleteTemplate", {
-                    index,
-                    token: getState().authReducer.token
-                })
-                .then((res) => {
-                    message.success(res.data.message);
-                    dispatch(authActions.deleteUserTemplatesAC(index));
-                })
-                .catch((err) => {
-                    message.warning(err.response.data.message);
-                });
-        } else {
-            message.warning("Для этого действия необходимо войти в аккаунт");
-        }
-    };
 };

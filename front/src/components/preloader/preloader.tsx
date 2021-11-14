@@ -1,13 +1,9 @@
 import React from "react";
-
-type props = {
-  isPreloaderVision: boolean;
-  preloader: string;
-};
-export let Preloader = (props: props) => {
+import preloader from "../../accets/img/preloader.webp";
+export let Preloader = () => {
   return (
-    <div className={props.isPreloaderVision ? "preloader" : "preloader hidden"}>
-      <img src={props.preloader} alt="" />
+    <div className="preloader">
+      <img src={preloader} alt="" />
     </div>
   );
 };

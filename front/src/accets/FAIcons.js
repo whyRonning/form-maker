@@ -4,7 +4,7 @@ import {
   faCogs,
   faEye,
   faTimes,
-  faEyeSlash
+  faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 library.add(

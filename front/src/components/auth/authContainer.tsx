@@ -1,34 +1,55 @@
-import {connect, ConnectedProps} from "react-redux";
 import { Auth } from "./auth";
-import React from "react";
-import {
-  RequestThunk,
-  AuthThunk,
-  RequestThunkResType,
-} from "../../store/mainReducer";
+import { gql, useLazyQuery } from "@apollo/client";
+import { templateFragment } from "../graphQl-fragments/templateFragment";
 import { message } from "antd";
-import { dataType as authDataType } from "../../store/authReducer";
-export type valuesAuthType = {
-  email: string;
-  password: string;
-};
-let authBlock = (props:propsType) => {
-  let FormReq = async (values: valuesAuthType) => {
-    let data = await props.RequestThunk("/api/auth", "POST", values);
-    if (data) {
-      let { status, res } = data;
-      if (status === 200) {
-        message.success("Вы вошли");
-        await props.AuthThunk(res.token, res.templates, res.login);
-      } else {
-        res.message
-          ? message.error(res.message)
-          : message.error("Что-то пошло не так");
+import React, { useState } from "react";
+import { connect, ConnectedProps } from "react-redux";
+import { actions } from "../../store/authReducer";
+import { Preloader } from "../preloader/preloader";
+export let AuthBlock = (props: propsType) => {
+  let [passVision, setPassVision] = useState(false);
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  let [formRes, { loading }] = useLazyQuery(
+    gql`
+      ${templateFragment}
+      query auth($email: String!, $password: String!) {
+        auth(email: $email, password: $password) {
+          token
+          templates {
+            ...template
+          }
+        }
       }
+    `,
+    {
+      onCompleted: (data) => {
+        localStorage.setItem("token", JSON.stringify(data.auth.token));
+        props.isAuthAC(true, data.auth.templates, data.auth.token);
+      },
+      onError: (err) =>
+        message.warn(
+          err.message === "data"
+            ? "Неверно введен логин или пароль"
+            : err.message === "acc not accept"
+            ? "Аккаунт не подтвержден"
+            : "Что-то пошло не так"
+        ),
     }
-  };
-  return <Auth onSubmit={FormReq} />;
+  );
+  if (loading) return <Preloader />;
+  return (
+    <Auth
+      email={email}
+      password={password}
+      setPassword={setPassword}
+      setEmail={setEmail}
+      passVision={passVision}
+      setPassVision={setPassVision}
+      formRes={formRes}
+    />
+  );
 };
-let AuthConnector = connect(null, { RequestThunk, AuthThunk });
-type propsType=ConnectedProps<typeof AuthConnector>
-export let AuthContainer = AuthConnector(authBlock);
+let AuthConnector = connect(null, { isAuthAC: actions.isAuthAC });
+type propsType = ConnectedProps<typeof AuthConnector>;
+export let AuthContainer = AuthConnector(AuthBlock);

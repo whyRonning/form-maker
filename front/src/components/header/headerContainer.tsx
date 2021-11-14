@@ -1,12 +1,25 @@
-import { connect } from "react-redux";
+import {connect, ConnectedProps} from "react-redux";
 import { Header } from "./header";
-import { LogoutThunk } from "../../store/authReducer";
 import { GlobalState } from "../../store/store";
-
-type MapStateToPropsType = {
-  isAuth: boolean;
-};
-let MapStateToProps = (state: GlobalState): MapStateToPropsType => ({
+import  React from "react";
+import {actions  as authActions} from "../../store/authReducer";
+import {stateOfHeaderAC} from "../../store/menuReducer";
+import {message} from "antd";
+let MapStateToProps = (state: GlobalState) => ({
   isAuth: state.authReducer.isAuth,
+  stateOfHeader:state.menuReducer.stateOfHeader
 });
-export let HeaderContainer = connect(MapStateToProps, { LogoutThunk })(Header);
+let HeaderBlock=(props:propsType)=>{
+  let handler=()=>{
+    localStorage.removeItem("token");
+    props.logoutAC();
+    if (props.stateOfHeader === 3) {
+      props.stateOfHeaderAC(2)
+    }
+    message.success("Вы вышли из аккаунта");
+  }
+  return <Header handler={handler} isAuth={props.isAuth}/>
+}
+export let HeaderConnector = connect(MapStateToProps,{logoutAC:authActions.logoutAC,stateOfHeaderAC});
+type propsType=ConnectedProps<typeof HeaderConnector >;
+export let HeaderContainer=HeaderConnector (HeaderBlock);
