@@ -3,7 +3,7 @@ import preloader from "../../accets/img/preloader.webp";
 export let Preloader = () => {
   return (
     <div className="preloader">
-      <img src={preloader} alt="" />
+      <img src={preloader} alt="preloader" />
     </div>
   );
 };

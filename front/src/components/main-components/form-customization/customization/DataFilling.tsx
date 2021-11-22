@@ -1,8 +1,8 @@
 import React from "react";
 import { Field } from "./Field";
-import {message, Radio} from "antd";
+import { message, Radio } from "antd";
 import { dataType } from "../../../../store/authReducer";
-import {dataInputNumParamType} from "../../../../store/mainReducer";
+import { dataInputNumParamType } from "../../../../store/mainReducer";
 
 type propsType = {
   ChangeTitleAC: (text: string) => void;
@@ -22,7 +22,9 @@ type propsType = {
   ChangeAddFieldAC: () => void;
   changeState: () => void;
   changeInput: (input: number | null) => void;
-  saveTemplate:(obj:{variables:{token:string,template:dataType}})=>void;
+  saveTemplate: (obj: {
+    variables: { token: string; template: dataType };
+  }) => void;
   process: (data: dataInputNumParamType, index: number) => void;
   title: string;
   formBackgroundColor: string;
@@ -33,7 +35,7 @@ type propsType = {
   textColor: string;
   descriptionColor: string;
   formWidth: number;
-  loading:boolean;
+  loading: boolean;
   buttWidth: number;
   buttHeight: number;
   formMarginTop: number;
@@ -122,8 +124,9 @@ export const DataFilling = React.memo((props: propsType) => {
           type="color"
         />
         <br />
-        <label>Ширина формы</label>
+        <label htmlFor="formWidth">Ширина формы</label>
         <input
+          id="formWidth"
           value={props.formWidth}
           onChange={(e) => {
             props.ChangeFormWidthAC(e.target.value);
@@ -133,8 +136,9 @@ export const DataFilling = React.memo((props: propsType) => {
         />
         %
         <br />
-        <label>Отступ сверху</label>
+        <label htmlFor="formMarginTop">Отступ сверху</label>
         <input
+          id="formMarginTop"
           value={props.formMarginTop}
           onChange={(e) => {
             props.ChangeFormMarginTopAC(e.target.value);
@@ -144,8 +148,9 @@ export const DataFilling = React.memo((props: propsType) => {
         />
         vh
         <br />
-        <label>Ширина кнопки</label>
+        <label htmlFor="buttWidth">Ширина кнопки</label>
         <input
+          id="buttWidth"
           value={props.buttWidth}
           onChange={(e) => {
             props.ChangeButtWidthAC(e.target.value);
@@ -155,8 +160,9 @@ export const DataFilling = React.memo((props: propsType) => {
         />
         vw
         <br />
-        <label>Высота кнопки</label>
+        <label htmlFor="buttHeight"> Высота кнопки</label>
         <input
+          id="buttHeight"
           value={props.buttHeight}
           onChange={(e) => {
             props.ChangeButtHeightAC(e.target.value);
@@ -232,31 +238,34 @@ export const DataFilling = React.memo((props: propsType) => {
         <button onClick={props.changeState}>Получить код</button>
         <br />
         <button
-            disabled={props.loading}
-          onClick={() => {props.token ?
-            props.saveTemplate({
-              variables: {
-                token: props.token,
-                template: {
-                  generalBackgroundColor: props.generalBackgroundColor,
-                  formBackgroundColor: props.formBackgroundColor,
-                  titleColor: props.titleColor,
-                  descriptionColor: props.descriptionColor,
-                  formWidth: props.formWidth,
-                  formMarginTop: props.formMarginTop,
-                  buttHeight: props.buttHeight,
-                  buttWidth: props.buttWidth,
-                  textColor: props.textColor,
-                  buttColor: props.buttColor,
-                  buttTextColor: props.buttTextColor,
-                  title: props.title,
-                  labelsPosition: props.labelsPosition,
-                  numOfFields: props.numOfFields,
-                  inputs: props.inputs,
-                },
-              }
-            })
-              : message.warning("Для этого действия необходимо войти в аккаунт")
+          disabled={props.loading}
+          onClick={() => {
+            props.token
+              ? props.saveTemplate({
+                  variables: {
+                    token: props.token,
+                    template: {
+                      generalBackgroundColor: props.generalBackgroundColor,
+                      formBackgroundColor: props.formBackgroundColor,
+                      titleColor: props.titleColor,
+                      descriptionColor: props.descriptionColor,
+                      formWidth: props.formWidth,
+                      formMarginTop: props.formMarginTop,
+                      buttHeight: props.buttHeight,
+                      buttWidth: props.buttWidth,
+                      textColor: props.textColor,
+                      buttColor: props.buttColor,
+                      buttTextColor: props.buttTextColor,
+                      title: props.title,
+                      labelsPosition: props.labelsPosition,
+                      numOfFields: props.numOfFields,
+                      inputs: props.inputs,
+                    },
+                  },
+                })
+              : message.warning(
+                  "Для этого действия необходимо войти в аккаунт"
+                );
           }}
         >
           Сохранить

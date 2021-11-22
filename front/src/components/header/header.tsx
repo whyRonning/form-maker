@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 type props = {
   isAuth: boolean;
-  handler:()=>void
+  handler: () => void;
 };
 export let Header = (props: props) => {
   return (

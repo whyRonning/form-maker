@@ -50,6 +50,7 @@ export let Registration = (props: propsType) => {
           />
           <FontAwesomeIcon
             onClick={handler}
+            title={!props.passVision ? "Показать пароль" : "Скрыть пароль"}
             icon={props.passVision ? "eye" : "eye-slash"}
           />
         </div>

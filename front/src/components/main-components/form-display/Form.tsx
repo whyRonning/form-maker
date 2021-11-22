@@ -31,13 +31,13 @@ export let Form = (props: propsType) => {
           labelsPosition={props.labelsPosition}
           i={i}
           numOfFields={props.numOfFields}
-          type={props.inputs[i].type || "text"}
-          name={props.inputs[i].name || ""}
-          placeholder={props.inputs[i].placeholder || ""}
-          fieldDescription={props.inputs[i].fieldDescription || ""}
-          descriptionPosition={props.inputs[i].descriptionPosition || ""}
-          width={props.inputs[i].width || 20}
-          height={props.inputs[i].height || 5}
+          type={e.type || "text"}
+          name={e.name || ""}
+          placeholder={e.placeholder || ""}
+          fieldDescription={e.fieldDescription || ""}
+          descriptionPosition={e.descriptionPosition || ""}
+          width={e.width || 20}
+          height={e.height || 5}
           descriptionColor={props.descriptionColor}
         />
       );

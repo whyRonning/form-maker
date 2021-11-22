@@ -1,21 +1,26 @@
 import React from "react";
-type propsType= {
-    FiltersAC: (name: string) => void,
-    VisionFilter:()=>void,
-    isFilterVision:boolean,
-}
+type propsType = {
+  FiltersAC: (name: string) => void;
+  VisionFilter: () => void;
+  isFilterVision: boolean;
+};
 
-export let Filter = React.memo((props:propsType) => {
+export let Filter = React.memo((props: propsType) => {
   let options = [
     "Форма обратной связи",
     "Подписка на рассылку",
     "Заказ звонка",
-    "Оформление заказа"
+    "Оформление заказа",
   ];
   let optionsWrapper = options.map((e, i) => {
     return (
       <div key={i}>
-        <input type={"checkbox"} onClick={()=>props.FiltersAC(e)} id={e} name={e} />
+        <input
+          type={"checkbox"}
+          onClick={() => props.FiltersAC(e)}
+          id={e}
+          name={e}
+        />
         <label htmlFor={e}>{e}</label>
       </div>
     );

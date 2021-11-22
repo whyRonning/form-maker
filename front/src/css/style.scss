@@ -429,7 +429,7 @@ input {
   top: 0;
   position: fixed;
   user-select: text;
-  z-index: 6;
+  z-index: 7;
 
   .Code {
     background-color: white;
@@ -448,6 +448,7 @@ input {
   .cancel {
     position: absolute;
     top: 1vw;
+    cursor: pointer;
     font-size: 1.9vw;
     left: 89%;
   }

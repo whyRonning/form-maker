@@ -25,16 +25,18 @@ export let AuthBlock = (props: propsType) => {
     {
       onCompleted: (data) => {
         localStorage.setItem("token", JSON.stringify(data.auth.token));
+        message.success("Вы вошли в аккаунт");
         props.isAuthAC(true, data.auth.templates, data.auth.token);
       },
-      onError: (err) =>
+      onError: (err) => {
         message.warn(
           err.message === "data"
             ? "Неверно введен логин или пароль"
             : err.message === "acc not accept"
             ? "Аккаунт не подтвержден"
             : "Что-то пошло не так"
-        ),
+        );
+      },
     }
   );
   if (loading) return <Preloader />;

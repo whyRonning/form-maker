@@ -1,6 +1,7 @@
-import { actionsTypes} from "./store";
+import { actionsTypes } from "./store";
 
 type dataInputNumParamType = {
+  id: string;
   name: string | null;
   placeholder: string | null;
   type: string | null;
@@ -28,7 +29,7 @@ export type dataType = {
   numOfFields: number;
   inputs: Array<dataInputNumParamType>;
 };
-let data = {
+export let data = {
   isAuth: false,
   userTemplates: [] as Array<dataType>,
   token: "",

@@ -1,7 +1,7 @@
 type dataType = {
   stateOfHeader: number;
 };
-let data: dataType = {
+export let data: dataType = {
   stateOfHeader: 1,
 };
 export let menuReducer = (

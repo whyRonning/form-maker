@@ -160,6 +160,9 @@ let root = {
                 if (await bcrypt.compare(acc.password , data.password)) {
                     return new Error("Bad Pass")
                 }
+                if(acc.templates.length>=5){
+                    return new Error("more5")
+                }
                 acc.templates.push(template);
                 await acc.save();
                 return acc.templates

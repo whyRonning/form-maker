@@ -2,11 +2,13 @@ import Template1 from "../accets/img/Template-1.png";
 import Template2 from "../accets/img/Template-2.png";
 import Template3 from "../accets/img/Template-3.png";
 import Template4 from "../accets/img/Template-4.png";
+import { nanoid } from "nanoid";
 
 export let templates = [
   {
     fields: [
       {
+        id: nanoid(),
         name: "Имя",
         placeholder: "Имя",
         type: "text",
@@ -16,6 +18,7 @@ export let templates = [
         descriptionPosition: "inline",
       },
       {
+        id: nanoid(),
         name: "Фамилия",
         placeholder: "Фамилия",
         type: "text",
@@ -25,6 +28,7 @@ export let templates = [
         descriptionPosition: "inline",
       },
       {
+        id: nanoid(),
         name: "Телефон",
         placeholder: "Введите номер телефона",
         type: "text",
@@ -34,6 +38,7 @@ export let templates = [
         descriptionPosition: "inline",
       },
       {
+        id: nanoid(),
         name: "Почта",
         placeholder: "Введите почту",
         type: "email",
@@ -43,6 +48,7 @@ export let templates = [
         descriptionPosition: "inline",
       },
       {
+        id: nanoid(),
         name: "Сообщение",
         placeholder: "Сообщение",
         type: "textarea",
@@ -75,6 +81,7 @@ export let templates = [
   {
     fields: [
       {
+        id: nanoid(),
         name: "Почта",
         placeholder: "Введите почту",
         type: "email",
@@ -107,6 +114,7 @@ export let templates = [
   {
     fields: [
       {
+        id: nanoid(),
         name: "Имя",
         placeholder: "Имя",
         type: "text",
@@ -116,6 +124,7 @@ export let templates = [
         descriptionPosition: "inline",
       },
       {
+        id: nanoid(),
         name: "Телефон",
         placeholder: "Введите телефон",
         type: "text",
@@ -148,6 +157,7 @@ export let templates = [
   {
     fields: [
       {
+        id: nanoid(),
         name: "Имя",
         placeholder: "Имя",
         type: "text",
@@ -157,6 +167,7 @@ export let templates = [
         descriptionPosition: "inline",
       },
       {
+        id: nanoid(),
         name: "Фамилия",
         placeholder: "Фамилия",
         type: "text",
@@ -166,6 +177,7 @@ export let templates = [
         descriptionPosition: "inline",
       },
       {
+        id: nanoid(),
         name: "Телефон",
         placeholder: "Введите телефон",
         type: "text",

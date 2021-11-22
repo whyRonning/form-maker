@@ -13,6 +13,11 @@ export const Main = (props: propsType) => {
     <>
       <div
         onClick={props.ChangeFillingVisionAC}
+        title={
+          props.isFillingVision
+            ? "Закрыть настройки полей"
+            : "Развернуть настройки полей"
+        }
         className={
           props.isFillingVision ? "icon-angles-shown" : "icon-angles-hidden"
         }

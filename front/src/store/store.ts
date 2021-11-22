@@ -1,4 +1,4 @@
-import { createStore, combineReducers} from "redux";
+import { createStore, combineReducers } from "redux";
 import { mainReducer } from "./mainReducer";
 import { menuReducer } from "./menuReducer";
 import { authReducer } from "./authReducer";

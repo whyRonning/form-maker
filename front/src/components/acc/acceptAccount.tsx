@@ -1,16 +1,16 @@
 import React from "react";
-import { RouteComponentProps, withRouter } from "react-router";
 import { gql, useQuery } from "@apollo/client";
 import { Preloader } from "../preloader/preloader";
-type PathParamsType = { Id: string };
-let AcceptAccountBlock = (props: propsType) => {
+import { useParams } from "react-router-dom";
+export let AcceptAccount = () => {
+  let { Id } = useParams();
   let { loading, error, data } = useQuery(
     gql`
       query acceptAcc($id: String!) {
         access(id: $id)
       }
     `,
-    { variables: { id: props.match.params.Id } }
+    { variables: { id: Id } }
   );
   if (loading) {
     return <Preloader />;
@@ -31,5 +31,3 @@ let AcceptAccountBlock = (props: propsType) => {
   }
   return <p />;
 };
-export let AcceptAccount = withRouter(AcceptAccountBlock);
-type propsType = RouteComponentProps<PathParamsType>;

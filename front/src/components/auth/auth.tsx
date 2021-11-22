@@ -43,6 +43,7 @@ export let Auth = (props: propsType) => {
             required
           />
           <FontAwesomeIcon
+            title={!props.passVision ? "Показать пароль" : "Скрыть пароль"}
             onClick={handler}
             icon={props.passVision ? "eye" : "eye-slash"}
           />

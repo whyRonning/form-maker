@@ -1,7 +1,7 @@
 import React from "react";
 import "./css/style.scss";
 import { HeaderContainer } from "./components/header/headerContainer";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { HelpContainer } from "./components/contact/helpContainer";
 import { MainContainer } from "./components/main-components/MainContainer";
 import { AcceptAccount } from "./components/acc/acceptAccount";
@@ -55,16 +55,14 @@ export const App = (props: propsType) => {
     <div className="App">
       <HeaderContainer />
       <main>
-        <Switch>
-          <Route exact path="/" render={() => <MainContainer />} />
-          <Route exact path="/help" render={() => <HelpContainer />} />
-          <Route exact path="/account" render={() => <AccountContainer />} />
-          <Route exact path="/accept/:Id" render={() => <AcceptAccount />} />
-          <Redirect to={"/"} />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<MainContainer />} />
+          <Route path="/help" element={<HelpContainer />} />
+          <Route path="/account" element={<AccountContainer />} />
+          <Route path="/accept/:Id" element={<AcceptAccount />} />
+          <Route path="*" element={<MainContainer />} />
+        </Routes>
       </main>
     </div>
   );
 };
-
-

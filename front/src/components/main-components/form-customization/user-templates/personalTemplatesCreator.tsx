@@ -39,14 +39,14 @@ export let PersonalTemplatesCreator = React.memo((props: propsType) => {
         labelsPosition={props.template.labelsPosition}
         i={i}
         numOfFields={props.template.numOfFields}
-        type={props.template.inputs[i].type || "text"}
-        name={props.template.inputs[i].name || ""}
-        placeholder={props.template.inputs[i].placeholder || ""}
-        fieldDescription={props.template.inputs[i].fieldDescription || ""}
+        type={e.type || "text"}
+        name={e.name || ""}
+        placeholder={e.placeholder || ""}
+        fieldDescription={e.fieldDescription || ""}
         disabled={true}
-        width={Number(props.template.inputs[i].width) / 3 || 3}
-        height={Number(props.template.inputs[i].height) / 3 || 3}
-        descriptionPosition={props.template.inputs[i].descriptionPosition || ""}
+        width={Number(e.width) / 3 || 3}
+        height={Number(e.height) / 3 || 3}
+        descriptionPosition={e.descriptionPosition || ""}
         descriptionColor={props.template.descriptionColor}
       />
     );
@@ -62,6 +62,7 @@ export let PersonalTemplatesCreator = React.memo((props: propsType) => {
       <div className="deleteTemplate">
         <FontAwesomeIcon
           icon="times"
+          title="deleteTemplate"
           onClick={() => {
             if (!loading) {
               deleteTempl({

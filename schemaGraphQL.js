@@ -33,6 +33,7 @@ let schema = buildSchema(`
         inputs:[InputsType]
     }
     type InputsType {
+        id:String,
         name:String,
         placeholder:String,
         type:String,
@@ -65,6 +66,7 @@ let schema = buildSchema(`
         inputs:[saveTemplateInputType]
     }
     input saveTemplateInputType {
+        id:String,
         name:String,
         placeholder:String,
         type:String,

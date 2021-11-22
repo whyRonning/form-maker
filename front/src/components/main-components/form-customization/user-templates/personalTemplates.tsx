@@ -13,7 +13,7 @@ export const PersonalTemplates = (props: propsType) => {
         key={i}
         index={i}
         token={props.token}
-        template={props.userTemplates[i]}
+        template={e}
         ApplyUserTemplateAC={props.ApplyUserTemplateAC}
       />
     );

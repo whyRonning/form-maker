@@ -1,8 +1,8 @@
 import { connect, ConnectedProps } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import React, { useState } from "react";
 import { GlobalState } from "../../store/store";
-import {AuthContainer} from "../auth/authContainer";
+import { AuthContainer } from "../auth/authContainer";
 import { RegistrationContainer } from "../registration/registrationContainer";
 
 let MapStateToProps = (state: GlobalState) => {
@@ -13,7 +13,7 @@ let MapStateToProps = (state: GlobalState) => {
 let AccBlock = (props: propsType) => {
   let [loginState, setLoginState] = useState("login");
   return props.isAuth ? (
-    <Redirect to="/" />
+    <Navigate to="/" />
   ) : (
     <div className="LogRegBlock">
       <div className="LogRegWrapper">
@@ -40,7 +40,11 @@ let AccBlock = (props: propsType) => {
           </h3>
         </div>
         <div className="LogReg">
-          {loginState === "login" ? <AuthContainer /> : <RegistrationContainer />}
+          {loginState === "login" ? (
+            <AuthContainer />
+          ) : (
+            <RegistrationContainer />
+          )}
         </div>
       </div>
     </div>

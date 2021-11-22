@@ -11,11 +11,7 @@ let MapStateToProps = (state: GlobalState) => ({
 });
 let TemplatesBlock = (props: propsType) => {
   let TemplatesMaker = props.templates.map((e, i) => (
-    <Templates
-      key={i}
-      ApplyTemplateAC={props.ApplyTemplateAC}
-      template={props.templates[i]}
-    />
+    <Templates key={i} ApplyTemplateAC={props.ApplyTemplateAC} template={e} />
   ));
   return (
     <>

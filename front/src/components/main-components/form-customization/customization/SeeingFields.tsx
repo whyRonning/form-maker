@@ -28,11 +28,19 @@ export let SeeingFields = (props: propsType) => {
       </div>
 
       <div className="IconsOfInputs">
-        <FontAwesomeIcon onClick={DeleteField} icon="times" />
+        <FontAwesomeIcon
+          title={"Удалить поле"}
+          onClick={DeleteField}
+          icon="times"
+        />
       </div>
 
       <div className="IconsOfInputs">
-        <FontAwesomeIcon onClick={changeInputIndex} icon="cogs" />
+        <FontAwesomeIcon
+          title={"Настройки поля"}
+          onClick={changeInputIndex}
+          icon="cogs"
+        />
       </div>
     </div>
   );

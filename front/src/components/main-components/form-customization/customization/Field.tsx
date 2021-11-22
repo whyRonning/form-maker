@@ -4,6 +4,7 @@ import { dataInputNumParamType } from "../../../../store/mainReducer";
 
 type propsType = {
   inputs: {
+    id: string;
     name: string;
     placeholder: string;
     type: string;
@@ -49,6 +50,7 @@ export let Field = React.memo((props: propsType) => {
   let butHandler = () => {
     let data = {
       name,
+      id: props.inputs.id,
       placeholder,
       type: typeOfInput,
       fieldDescription,

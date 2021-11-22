@@ -17,6 +17,7 @@ export let templateFragment = gql`
     labelsPosition
     numOfFields
     inputs {
+      id
       name
       placeholder
       type

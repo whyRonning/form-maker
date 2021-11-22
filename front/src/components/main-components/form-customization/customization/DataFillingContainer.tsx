@@ -47,15 +47,18 @@ let DataFillingBlock = (props: propsType) => {
     `,
     {
       refetchQueries: ["getUserData"],
-      onError: () => {
-        message.warn("Что-то пошло не так");
+      onError: (e) => {
+        message.warn(
+          e.message === "more5"
+            ? "Нельзя сохранять более 5-ти шаблонов"
+            : "Что-то пошло не так"
+        );
       },
       onCompleted: () => {
         message.success("Шаблон сохранен");
       },
     }
   );
-
   let process = (data: dataInputNumParamType, index: number) => {
     props.ChangeInputsAC(data, index);
   };
@@ -65,10 +68,10 @@ let DataFillingBlock = (props: propsType) => {
   let InputsMaker = props.inputs.map((val, i) => (
     <SeeingFields
       changeInput={changeInput}
-      inputs={props.inputs[i]}
+      inputs={val}
       index={i}
       ChangeDeleteFieldAC={props.ChangeDeleteFieldAC}
-      key={i}
+      key={val.id}
     />
   ));
   return (
