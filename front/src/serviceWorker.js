@@ -1,7 +1,7 @@
 // This optional code is used to register a service worker.
 // register() is not called by default.
 
-// This lets the app load faster on subsequent visits in production, and gives
+// This consts the app load faster on subsequent visits in production, and gives
 // it offline capabilities. However, it also means that developers (and users)
 // will only see deployed updates on subsequent visits to a page, after all the
 // existing tabs open on the page have been closed, since previously cached
@@ -35,7 +35,7 @@ export function register(config) {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
       if (isLocalhost) {
-        // This is running on localhost. Let's check if a service worker still exists or not.
+        // This is running on localhost. const's check if a service worker still exists or not.
         checkValidServiceWorker(swUrl, config);
 
         // Add some additional logging to localhost, pointing developers to the

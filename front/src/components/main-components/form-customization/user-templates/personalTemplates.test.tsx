@@ -9,15 +9,15 @@ import { MockedProvider } from "@apollo/client/testing";
 import { gql } from "graphql-tag";
 import { templateFragment } from "../../../graphQl-fragments/templateFragment";
 import userEvent from "@testing-library/user-event/dist";
-let query = gql`
+const query = gql`
   ${templateFragment}
-  mutation deleteTemplate($index: Int!, $token: String!) {
-    deleteTemplate(index: $index, token: $token) {
+  mutation deconsteTemplate($index: Int!, $token: String!) {
+    deconsteTemplate(index: $index, token: $token) {
       ...template
     }
   }
 `;
-let mocks = [
+const mocks = [
   {
     request: {
       query,
@@ -25,12 +25,12 @@ let mocks = [
     },
     result: {
       data: {
-        deleteTemplate: { templates: [] },
+        deconsteTemplate: { templates: [] },
       },
     },
   },
 ];
-let userTemplates = [
+const userTemplates = [
   {
     generalBackgroundColor: "#ffffff",
     formBackgroundColor: "#a3a19f",
@@ -70,7 +70,7 @@ let userTemplates = [
     ],
   },
 ];
-let renderWithRedux = (state: { [key: string]: any } = {}) => {
+const renderWithRedux = (state: { [key: string]: any } = {}) => {
   return {
     ...render(
       <MockedProvider mocks={mocks}>
@@ -87,19 +87,19 @@ let renderWithRedux = (state: { [key: string]: any } = {}) => {
 };
 describe("personalTemplates", () => {
   it("renderWithoutTemplates", () => {
-    let { getByText } = renderWithRedux({ userTemplates: [] });
+    const { getByText } = renderWithRedux({ userTemplates: [] });
     expect(getByText("У вас пока нет шаблонов")).toBeInTheDocument();
   });
   it("render", () => {
-    let { getByText } = renderWithRedux({ userTemplates });
+    const { getByText } = renderWithRedux({ userTemplates });
     expect(getByText("Отправить")).toBeInTheDocument();
   });
-  it("delete template", async () => {
-    let { getByTitle, findByText } = renderWithRedux({
+  it("deconste template", async () => {
+    const { getByTitle, findByText } = renderWithRedux({
       userTemplates,
       token: "123",
     });
-    userEvent.click(getByTitle("deleteTemplate"));
+    userEvent.click(getByTitle("deconsteTemplate"));
     expect(await findByText("Шаблон удален")).toBeInTheDocument();
   });
 });

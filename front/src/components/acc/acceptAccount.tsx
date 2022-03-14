@@ -2,9 +2,9 @@ import React from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Preloader } from "../preloader/preloader";
 import { useParams } from "react-router-dom";
-export let AcceptAccount = () => {
-  let { Id } = useParams();
-  let { loading, error, data } = useQuery(
+export const AcceptAccount = () => {
+  const { Id } = useParams();
+  const { loading, error, data } = useQuery(
     gql`
       query acceptAcc($id: String!) {
         access(id: $id)

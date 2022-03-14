@@ -18,7 +18,7 @@ type propsType = {
   inputs: Array<dataInputNumParamType>;
 };
 export const HtmlCreator = (props: propsType) => {
-  let inputs = props.inputs.map((e) => {
+  const inputs = props.inputs.map((e) => {
     if (e.type === "textarea") {
       return `<div class="wrapper-form-inputs-textarea"><div class="textOfInputs">${
         e.name ? `<label>${e.name}</label>` : ``

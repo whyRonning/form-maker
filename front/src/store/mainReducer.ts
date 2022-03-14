@@ -43,7 +43,7 @@ type dataTemplatesSettingsType = {
 /******************************************* *******************************/
 type dataType = typeof data;
 
-export let data = {
+export const data = {
   generalBackgroundColor: "#ffffff",
   formBackgroundColor: "#a3a19f",
   selectedInput: null as null | number,
@@ -165,7 +165,7 @@ export const mainReducer = (
       return { ...state, descriptionColor: action.descriptionColor };
     }
     case "formWidth": {
-      let newObj = JSON.parse(JSON.stringify(state));
+      const newObj = JSON.parse(JSON.stringify(state));
       Number(action.formWidth) <= 0
         ? (newObj.formWidth = 1)
         : Number(action.formWidth) > 100
@@ -174,7 +174,7 @@ export const mainReducer = (
       return { ...newObj };
     }
     case "formMarginTop": {
-      let newObj = JSON.parse(JSON.stringify(state));
+      const newObj = JSON.parse(JSON.stringify(state));
       Number(action.formMarginTop) < 0
         ? (newObj.formMarginTop = 0)
         : Number(action.formMarginTop) > 500
@@ -182,13 +182,13 @@ export const mainReducer = (
         : (newObj.formMarginTop = Number(action.formMarginTop));
       return { ...newObj };
     }
-    case "deleteField": {
-      let newObj = JSON.parse(JSON.stringify(state));
+    case "deconsteField": {
+      const newObj = JSON.parse(JSON.stringify(state));
       newObj.inputs.splice(action.index, 1);
       return { ...newObj };
     }
     case "inputs": {
-      let newObj = JSON.parse(JSON.stringify(state));
+      const newObj = JSON.parse(JSON.stringify(state));
       newObj.inputs[action.index] = {
         id: action.data.id,
         name:
@@ -207,7 +207,7 @@ export const mainReducer = (
       return newObj;
     }
     case "addField": {
-      let newObj = JSON.parse(JSON.stringify(state));
+      const newObj = JSON.parse(JSON.stringify(state));
       if (newObj.inputs.length !== 15) {
         newObj.inputs.push({
           id: nanoid(),
@@ -221,7 +221,7 @@ export const mainReducer = (
       return newObj;
     }
     case "ApplyUserTemplate": {
-      let newObj = JSON.parse(JSON.stringify(state));
+      const newObj = JSON.parse(JSON.stringify(state));
       newObj.inputs = action.data.inputs;
       newObj.labelsPosition = action.data.labelsPosition || "top";
       newObj.title = action.data.title || "Заголовок";
@@ -242,7 +242,7 @@ export const mainReducer = (
       return { ...newObj };
     }
     case "ApplyTemplate": {
-      let newObj = JSON.parse(JSON.stringify(state));
+      const newObj = JSON.parse(JSON.stringify(state));
       newObj.inputs = action.data.fields;
       newObj.labelsPosition = action.data.settings.labelsPosition || "top";
       newObj.title = action.data.settings.title || "Заголовок";
@@ -265,7 +265,7 @@ export const mainReducer = (
       return { ...newObj };
     }
     case "filters": {
-      let newObj = JSON.parse(JSON.stringify(state));
+      const newObj = JSON.parse(JSON.stringify(state));
       let posEl: Array<string | number> = [];
       newObj.filters.forEach((e: string, i: number) => {
         if (e === action.filters) {
@@ -282,7 +282,7 @@ export const mainReducer = (
     }
   }
 };
-export let actions = {
+export const actions = {
   ApplyUserTemplateAC: (data: authDataType) =>
     ({
       type: "ApplyUserTemplate",
@@ -345,9 +345,9 @@ export let actions = {
       type: "selectedInput",
       selectedInput: selectedInput,
     } as const),
-  ChangeDeleteFieldAC: (index: number) =>
+  ChangeDeconsteFieldAC: (index: number) =>
     ({
-      type: "deleteField",
+      type: "deconsteField",
       index: index,
     } as const),
   ChangeNumOfFieldsAC: (numOfFields: string) =>

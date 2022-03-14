@@ -4,13 +4,13 @@ import { Filter } from "./filter";
 import React from "react";
 import { GlobalState } from "../../../../store/store";
 
-let MapStateToProps = (state: GlobalState) => ({
+const MapStateToProps = (state: GlobalState) => ({
   templates: state.mainReducer.templates,
   filters: state.mainReducer.filters,
   isFilterVision: state.mainReducer.isFilterVision,
 });
-let FilterBlock = (props: propsType) => {
-  let VisionFilter = () => {
+const FilterBlock = (props: propsType) => {
+  const VisionFilter = () => {
     props.ChangeIsFilterVision();
   };
 
@@ -22,9 +22,9 @@ let FilterBlock = (props: propsType) => {
     />
   );
 };
-let FilterConnector = connect(MapStateToProps, {
+const FilterConnector = connect(MapStateToProps, {
   FiltersAC: actions.FiltersAC,
   ChangeIsFilterVision: actions.ChangeIsFilterVision,
 });
 type propsType = ConnectedProps<typeof FilterConnector>;
-export let FilterContainer = FilterConnector(FilterBlock);
+export const FilterContainer = FilterConnector(FilterBlock);

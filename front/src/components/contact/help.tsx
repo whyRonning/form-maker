@@ -11,7 +11,7 @@ type propsType = {
     variables: { name: string; email: string; message: string };
   }) => void;
 };
-export let Form = (props: propsType) => {
+export const Form = (props: propsType) => {
   return (
     <div className="HelpForm">
       <form

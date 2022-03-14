@@ -5,7 +5,7 @@ type props = {
   isAuth: boolean;
   handler: () => void;
 };
-export let Header = (props: props) => {
+export const Header = (props: props) => {
   return (
     <header>
       <div className="header">

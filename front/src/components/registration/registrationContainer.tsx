@@ -5,12 +5,12 @@ import { connect } from "react-redux";
 import { actions } from "../../store/authReducer";
 import { Preloader } from "../preloader/preloader";
 import { Registration } from "./registration";
-export let RegBlock = () => {
-  let [passVision, setPassVision] = useState(false);
-  let [email, setEmail] = useState("");
-  let [password, setPassword] = useState("");
-  let [passwordAccess, setPasswordAccess] = useState("");
-  let [regFun, { loading }] = useLazyQuery(
+export const RegBlock = () => {
+  const [passVision, setPassVision] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordAccess, setPasswordAccess] = useState("");
+  const [regFun, { loading }] = useLazyQuery(
     gql`
       query reg($email: String!, $password: String!, $passwordAccess: String!) {
         reg(email: $email, password: $password, passwordAccess: $passwordAccess)
@@ -49,6 +49,6 @@ export let RegBlock = () => {
     />
   );
 };
-export let RegistrationContainer = connect(null, {
+export const RegistrationContainer = connect(null, {
   isAuthAC: actions.isAuthAC,
 })(RegBlock);

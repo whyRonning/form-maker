@@ -21,7 +21,7 @@ type propsType = {
   title: string;
   inputs: Array<dataInputNumParamType>;
 };
-export let HtmlCreatorBlock = (props: propsType) => (
+export const HtmlCreatorBlock = (props: propsType) => (
   <div className={props.stateOfForm ? "CodeBlock hidden" : "CodeBlock shown"}>
     <div className="Code">
       <p className="cancel" onClick={props.changeState}>

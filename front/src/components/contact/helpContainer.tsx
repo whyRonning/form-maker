@@ -3,11 +3,11 @@ import { Form } from "./help";
 import { message } from "antd";
 import { gql, useMutation } from "@apollo/client";
 
-export let HelpContainer = () => {
-  let [name, setName] = useState("");
-  let [email, setEmail] = useState("");
-  let [messages, setMessages] = useState("");
-  let [sendMessage, { loading }] = useMutation(
+export const HelpContainer = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [messages, setMessages] = useState("");
+  const [sendMessage, { loading }] = useMutation(
     gql`
       mutation sendMessage($name: String!, $email: String!, $message: String!) {
         sendMessage(name: $name, email: $email, message: $message)

@@ -14,7 +14,7 @@ type propsType = {
   i: number;
 };
 export const FormInput = (props: propsType) => {
-  let Field = () => {
+  const Field = () => {
     if (props.type === "textarea") {
       return (
         <div

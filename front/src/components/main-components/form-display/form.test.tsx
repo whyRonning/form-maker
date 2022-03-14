@@ -5,7 +5,7 @@ import { mainReducer } from "../../../store/mainReducer";
 import { FormContainer } from "./FormContainer";
 import React from "react";
 
-let renderWithRedux = (state: any = {}) => {
+const renderWithRedux = (state: any = {}) => {
   return {
     ...render(
       <Provider
@@ -20,11 +20,11 @@ let renderWithRedux = (state: any = {}) => {
 };
 describe("form-display", () => {
   it("render without props", () => {
-    let { queryByRole } = renderWithRedux();
+    const { queryByRole } = renderWithRedux();
     expect(queryByRole("button")).not.toBeInTheDocument();
   });
   it("render with props", () => {
-    let { getByRole, getAllByPlaceholderText } = renderWithRedux({
+    const { getByRole, getAllByPlaceholderText } = renderWithRedux({
       inputs: [
         {
           name: "Поле1",

@@ -14,7 +14,7 @@ import { GraphQLError } from "graphql";
 import "../../accets/FAIcons";
 import { gql } from "@apollo/client";
 import { templateFragment } from "../graphQl-fragments/templateFragment";
-let query = gql`
+const query = gql`
   ${templateFragment}
   query getUserData($userToken: String) {
     getUsersData(userToken: $userToken) {
@@ -25,7 +25,7 @@ let query = gql`
     }
   }
 `;
-let mocks = [
+const mocks = [
   {
     request: {
       query: query,
@@ -36,7 +36,7 @@ let mocks = [
     },
   },
 ];
-let renderWithRedux = (
+const renderWithRedux = (
   state: { [key: string]: any } = {},
   Component: FC = HeaderContainer
 ) => {
@@ -65,18 +65,18 @@ describe("header", () => {
     jest.runOnlyPendingTimers();
   });
   it("render", () => {
-    let { getByText } = renderWithRedux();
+    const { getByText } = renderWithRedux();
     expect(getByText(/войти/i)).toBeInTheDocument();
   });
   it("clickToLink", async () => {
-    let { findByText } = renderWithRedux({}, AppContainer);
+    const { findByText } = renderWithRedux({}, AppContainer);
     userEvent.click(await findByText(/помощь/i));
     expect(await findByText(/я даю соглашение/i)).toBeInTheDocument();
     userEvent.click(await findByText(/войти/i));
     expect(await findByText(/регистрация/i)).toBeInTheDocument();
   });
   it("logout test", async () => {
-    let { findByText } = renderWithRedux({ isAuth: true }, AppContainer);
+    const { findByText } = renderWithRedux({ isAuth: true }, AppContainer);
     userEvent.click(await findByText("Выйти"));
     expect(await findByText("Войти")).toBeInTheDocument();
   });

@@ -4,7 +4,7 @@ type propsType = {
   stateOfHeaderAC: (num: number) => void;
   isAuth: boolean;
 };
-export let MiniHeader = (props: propsType) => {
+export const MiniHeader = (props: propsType) => {
   return (
     <div className="mini-header">
       <div

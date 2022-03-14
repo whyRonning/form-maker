@@ -10,7 +10,7 @@ import { menuReducer, data as menuData } from "../../store/menuReducer";
 import userEvent from "@testing-library/user-event/dist";
 import { MockedProvider } from "@apollo/client/testing";
 
-let renderWithRedux = (
+const renderWithRedux = (
   authState: typeof authData = authData,
   mainState: typeof mainData = mainData,
   menuState: typeof menuData = menuData
@@ -36,7 +36,7 @@ let renderWithRedux = (
 };
 describe("main", () => {
   it("render", () => {
-    let { getByText } = renderWithRedux(
+    const { getByText } = renderWithRedux(
       { ...authData },
       { ...mainData },
       { ...menuData }
@@ -44,7 +44,7 @@ describe("main", () => {
     expect(getByText("Фильтр")).toBeInTheDocument();
   });
   it("use template", () => {
-    let { getByText, getAllByText } = renderWithRedux(
+    const { getByText, getAllByText } = renderWithRedux(
       { ...authData, isAuth: true },
       { ...mainData },
       { ...menuData }
@@ -59,8 +59,8 @@ describe("main", () => {
     expect(getByText("Почта")).toBeInTheDocument();
     expect(getByText("Сообщение")).toBeInTheDocument();
   });
-  it("delete field", async () => {
-    let { getByText, getAllByTitle, queryByText } = renderWithRedux(
+  it("deconste field", async () => {
+    const { getByText, getAllByTitle, queryByText } = renderWithRedux(
       { ...authData },
       { ...mainData },
       { ...menuData }
@@ -72,7 +72,7 @@ describe("main", () => {
     });
   });
   it("change settings vision", () => {
-    let { getByTitle } = renderWithRedux(
+    const { getByTitle } = renderWithRedux(
       { ...authData },
       { ...mainData },
       { ...menuData }
@@ -87,7 +87,7 @@ describe("main", () => {
     );
   });
   it("change input settings", () => {
-    let {
+    const {
       getByText,
       getByPlaceholderText,
       getAllByTitle,

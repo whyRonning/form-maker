@@ -5,12 +5,12 @@ import React from "react";
 import { actions as authActions } from "../../store/authReducer";
 import { stateOfHeaderAC } from "../../store/menuReducer";
 import { message } from "antd";
-let MapStateToProps = (state: GlobalState) => ({
+const MapStateToProps = (state: GlobalState) => ({
   isAuth: state.authReducer.isAuth,
   stateOfHeader: state.menuReducer.stateOfHeader,
 });
-let HeaderBlock = (props: propsType) => {
-  let handler = () => {
+const HeaderBlock = (props: propsType) => {
+  const handler = () => {
     localStorage.removeItem("token");
     props.logoutAC();
     if (props.stateOfHeader === 3) {
@@ -20,9 +20,9 @@ let HeaderBlock = (props: propsType) => {
   };
   return <Header handler={handler} isAuth={props.isAuth} />;
 };
-export let HeaderConnector = connect(MapStateToProps, {
+export const HeaderConnector = connect(MapStateToProps, {
   logoutAC: authActions.logoutAC,
   stateOfHeaderAC,
 });
 type propsType = ConnectedProps<typeof HeaderConnector>;
-export let HeaderContainer = HeaderConnector(HeaderBlock);
+export const HeaderContainer = HeaderConnector(HeaderBlock);

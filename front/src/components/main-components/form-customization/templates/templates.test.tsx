@@ -7,7 +7,7 @@ import { mainReducer } from "../../../../store/mainReducer";
 import userEvent from "@testing-library/user-event/dist";
 import { TemplatesContainer } from "./templatesContainer";
 import { templates } from "../../../../store/initialTemplates";
-let renderWithRedux = (state: any = {}) => {
+const renderWithRedux = (state: any = {}) => {
   return {
     ...render(
       <BrowserRouter>
@@ -24,11 +24,11 @@ let renderWithRedux = (state: any = {}) => {
 };
 describe("templates", () => {
   it("render", () => {
-    let { getAllByRole } = renderWithRedux({ templates, filters: [] });
+    const { getAllByRole } = renderWithRedux({ templates, filters: [] });
     expect(getAllByRole("img")).toHaveLength(4);
   });
   it("open filters", () => {
-    let { getByText, getAllByRole } = renderWithRedux({
+    const { getByText, getAllByRole } = renderWithRedux({
       templates,
       filters: [],
     });
@@ -36,7 +36,7 @@ describe("templates", () => {
     expect(getAllByRole("checkbox")).toHaveLength(4);
   });
   it("use filters", () => {
-    let { getByText, getAllByRole } = renderWithRedux({
+    const { getByText, getAllByRole } = renderWithRedux({
       templates,
       filters: [],
     });

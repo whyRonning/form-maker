@@ -11,12 +11,12 @@ type propsType = {
   template: dataType;
   ApplyUserTemplateAC: (data: dataType) => void;
 };
-export let PersonalTemplatesCreator = React.memo((props: propsType) => {
-  let [deleteTempl, { error, data, loading }] = useMutation(
+export const PersonalTemplatesCreator = React.memo((props: propsType) => {
+  const [deconsteTempl, { error, data, loading }] = useMutation(
     gql`
       ${templateFragment}
-      mutation deleteTemplate($index: Int!, $token: String!) {
-        deleteTemplate(index: $index, token: $token) {
+      mutation deconsteTemplate($index: Int!, $token: String!) {
+        deconsteTemplate(index: $index, token: $token) {
           ...template
         }
       }
@@ -29,10 +29,10 @@ export let PersonalTemplatesCreator = React.memo((props: propsType) => {
   if (data) {
     message.success("Шаблон удален");
   }
-  let handler = () => {
+  const handler = () => {
     props.ApplyUserTemplateAC(props.template);
   };
-  let InputsCreator = props.template.inputs.map((e, i) => {
+  const InputsCreator = props.template.inputs.map((e, i) => {
     return (
       <FormInput
         key={i}
@@ -59,13 +59,13 @@ export let PersonalTemplatesCreator = React.memo((props: propsType) => {
         margin: "0 .5vw 0 .5vw",
       }}
     >
-      <div className="deleteTemplate">
+      <div className="deconsteTemplate">
         <FontAwesomeIcon
           icon="times"
-          title="deleteTemplate"
+          title="deconsteTemplate"
           onClick={() => {
             if (!loading) {
-              deleteTempl({
+              deconsteTempl({
                 variables: { index: props.index, token: props.token },
               });
             }

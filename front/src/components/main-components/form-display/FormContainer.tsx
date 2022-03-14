@@ -3,7 +3,7 @@ import { Form } from "./Form";
 import React from "react";
 import { actions } from "../../../store/mainReducer";
 import { GlobalState } from "../../../store/store";
-let MapStateToProps = (state: GlobalState) => {
+const MapStateToProps = (state: GlobalState) => {
   return {
     generalBackgroundColor: state.mainReducer.generalBackgroundColor,
     inputs: state.mainReducer.inputs,
@@ -23,12 +23,12 @@ let MapStateToProps = (state: GlobalState) => {
     labelsPosition: state.mainReducer.labelsPosition,
   };
 };
-let FormHOC = (props: propsType) => {
+const FormHOC = (props: propsType) => {
   return <Form changeState={props.ChangeStateOFFormAC} {...props} />;
 };
 
-let FormConnector = connect(MapStateToProps, {
+const FormConnector = connect(MapStateToProps, {
   ChangeStateOFFormAC: actions.ChangeStateOFFormAC,
 });
 type propsType = ConnectedProps<typeof FormConnector>;
-export let FormContainer = FormConnector(FormHOC);
+export const FormContainer = FormConnector(FormHOC);

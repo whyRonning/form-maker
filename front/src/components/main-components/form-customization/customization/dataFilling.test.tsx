@@ -11,7 +11,7 @@ import { gql } from "graphql-tag";
 import { templateFragment } from "../../../graphQl-fragments/templateFragment";
 import userEvent from "@testing-library/user-event/dist";
 import { DataFillingContainer } from "./DataFillingContainer";
-let query = gql`
+const query = gql`
   ${templateFragment}
   mutation saveTemplate(
     $template: saveTemplateTemplatesType!
@@ -22,7 +22,7 @@ let query = gql`
     }
   }
 `;
-let mocks = [
+const mocks = [
   {
     request: {
       query,
@@ -75,7 +75,7 @@ let mocks = [
     },
   },
 ];
-let renderWithRedux = (mainState: typeof data = data, authState = {}) => {
+const renderWithRedux = (mainState: typeof data = data, authState = {}) => {
   return {
     ...render(
       <BrowserRouter>
@@ -101,11 +101,11 @@ describe("dataFilling", () => {
     jest.runOnlyPendingTimers();
   });
   it("render", () => {
-    let { getAllByRole } = renderWithRedux();
+    const { getAllByRole } = renderWithRedux();
     expect(getAllByRole("button")).toHaveLength(3);
   });
   it("change labels position", () => {
-    let {
+    const {
       getByDisplayValue,
       queryByDisplayValue,
       getByPlaceholderText,
@@ -119,12 +119,12 @@ describe("dataFilling", () => {
     expect(queryByDisplayValue("top")).not.toBeChecked();
   });
   it("add field", () => {
-    let { getByText, getAllByTitle } = renderWithRedux();
+    const { getByText, getAllByTitle } = renderWithRedux();
     userEvent.click(getByText("Добавить поле"));
     expect(getAllByTitle("Настройки поля")).toHaveLength(3);
   });
-  it("delete field", async () => {
-    let { getAllByTitle } = renderWithRedux();
+  it("deconste field", async () => {
+    const { getAllByTitle } = renderWithRedux();
     userEvent.click(getAllByTitle("Удалить поле")[0]);
     await waitFor(() => {
       expect(getAllByTitle("Настройки поля")).toHaveLength(1);

@@ -11,7 +11,7 @@ import { gql } from "graphql-tag";
 import { templateFragment } from "../graphQl-fragments/templateFragment";
 import { MockedProvider } from "@apollo/client/testing";
 import { GraphQLError } from "graphql";
-let authGQL = gql`
+const authGQL = gql`
   ${templateFragment}
   query auth($email: String!, $password: String!) {
     auth(email: $email, password: $password) {
@@ -23,7 +23,7 @@ let authGQL = gql`
   }
 `;
 
-let mocks = [
+const mocks = [
   {
     request: {
       query: authGQL,
@@ -83,7 +83,7 @@ let mocks = [
     result: { errors: [new GraphQLError("data")] },
   },
 ];
-let renderWithRedux = (state: { [key: string]: any } = {}) => {
+const renderWithRedux = (state: { [key: string]: any } = {}) => {
   return {
     ...render(
       <BrowserRouter>
@@ -108,11 +108,11 @@ describe("auth", () => {
     jest.runOnlyPendingTimers();
   });
   it("render", () => {
-    let { getByText } = renderWithRedux();
+    const { getByText } = renderWithRedux();
     expect(getByText("Войти"));
   });
   it("bad user authorization", async () => {
-    let { getByRole, findByText, getByPlaceholderText } = renderWithRedux();
+    const { getByRole, findByText, getByPlaceholderText } = renderWithRedux();
     userEvent.type(getByPlaceholderText(/почта/i), "alex@gmail.com");
     userEvent.type(getByPlaceholderText(/пароль/i), "123");
     userEvent.click(getByRole("button"));
@@ -121,14 +121,14 @@ describe("auth", () => {
     ).toBeInTheDocument();
   });
   it("user authorization", async () => {
-    let { getByRole, findByText, getByPlaceholderText } = renderWithRedux();
+    const { getByRole, findByText, getByPlaceholderText } = renderWithRedux();
     userEvent.type(getByPlaceholderText(/почта/i), "alex@gmail.com");
     userEvent.type(getByPlaceholderText(/пароль/i), "12");
     userEvent.click(getByRole("button"));
     expect(await findByText(/вы вошли/i)).toBeInTheDocument();
   });
   it("change type of password input", () => {
-    let { getByPlaceholderText, getByTitle } = renderWithRedux();
+    const { getByPlaceholderText, getByTitle } = renderWithRedux();
     userEvent.click(getByTitle("Показать пароль"));
     expect(getByPlaceholderText("Пароль")).toHaveProperty("type", "text");
     userEvent.click(getByTitle("Скрыть пароль"));

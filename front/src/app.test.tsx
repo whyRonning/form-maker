@@ -14,7 +14,7 @@ import { menuReducer, data as menuData } from "./store/menuReducer";
 import userEvent from "@testing-library/user-event/dist";
 import { AppContainer } from "./AppContainer";
 
-let appGQL = gql`
+const appGQL = gql`
   ${templateFragment}
   query getUserData($userToken: String) {
     getUsersData(userToken: $userToken) {
@@ -25,7 +25,7 @@ let appGQL = gql`
     }
   }
 `;
-let authGQL = gql`
+const authGQL = gql`
   ${templateFragment}
   query auth($email: String!, $password: String!) {
     auth(email: $email, password: $password) {
@@ -36,7 +36,7 @@ let authGQL = gql`
     }
   }
 `;
-let mocks = [
+const mocks = [
   {
     request: {
       query: appGQL,
@@ -96,7 +96,7 @@ let mocks = [
     },
   },
 ];
-let userTemplates = [
+const userTemplates = [
   {
     generalBackgroundColor: "#ffffff",
     formBackgroundColor: "#a3a19f",
@@ -174,7 +174,7 @@ let userTemplates = [
     ],
   },
 ];
-let renderWithRedux = (
+const renderWithRedux = (
   authState: typeof authData = authData,
   mainState: typeof mainData = mainData,
   menuState: typeof menuData = menuData
@@ -208,7 +208,7 @@ describe("auth", () => {
     jest.runOnlyPendingTimers();
   });
   it("render", async () => {
-    let { getByText } = renderWithRedux(
+    const { getByText } = renderWithRedux(
       { ...authData },
       { ...mainData },
       { ...menuData }
@@ -219,7 +219,7 @@ describe("auth", () => {
     expect(getByText("Пользовательские шаблоны")).toBeDisabled();
   });
   it("check user's templates", async () => {
-    let { getByText, getAllByTitle } = renderWithRedux(
+    const { getByText, getAllByTitle } = renderWithRedux(
       { ...authData, isAuth: true, userTemplates },
       { ...mainData },
       { ...menuData }
@@ -228,10 +228,10 @@ describe("auth", () => {
       expect(getByText("Пользовательские шаблоны")).toBeEnabled();
     });
     userEvent.click(getByText("Пользовательские шаблоны"));
-    expect(getAllByTitle("deleteTemplate")).toHaveLength(2);
+    expect(getAllByTitle("deconsteTemplate")).toHaveLength(2);
   });
   it("check auth and redirect after auth", async () => {
-    let { getByText, getByPlaceholderText, getByRole, findByText } =
+    const { getByText, getByPlaceholderText, getByRole, findByText } =
       renderWithRedux({ ...authData }, { ...mainData }, { ...menuData });
     await waitFor(() => {
       userEvent.click(getByText("Войти"));

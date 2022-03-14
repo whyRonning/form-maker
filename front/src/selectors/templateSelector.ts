@@ -1,12 +1,12 @@
 import { createSelector } from "reselect";
 import { GlobalState } from "../store/store";
-let getTemplates = (state: GlobalState) => {
+const getTemplates = (state: GlobalState) => {
   return state.mainReducer.templates;
 };
-let getFilters = (state: GlobalState) => {
+const getFilters = (state: GlobalState) => {
   return state.mainReducer.filters;
 };
-export let TemplateSelector = createSelector(
+export const TemplateSelector = createSelector(
   getTemplates,
   getFilters,
   (templates, filters) => {

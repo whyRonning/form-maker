@@ -10,12 +10,12 @@ import React from "react";
 import { gql } from "graphql-tag";
 import userEvent from "@testing-library/user-event";
 import { RegistrationContainer } from "./registrationContainer";
-let registrationGQL = gql`
+const registrationGQL = gql`
   query reg($email: String!, $password: String!, $passwordAccess: String!) {
     reg(email: $email, password: $password, passwordAccess: $passwordAccess)
   }
 `;
-let mocks = [
+const mocks = [
   {
     request: {
       query: registrationGQL,
@@ -67,7 +67,7 @@ let mocks = [
     result: { errors: [new GraphQLError("Password mismatch")] },
   },
 ];
-let renderWithRedux = (state: { [key: string]: any } = {}) => {
+const renderWithRedux = (state: { [key: string]: any } = {}) => {
   return {
     ...render(
       <BrowserRouter>
@@ -92,11 +92,11 @@ describe("registration", () => {
     jest.runOnlyPendingTimers();
   });
   it("render", () => {
-    let { getByText } = renderWithRedux();
+    const { getByText } = renderWithRedux();
     expect(getByText("Регистрация")).toBeInTheDocument();
   });
   it("Password mismatch", async () => {
-    let { getByRole, findByText, getByPlaceholderText } = renderWithRedux();
+    const { getByRole, findByText, getByPlaceholderText } = renderWithRedux();
     userEvent.type(getByPlaceholderText(/почта/i), "alex@gmail.com");
     userEvent.type(getByPlaceholderText("Пароль"), "123");
     userEvent.type(getByPlaceholderText(/повторно/i), "12");
@@ -104,7 +104,7 @@ describe("registration", () => {
     expect(await findByText("Пароли не совпадают")).toBeInTheDocument();
   });
   it("acc already created", async () => {
-    let { getByRole, findByText, getByPlaceholderText } = renderWithRedux();
+    const { getByRole, findByText, getByPlaceholderText } = renderWithRedux();
     userEvent.type(getByPlaceholderText(/почта/i), "alexey@gmail.com");
     userEvent.type(getByPlaceholderText("Пароль"), "12");
     userEvent.type(getByPlaceholderText(/повторно/i), "12");
@@ -112,7 +112,7 @@ describe("registration", () => {
     expect(await findByText("Аккаунт уже создан")).toBeInTheDocument();
   });
   it("user registration", async () => {
-    let { getByRole, findByText, getByPlaceholderText } = renderWithRedux();
+    const { getByRole, findByText, getByPlaceholderText } = renderWithRedux();
     userEvent.type(getByPlaceholderText(/почта/i), "alex@gmail.com");
     userEvent.type(getByPlaceholderText("Пароль"), "12");
     userEvent.type(getByPlaceholderText(/повторно/i), "12");
@@ -122,7 +122,7 @@ describe("registration", () => {
     ).toBeInTheDocument();
   });
   it("not enough data", async () => {
-    let { getByRole, findByText, getByPlaceholderText } = renderWithRedux();
+    const { getByRole, findByText, getByPlaceholderText } = renderWithRedux();
     userEvent.type(getByPlaceholderText("Пароль"), "12");
     userEvent.type(getByPlaceholderText(/повторно/i), "12");
     userEvent.click(getByRole("button"));

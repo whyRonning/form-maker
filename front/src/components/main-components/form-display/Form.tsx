@@ -22,9 +22,9 @@ type propsType = {
   labelsPosition: string;
   changeState: () => void;
 };
-export let Form = (props: propsType) => {
+export const Form = (props: propsType) => {
   if (props.inputs) {
-    let InputsCreator = props.inputs.map((e, i) => {
+    const InputsCreator = props.inputs.map((e, i) => {
       return (
         <FormInput
           key={i}

@@ -7,7 +7,7 @@ import { data as mainData, mainReducer } from "../../../store/mainReducer";
 import { data as menuData, menuReducer } from "../../../store/menuReducer";
 import { MiniHeaderSwitchContainer } from "./MiniHeaderSwitchContainer";
 import "./../../../accets/FAIcons";
-let renderWithRedux = (
+const renderWithRedux = (
   authState: typeof authData = authData,
   mainState: typeof mainData = mainData,
   menuState: typeof menuData = menuData
@@ -31,11 +31,11 @@ let renderWithRedux = (
 };
 describe("miniHeader", () => {
   it("render", () => {
-    let { getByText } = renderWithRedux();
+    const { getByText } = renderWithRedux();
     expect(getByText("Настройки"));
   });
   it("check button when user is auth", () => {
-    let { getByText } = renderWithRedux({ ...authData, isAuth: true });
+    const { getByText } = renderWithRedux({ ...authData, isAuth: true });
     expect(getByText("Пользовательские шаблоны")).toBeEnabled();
   });
 });

@@ -21,7 +21,7 @@ type propsType = {
   ) => void;
 };
 export const App = (props: propsType) => {
-  let userToken = localStorage.getItem("token");
+  const userToken = localStorage.getItem("token");
   let { loading } = useQuery(
     gql`
       ${templateFragment}

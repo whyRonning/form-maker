@@ -112,7 +112,7 @@ let root = {
                         to: email,
                         subject: "client",
                         text:
-                            "Ссылка с подтверждением почты: http://localhost:3006/accept/" +
+                            "Ссылка с подтверждением почты: https://yutkm5.sse.codesandbox.io/accept/" +
                             token
                     });
                     return "success"

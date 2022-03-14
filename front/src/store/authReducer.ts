@@ -29,34 +29,34 @@ export type dataType = {
   numOfFields: number;
   inputs: Array<dataInputNumParamType>;
 };
-export let data = {
+export const data = {
   isAuth: false,
   userTemplates: [] as Array<dataType>,
   token: "",
 };
 type actionTypes = actionsTypes<typeof actions>;
 
-export let authReducer = (state: dataAuthType = data, action: actionTypes) => {
+export const authReducer = (state: dataAuthType = data, action: actionTypes) => {
   switch (action.type) {
     case "Auth": {
-      let copyState = { ...state };
+      const copyState = { ...state };
       copyState.isAuth = action.isAuth;
       copyState.userTemplates = action.templates;
       copyState.token = action.token;
       return { ...copyState };
     }
     case "userTemplates": {
-      let copyState = JSON.parse(JSON.stringify(state));
+      const copyState = JSON.parse(JSON.stringify(state));
       copyState.userTemplates.push(action.userTemplates);
       return { ...copyState };
     }
-    case "deleteUserTemplatesAC": {
-      let copyState = JSON.parse(JSON.stringify(state));
+    case "deconsteUserTemplatesAC": {
+      const copyState = JSON.parse(JSON.stringify(state));
       copyState.userTemplates.splice(action.template, 1);
       return { ...copyState };
     }
     case "logout": {
-      let copyState = { ...state };
+      const copyState = { ...state };
       copyState.isAuth = false;
       return { ...copyState };
     }
@@ -65,7 +65,7 @@ export let authReducer = (state: dataAuthType = data, action: actionTypes) => {
     }
   }
 };
-export let actions = {
+export const actions = {
   isAuthAC: (isAuth: boolean, templates: Array<dataType>, token: string) =>
     ({
       type: "Auth",
@@ -78,9 +78,9 @@ export let actions = {
       type: "userTemplates",
       userTemplates,
     } as const),
-  deleteUserTemplatesAC: (template: number) =>
+  deconsteUserTemplatesAC: (template: number) =>
     ({
-      type: "deleteUserTemplatesAC",
+      type: "deconsteUserTemplatesAC",
       template,
     } as const),
   logoutAC: () =>

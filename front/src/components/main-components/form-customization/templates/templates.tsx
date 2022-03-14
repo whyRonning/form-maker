@@ -4,8 +4,8 @@ type propsType = {
   ApplyTemplateAC: (template: dataTemplatesNumbersFieldsType) => void;
   template: dataTemplatesNumbersFieldsType;
 };
-export let Templates = React.memo((props: propsType) => {
-  let handler = () => {
+export const Templates = React.memo((props: propsType) => {
+  const handler = () => {
     props.ApplyTemplateAC(props.template);
   };
   return (

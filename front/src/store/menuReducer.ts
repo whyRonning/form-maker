@@ -1,10 +1,10 @@
 type dataType = {
   stateOfHeader: number;
 };
-export let data: dataType = {
+export const data: dataType = {
   stateOfHeader: 1,
 };
-export let menuReducer = (
+export const menuReducer = (
   state = data,
   action: ReturnType<typeof stateOfHeaderAC>
 ) => {
@@ -21,7 +21,7 @@ type stateOfHeaderACType = {
   type: string;
   stateOfHeader: number;
 };
-export let stateOfHeaderAC = (stateOfHeader: number): stateOfHeaderACType => ({
+export const stateOfHeaderAC = (stateOfHeader: number): stateOfHeaderACType => ({
   type: "stateOfHeader",
   stateOfHeader,
 });

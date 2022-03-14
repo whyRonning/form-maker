@@ -4,18 +4,18 @@ import { dataInputNumParamType } from "../../../../store/mainReducer";
 type propsType = {
   changeInput: (index: number | null) => void;
   index: number;
-  ChangeDeleteFieldAC: (index: number) => void;
+  ChangeDeconsteFieldAC: (index: number) => void;
   inputs: dataInputNumParamType;
 };
-export let SeeingFields = (props: propsType) => {
-  let changeInputIndex = () => {
+export const SeeingFields = (props: propsType) => {
+  const changeInputIndex = () => {
     props.changeInput(props.index);
   };
-  let [isObjVision, setIsObjVision] = useState(true);
-  let DeleteField = async () => {
+  const [isObjVision, setIsObjVision] = useState(true);
+  const DeconsteField = async () => {
     setIsObjVision(!isObjVision);
     await setTimeout(() => {
-      props.ChangeDeleteFieldAC(props.index);
+      props.ChangeDeconsteFieldAC(props.index);
     }, 100);
   };
 
@@ -30,7 +30,7 @@ export let SeeingFields = (props: propsType) => {
       <div className="IconsOfInputs">
         <FontAwesomeIcon
           title={"Удалить поле"}
-          onClick={DeleteField}
+          onClick={DeconsteField}
           icon="times"
         />
       </div>

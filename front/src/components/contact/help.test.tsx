@@ -7,9 +7,9 @@ import { HelpContainer } from "./helpContainer";
 import { gql } from "graphql-tag";
 describe("help", () => {
   it("change inputs value", () => {
-    let fun = jest.fn();
-    let sendMessage = jest.fn();
-    let { getByPlaceholderText } = render(
+    const fun = jest.fn();
+    const sendMessage = jest.fn();
+    const { getByPlaceholderText } = render(
       <Form
         name=""
         setName={fun}
@@ -25,12 +25,12 @@ describe("help", () => {
     expect(fun.mock.calls.length).toBe(4);
   });
   it("click on butt", async () => {
-    let query = gql`
+    const query = gql`
       mutation sendMessage($name: String!, $email: String!, $message: String!) {
         sendMessage(name: $name, email: $email, message: $message)
       }
     `;
-    let mocks = [
+    const mocks = [
       {
         request: {
           query: query,
@@ -43,7 +43,7 @@ describe("help", () => {
         result: { data: { sendMessage: "success" } },
       },
     ];
-    let { getByRole, findByText, getByPlaceholderText } = render(
+    const { getByRole, findByText, getByPlaceholderText } = render(
       <MockedProvider mocks={mocks}>
         <HelpContainer />
       </MockedProvider>

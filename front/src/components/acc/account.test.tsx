@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 
-let renderWithRedux = (state: { [key: string]: any } = {}) => {
+const renderWithRedux = (state: { [key: string]: any } = {}) => {
   return {
     ...render(
       <BrowserRouter>
@@ -25,11 +25,11 @@ let renderWithRedux = (state: { [key: string]: any } = {}) => {
 
 describe("account", () => {
   it("render", () => {
-    let { getByRole } = renderWithRedux({});
+    const { getByRole } = renderWithRedux({});
     expect(getByRole("button")).toContainHTML("Войти");
   });
   it("render registration form", () => {
-    let { getByText, getByPlaceholderText } = renderWithRedux({});
+    const { getByText, getByPlaceholderText } = renderWithRedux({});
     userEvent.click(getByText("Регистрация"));
     expect(
       getByPlaceholderText(/Введите пароль повторно/i)

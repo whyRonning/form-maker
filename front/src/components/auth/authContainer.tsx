@@ -6,11 +6,11 @@ import React, { useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { actions } from "../../store/authReducer";
 import { Preloader } from "../preloader/preloader";
-export let AuthBlock = (props: propsType) => {
-  let [passVision, setPassVision] = useState(false);
-  let [email, setEmail] = useState("");
-  let [password, setPassword] = useState("");
-  let [formRes, { loading }] = useLazyQuery(
+export const AuthBlock = (props: propsType) => {
+  const [passVision, setPassVision] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [formRes, { loading }] = useLazyQuery(
     gql`
       ${templateFragment}
       query auth($email: String!, $password: String!) {
@@ -52,6 +52,6 @@ export let AuthBlock = (props: propsType) => {
     />
   );
 };
-let AuthConnector = connect(null, { isAuthAC: actions.isAuthAC });
+const AuthConnector = connect(null, { isAuthAC: actions.isAuthAC });
 type propsType = ConnectedProps<typeof AuthConnector>;
-export let AuthContainer = AuthConnector(AuthBlock);
+export const AuthContainer = AuthConnector(AuthBlock);

@@ -7,7 +7,7 @@ type propsType = {
   token: string;
 };
 export const PersonalTemplates = (props: propsType) => {
-  let userTemplatesMaker = props.userTemplates.map((e, i) => {
+  const userTemplatesMaker = props.userTemplates.map((e, i) => {
     return (
       <PersonalTemplatesCreator
         key={i}

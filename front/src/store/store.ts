@@ -3,7 +3,7 @@ import { mainReducer } from "./mainReducer";
 import { menuReducer } from "./menuReducer";
 import { authReducer } from "./authReducer";
 
-let reducers = combineReducers({
+const reducers = combineReducers({
   mainReducer,
   authReducer,
   menuReducer,

@@ -5,14 +5,14 @@ type propsType = {
   isFilterVision: boolean;
 };
 
-export let Filter = React.memo((props: propsType) => {
-  let options = [
+export const Filter = React.memo((props: propsType) => {
+  const options = [
     "Форма обратной связи",
     "Подписка на рассылку",
     "Заказ звонка",
     "Оформление заказа",
   ];
-  let optionsWrapper = options.map((e, i) => {
+  const optionsWrapper = options.map((e, i) => {
     return (
       <div key={i}>
         <input

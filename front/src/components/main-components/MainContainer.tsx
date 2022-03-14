@@ -6,10 +6,10 @@ type MapStateToPropsType = {
   isFillingVision: boolean;
   generalBackgroundColor: string;
 };
-let MapStateToProps = (state: GlobalState): MapStateToPropsType => ({
+const MapStateToProps = (state: GlobalState): MapStateToPropsType => ({
   isFillingVision: state.mainReducer.isFillingVision,
   generalBackgroundColor: state.mainReducer.generalBackgroundColor,
 });
-export let MainContainer = connect(MapStateToProps, {
+export const MainContainer = connect(MapStateToProps, {
   ChangeFillingVisionAC: actions.ChangeFillingVisionAC,
 })(Main);

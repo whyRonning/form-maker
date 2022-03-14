@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export let templateFragment = gql`
+export const templateFragment = gql`
   fragment template on TemplatesType {
     generalBackgroundColor
     formBackgroundColor

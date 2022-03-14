@@ -8,7 +8,7 @@ import { GlobalState } from "../../../../store/store";
 import { gql, useMutation } from "@apollo/client";
 import { message } from "antd";
 import { templateFragment } from "../../../graphQl-fragments/templateFragment";
-let MapStateToProps = (state: GlobalState) => {
+const MapStateToProps = (state: GlobalState) => {
   return {
     state: state.mainReducer,
     formBackgroundColor: state.mainReducer.formBackgroundColor,
@@ -32,8 +32,8 @@ let MapStateToProps = (state: GlobalState) => {
     token: state.authReducer.token,
   };
 };
-let DataFillingBlock = (props: propsType) => {
-  let [saveTemplate, { loading }] = useMutation(
+const DataFillingBlock = (props: propsType) => {
+  const [saveTemplate, { loading }] = useMutation(
     gql`
       ${templateFragment}
       mutation saveTemplate(
@@ -59,18 +59,18 @@ let DataFillingBlock = (props: propsType) => {
       },
     }
   );
-  let process = (data: dataInputNumParamType, index: number) => {
+  const process = (data: dataInputNumParamType, index: number) => {
     props.ChangeInputsAC(data, index);
   };
-  let changeInput = (index: number | null) => {
+  const changeInput = (index: number | null) => {
     props.ChangeSelectedInputAC(index);
   };
-  let InputsMaker = props.inputs.map((val, i) => (
+  const InputsMaker = props.inputs.map((val, i) => (
     <SeeingFields
       changeInput={changeInput}
       inputs={val}
       index={i}
-      ChangeDeleteFieldAC={props.ChangeDeleteFieldAC}
+      ChangeDeconsteFieldAC={props.ChangeDeconsteFieldAC}
       key={val.id}
     />
   ));
@@ -118,14 +118,14 @@ let DataFillingBlock = (props: propsType) => {
   );
 };
 
-let DataFillingConnector = connect(MapStateToProps, {
+const DataFillingConnector = connect(MapStateToProps, {
   ChangeStateOFFormAC: actions.ChangeStateOFFormAC,
   ChangeAddFieldAC: actions.ChangeAddFieldAC,
   ChangeSelectedInputAC: actions.ChangeSelectedInputAC,
   ChangeInputsAC: actions.ChangeInputsAC,
   ChangeLabelsPositionAC: actions.ChangeLabelsPositionAC,
   userTemplatesAC: authActions.userTemplatesAC,
-  ChangeDeleteFieldAC: actions.ChangeDeleteFieldAC,
+  ChangeDeconsteFieldAC: actions.ChangeDeconsteFieldAC,
   ChangeNumOfFieldsAC: actions.ChangeNumOfFieldsAC,
   ChangeTitleAC: actions.ChangeTitleAC,
   ChangeButtHeightAC: actions.ChangeButtHeightAC,
@@ -141,4 +141,4 @@ let DataFillingConnector = connect(MapStateToProps, {
   ChangeFormWidthAC: actions.ChangeFormWidthAC,
 });
 type propsType = ConnectedProps<typeof DataFillingConnector>;
-export let DataFillingContainer = DataFillingConnector(DataFillingBlock);
+export const DataFillingContainer = DataFillingConnector(DataFillingBlock);

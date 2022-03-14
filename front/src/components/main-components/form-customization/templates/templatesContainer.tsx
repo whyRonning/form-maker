@@ -5,12 +5,12 @@ import { FilterContainer } from "./filterContainer";
 import { TemplateSelector } from "../../../../selectors/templateSelector";
 import React from "react";
 import { GlobalState } from "../../../../store/store";
-let MapStateToProps = (state: GlobalState) => ({
+const MapStateToProps = (state: GlobalState) => ({
   templates: TemplateSelector(state),
   isFilterVision: state.mainReducer.isFilterVision,
 });
-let TemplatesBlock = (props: propsType) => {
-  let TemplatesMaker = props.templates.map((e, i) => (
+const TemplatesBlock = (props: propsType) => {
+  const TemplatesMaker = props.templates.map((e, i) => (
     <Templates key={i} ApplyTemplateAC={props.ApplyTemplateAC} template={e} />
   ));
   return (
@@ -26,8 +26,8 @@ let TemplatesBlock = (props: propsType) => {
     </>
   );
 };
-let TemplatesConnector = connect(MapStateToProps, {
+const TemplatesConnector = connect(MapStateToProps, {
   ApplyTemplateAC: actions.ApplyTemplateAC,
 });
 type propsType = ConnectedProps<typeof TemplatesConnector>;
-export let TemplatesContainer = TemplatesConnector(TemplatesBlock);
+export const TemplatesContainer = TemplatesConnector(TemplatesBlock);

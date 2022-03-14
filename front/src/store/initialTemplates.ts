@@ -4,7 +4,7 @@ import Template3 from "../accets/img/Template-3.png";
 import Template4 from "../accets/img/Template-4.png";
 import { nanoid } from "nanoid";
 
-export let templates = [
+export const templates = [
   {
     fields: [
       {

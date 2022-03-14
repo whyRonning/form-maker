@@ -7,11 +7,11 @@ type MapStateToPropsType = {
   stateOfHeader: number;
   isFillingVision: boolean;
 };
-let MapStateToProps = (state: GlobalState): MapStateToPropsType => ({
+const MapStateToProps = (state: GlobalState): MapStateToPropsType => ({
   stateOfHeader: state.menuReducer.stateOfHeader,
   isFillingVision: state.mainReducer.isFillingVision,
 });
 
-export let AppContainer = connect(MapStateToProps, {
+export const AppContainer = connect(MapStateToProps, {
   isAuthAC: actions.isAuthAC,
 })(App);

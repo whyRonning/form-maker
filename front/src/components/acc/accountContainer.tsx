@@ -5,13 +5,13 @@ import { GlobalState } from "../../store/store";
 import { AuthContainer } from "../auth/authContainer";
 import { RegistrationContainer } from "../registration/registrationContainer";
 
-let MapStateToProps = (state: GlobalState) => {
+const MapStateToProps = (state: GlobalState) => {
   return {
     isAuth: state.authReducer.isAuth,
   };
 };
-let AccBlock = (props: propsType) => {
-  let [loginState, setLoginState] = useState("login");
+const AccBlock = (props: propsType) => {
+  const [loginState, setLoginState] = useState("login");
   return props.isAuth ? (
     <Navigate to="/" />
   ) : (
@@ -50,6 +50,6 @@ let AccBlock = (props: propsType) => {
     </div>
   );
 };
-let AccountConnector = connect(MapStateToProps);
+const AccountConnector = connect(MapStateToProps);
 type propsType = ConnectedProps<typeof AccountConnector>;
-export let AccountContainer = AccountConnector(AccBlock);
+export const AccountContainer = AccountConnector(AccBlock);

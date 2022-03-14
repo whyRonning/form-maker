@@ -9,8 +9,8 @@ type propsType = {
   password: string;
   email: string;
 };
-export let Auth = (props: propsType) => {
-  let handler = () => {
+export const Auth = (props: propsType) => {
+  const handler = () => {
     props.setPassVision(!props.passVision);
   };
   return (

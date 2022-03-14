@@ -11,7 +11,7 @@ type propsType = {
   isAuth: boolean;
   stateOfHeaderAC: (num: number) => void;
 };
-export let MiniHeaderSwitch = (props: propsType) => {
+export const MiniHeaderSwitch = (props: propsType) => {
   return (
     <>
       <div

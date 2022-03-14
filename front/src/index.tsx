@@ -9,7 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./accets/FAIcons";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
-let client = new ApolloClient({
+const client = new ApolloClient({
   cache: new InMemoryCache({
     typePolicies: {
       UserData: {

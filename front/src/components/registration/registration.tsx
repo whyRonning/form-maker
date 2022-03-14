@@ -11,8 +11,8 @@ type propsType = {
   email: string;
   regFun: (obj: { variables: { [key: string]: any } }) => void;
 };
-export let Registration = (props: propsType) => {
-  let handler = () => {
+export const Registration = (props: propsType) => {
+  const handler = () => {
     props.setPassVision(!props.passVision);
   };
   return (

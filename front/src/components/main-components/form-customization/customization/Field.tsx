@@ -17,7 +17,7 @@ type propsType = {
   changeInput: (val: number | null) => void;
   process: (data: dataInputNumParamType, index: number) => void;
 };
-export let Field = React.memo((props: propsType) => {
+export const Field = React.memo((props: propsType) => {
   useEffect(() => {
     setPlaceholder(props.inputs.placeholder || "");
     setTypeOfInput(props.inputs.type || "text");
@@ -37,18 +37,18 @@ export let Field = React.memo((props: propsType) => {
     props.inputs,
     props.inputs.width,
   ]);
-  let [typeOfInput, setTypeOfInput] = useState("");
-  let [placeholder, setPlaceholder] = useState("");
-  let [name, setName] = useState("");
-  let [fieldDescription, setFieldDescription] = useState("");
-  let [descriptionPosition, setDescriptionPosition] = useState<
+  const [typeOfInput, setTypeOfInput] = useState("");
+  const [placeholder, setPlaceholder] = useState("");
+  const [name, setName] = useState("");
+  const [fieldDescription, setFieldDescription] = useState("");
+  const [descriptionPosition, setDescriptionPosition] = useState<
     "bottom" | "inline"
   >("bottom");
-  let [width, setWidth] = useState("");
-  let [height, setHeight] = useState("");
-  let [size, setSize] = useState("");
-  let butHandler = () => {
-    let data = {
+  const [width, setWidth] = useState("");
+  const [height, setHeight] = useState("");
+  const [size, setSize] = useState("");
+  const butHandler = () => {
+    const data = {
       name,
       id: props.inputs.id,
       placeholder,
@@ -61,7 +61,7 @@ export let Field = React.memo((props: propsType) => {
     props.process(data, props.index);
     props.changeInput(null);
   };
-  let changeInputHandler = () => {
+  const changeInputHandler = () => {
     props.changeInput(null);
   };
   return (
