@@ -1,9 +1,7 @@
 import React from "react";
 import preloader from "../../accets/img/preloader.webp";
-export const Preloader = () => {
-  return (
-    <div className="preloader">
-      <img src={preloader} alt="preloader" />
-    </div>
-  );
-};
+export const Preloader = () => (
+  <div className="preloader">
+    <img src={preloader} alt="preloader" />
+  </div>
+);

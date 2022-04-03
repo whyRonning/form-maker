@@ -5,11 +5,9 @@ import { GlobalState } from "../../store/store";
 import { AuthContainer } from "../auth/authContainer";
 import { RegistrationContainer } from "../registration/registrationContainer";
 
-const MapStateToProps = (state: GlobalState) => {
-  return {
-    isAuth: state.authReducer.isAuth,
-  };
-};
+const MapStateToProps = (state: GlobalState) => ({
+  isAuth: state.authReducer.isAuth,
+});
 const AccBlock = (props: propsType) => {
   const [loginState, setLoginState] = useState("login");
   return props.isAuth ? (

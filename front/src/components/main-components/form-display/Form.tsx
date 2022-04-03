@@ -24,24 +24,22 @@ type propsType = {
 };
 export const Form = (props: propsType) => {
   if (props.inputs) {
-    const InputsCreator = props.inputs.map((e, i) => {
-      return (
-        <FormInput
-          key={i}
-          labelsPosition={props.labelsPosition}
-          i={i}
-          numOfFields={props.numOfFields}
-          type={e.type || "text"}
-          name={e.name || ""}
-          placeholder={e.placeholder || ""}
-          fieldDescription={e.fieldDescription || ""}
-          descriptionPosition={e.descriptionPosition || ""}
-          width={e.width || 20}
-          height={e.height || 5}
-          descriptionColor={props.descriptionColor}
-        />
-      );
-    });
+    const InputsCreator = props.inputs.map((e, i) => (
+      <FormInput
+        key={i}
+        labelsPosition={props.labelsPosition}
+        i={i}
+        numOfFields={props.numOfFields}
+        type={e.type || "text"}
+        name={e.name || ""}
+        placeholder={e.placeholder || ""}
+        fieldDescription={e.fieldDescription || ""}
+        descriptionPosition={e.descriptionPosition || ""}
+        width={e.width || 20}
+        height={e.height || 5}
+        descriptionColor={props.descriptionColor}
+      />
+    ));
     return (
       <>
         <div
@@ -115,10 +113,6 @@ export const Form = (props: propsType) => {
       </>
     );
   } else {
-    return (
-      <>
-        <form action="" method="post" />
-      </>
-    );
+    return <form action="" method="post" />;
   }
 };

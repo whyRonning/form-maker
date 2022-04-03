@@ -11,37 +11,35 @@ type propsType = {
   isAuth: boolean;
   stateOfHeaderAC: (num: number) => void;
 };
-export const MiniHeaderSwitch = (props: propsType) => {
-  return (
-    <>
-      <div
-        onClick={props.ChangeFillingVisionAC}
-        className={
-          props.isFillingVision ? "icon-angles-shown" : "icon-angles-hidden"
+export const MiniHeaderSwitch = (props: propsType) => (
+  <>
+    <div
+      onClick={props.ChangeFillingVisionAC}
+      className={
+        props.isFillingVision ? "icon-angles-shown" : "icon-angles-hidden"
+      }
+    >
+      <FontAwesomeIcon
+        className="icon-left"
+        icon={
+          props.isFillingVision ? "angle-double-right" : "angle-double-left"
         }
-      >
-        <FontAwesomeIcon
-          className="icon-left"
-          icon={
-            props.isFillingVision ? "angle-double-right" : "angle-double-left"
-          }
-          size="lg"
-        />
-      </div>
-      <MiniHeader
-        stateOfHeader={props.stateOfHeader}
-        isAuth={props.isAuth}
-        stateOfHeaderAC={props.stateOfHeaderAC}
+        size="lg"
       />
-      {props.stateOfHeader === 1 ? (
-        <TemplatesContainer />
-      ) : props.stateOfHeader === 2 ? (
-        <DataFillingContainer />
-      ) : props.stateOfHeader === 3 ? (
-        <PersonalTemplatesContainer />
-      ) : (
-        <div />
-      )}
-    </>
-  );
-};
+    </div>
+    <MiniHeader
+      stateOfHeader={props.stateOfHeader}
+      isAuth={props.isAuth}
+      stateOfHeaderAC={props.stateOfHeaderAC}
+    />
+    {props.stateOfHeader === 1 ? (
+      <TemplatesContainer />
+    ) : props.stateOfHeader === 2 ? (
+      <DataFillingContainer />
+    ) : props.stateOfHeader === 3 ? (
+      <PersonalTemplatesContainer />
+    ) : (
+      <div />
+    )}
+  </>
+);

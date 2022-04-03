@@ -16,55 +16,53 @@ export const Registration = (props: propsType) => {
     props.setPassVision(!props.passVision);
   };
   return (
-    <>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          props.regFun({
-            variables: {
-              email: props.email,
-              password: props.password,
-              passwordAccess: props.passwordAccess,
-            },
-          });
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        props.regFun({
+          variables: {
+            email: props.email,
+            password: props.password,
+            passwordAccess: props.passwordAccess,
+          },
+        });
+      }}
+    >
+      <input
+        type="email"
+        placeholder="Почта"
+        value={props.email}
+        onChange={(e) => {
+          props.setEmail(e.currentTarget.value);
         }}
-      >
-        <input
-          type="email"
-          placeholder="Почта"
-          value={props.email}
-          onChange={(e) => {
-            props.setEmail(e.currentTarget.value);
-          }}
-          required
-        />
-        <div className="passBlock">
-          <input
-            type={props.passVision ? "text" : "password"}
-            value={props.password}
-            placeholder="Пароль"
-            onChange={(e) => {
-              props.setPassword(e.currentTarget.value);
-            }}
-            required
-          />
-          <FontAwesomeIcon
-            onClick={handler}
-            title={!props.passVision ? "Показать пароль" : "Скрыть пароль"}
-            icon={props.passVision ? "eye" : "eye-slash"}
-          />
-        </div>
+        required
+      />
+      <div className="passBlock">
         <input
           type={props.passVision ? "text" : "password"}
-          value={props.passwordAccess}
-          placeholder="Введите пароль повторно"
+          value={props.password}
+          placeholder="Пароль"
           onChange={(e) => {
-            props.setPasswordAccess(e.currentTarget.value);
+            props.setPassword(e.currentTarget.value);
           }}
           required
         />
-        <button type={"submit"}>Регистрация</button>
-      </form>
-    </>
+        <FontAwesomeIcon
+          onClick={handler}
+          title={!props.passVision ? "Показать пароль" : "Скрыть пароль"}
+          icon={props.passVision ? "eye" : "eye-slash"}
+        />
+      </div>
+      <input
+        type={props.passVision ? "text" : "password"}
+        value={props.passwordAccess}
+        placeholder="Введите пароль повторно"
+        onChange={(e) => {
+          props.setPasswordAccess(e.currentTarget.value);
+        }}
+        required
+      />
+      <button type={"submit"}>Регистрация</button>
+    </form>
   );
 };

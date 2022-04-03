@@ -36,7 +36,10 @@ export const data = {
 };
 type actionTypes = actionsTypes<typeof actions>;
 
-export const authReducer = (state: dataAuthType = data, action: actionTypes) => {
+export const authReducer = (
+  state: dataAuthType = data,
+  action: actionTypes
+) => {
   switch (action.type) {
     case "Auth": {
       const copyState = { ...state };

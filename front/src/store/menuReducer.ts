@@ -21,7 +21,9 @@ type stateOfHeaderACType = {
   type: string;
   stateOfHeader: number;
 };
-export const stateOfHeaderAC = (stateOfHeader: number): stateOfHeaderACType => ({
+export const stateOfHeaderAC = (
+  stateOfHeader: number
+): stateOfHeaderACType => ({
   type: "stateOfHeader",
   stateOfHeader,
 });

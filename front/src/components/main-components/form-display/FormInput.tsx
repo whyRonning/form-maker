@@ -195,9 +195,5 @@ export const FormInput = (props: propsType) => {
       );
     }
   };
-  return (
-    <>
-      <Field />
-    </>
-  );
+  return <Field />;
 };

@@ -12,19 +12,17 @@ export const Filter = React.memo((props: propsType) => {
     "Заказ звонка",
     "Оформление заказа",
   ];
-  const optionsWrapper = options.map((e, i) => {
-    return (
-      <div key={i}>
-        <input
-          type={"checkbox"}
-          onClick={() => props.FiltersAC(e)}
-          id={e}
-          name={e}
-        />
-        <label htmlFor={e}>{e}</label>
-      </div>
-    );
-  });
+  const optionsWrapper = options.map((e, i) => (
+    <div key={i}>
+      <input
+        type={"checkbox"}
+        onClick={() => props.FiltersAC(e)}
+        id={e}
+        name={e}
+      />
+      <label htmlFor={e}>{e}</label>
+    </div>
+  ));
   return (
     <div className="filter">
       <div onClick={props.VisionFilter}>Фильтр</div>

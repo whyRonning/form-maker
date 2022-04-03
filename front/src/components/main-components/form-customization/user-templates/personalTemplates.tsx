@@ -7,24 +7,18 @@ type propsType = {
   token: string;
 };
 export const PersonalTemplates = (props: propsType) => {
-  const userTemplatesMaker = props.userTemplates.map((e, i) => {
-    return (
-      <PersonalTemplatesCreator
-        key={i}
-        index={i}
-        token={props.token}
-        template={e}
-        ApplyUserTemplateAC={props.ApplyUserTemplateAC}
-      />
-    );
-  });
+  const userTemplatesMaker = props.userTemplates.map((e, i) => (
+    <PersonalTemplatesCreator
+      key={i}
+      index={i}
+      token={props.token}
+      template={e}
+      ApplyUserTemplateAC={props.ApplyUserTemplateAC}
+    />
+  ));
   if (props.userTemplates[0]) {
     return <div className="personalTemplatesBlock">{userTemplatesMaker}</div>;
   } else {
-    return (
-      <>
-        <p>У вас пока нет шаблонов</p>
-      </>
-    );
+    return <p>У вас пока нет шаблонов</p>;
   }
 };

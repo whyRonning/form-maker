@@ -32,25 +32,23 @@ export const PersonalTemplatesCreator = React.memo((props: propsType) => {
   const handler = () => {
     props.ApplyUserTemplateAC(props.template);
   };
-  const InputsCreator = props.template.inputs.map((e, i) => {
-    return (
-      <FormInput
-        key={i}
-        labelsPosition={props.template.labelsPosition}
-        i={i}
-        numOfFields={props.template.numOfFields}
-        type={e.type || "text"}
-        name={e.name || ""}
-        placeholder={e.placeholder || ""}
-        fieldDescription={e.fieldDescription || ""}
-        disabled={true}
-        width={Number(e.width) / 3 || 3}
-        height={Number(e.height) / 3 || 3}
-        descriptionPosition={e.descriptionPosition || ""}
-        descriptionColor={props.template.descriptionColor}
-      />
-    );
-  });
+  const InputsCreator = props.template.inputs.map((e, i) => (
+    <FormInput
+      key={i}
+      labelsPosition={props.template.labelsPosition}
+      i={i}
+      numOfFields={props.template.numOfFields}
+      type={e.type || "text"}
+      name={e.name || ""}
+      placeholder={e.placeholder || ""}
+      fieldDescription={e.fieldDescription || ""}
+      disabled={true}
+      width={Number(e.width) / 3 || 3}
+      height={Number(e.height) / 3 || 3}
+      descriptionPosition={e.descriptionPosition || ""}
+      descriptionColor={props.template.descriptionColor}
+    />
+  ));
   return (
     <div
       style={{

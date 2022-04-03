@@ -8,30 +8,28 @@ import { GlobalState } from "../../../../store/store";
 import { gql, useMutation } from "@apollo/client";
 import { message } from "antd";
 import { templateFragment } from "../../../graphQl-fragments/templateFragment";
-const MapStateToProps = (state: GlobalState) => {
-  return {
-    state: state.mainReducer,
-    formBackgroundColor: state.mainReducer.formBackgroundColor,
-    titleColor: state.mainReducer.titleColor,
-    descriptionColor: state.mainReducer.descriptionColor,
-    generalBackgroundColor: state.mainReducer.generalBackgroundColor,
-    buttHeight: state.mainReducer.buttHeight,
-    buttWidth: state.mainReducer.buttWidth,
-    numOfFields: state.mainReducer.numOfFields,
-    inputs: state.mainReducer.inputs,
-    textColor: state.mainReducer.textColor,
-    labelsPosition: state.mainReducer.labelsPosition,
-    isFillingVision: state.mainReducer.isFillingVision,
-    buttTextColor: state.mainReducer.buttTextColor,
-    buttColor: state.mainReducer.buttColor,
-    title: state.mainReducer.title,
-    formWidth: state.mainReducer.formWidth,
-    formMarginTop: state.mainReducer.formMarginTop,
-    selectedInput: state.mainReducer.selectedInput,
-    isAuth: state.authReducer.isAuth,
-    token: state.authReducer.token,
-  };
-};
+const MapStateToProps = (state: GlobalState) => ({
+  state: state.mainReducer,
+  formBackgroundColor: state.mainReducer.formBackgroundColor,
+  titleColor: state.mainReducer.titleColor,
+  descriptionColor: state.mainReducer.descriptionColor,
+  generalBackgroundColor: state.mainReducer.generalBackgroundColor,
+  buttHeight: state.mainReducer.buttHeight,
+  buttWidth: state.mainReducer.buttWidth,
+  numOfFields: state.mainReducer.numOfFields,
+  inputs: state.mainReducer.inputs,
+  textColor: state.mainReducer.textColor,
+  labelsPosition: state.mainReducer.labelsPosition,
+  isFillingVision: state.mainReducer.isFillingVision,
+  buttTextColor: state.mainReducer.buttTextColor,
+  buttColor: state.mainReducer.buttColor,
+  title: state.mainReducer.title,
+  formWidth: state.mainReducer.formWidth,
+  formMarginTop: state.mainReducer.formMarginTop,
+  selectedInput: state.mainReducer.selectedInput,
+  isAuth: state.authReducer.isAuth,
+  token: state.authReducer.token,
+});
 const DataFillingBlock = (props: propsType) => {
   const [saveTemplate, { loading }] = useMutation(
     gql`
